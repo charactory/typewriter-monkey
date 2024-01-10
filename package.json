@@ -9,9 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "sass": "^1.69.7",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
-    "vite-plugin-nunjucks": "^0.2.0"
+    "vite-plugin-nunjucks": "^0.2.0",
+    "vite-plugin-singlefile": "^0.13.5"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
