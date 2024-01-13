@@ -1,6 +1,23 @@
 <div class="container" id="app">
   <h1></h1>
-  <p></p>
+  <p>
+
+    <a class="chip" onclick="function tick(this){this.firstChild().remove()}">
+      <i>done</i>
+      <span>Euthymic</span>
+    </a>
+    <a class="chip">
+      <i>done</i>
+      <span>Irritable</span>
+    </a>
+    <a class="chip">
+      <i>done</i>
+      <span>Flat</span>
+    </a>
+
+  </p>
+
+  
 
   <!-- Create the editor container -->
   <div id="editor">
@@ -13,6 +30,7 @@
   <script src="https://cdn.quilljs.com/1.3.6/quill.js" referrerpolicy="origin"></script>
   </script>
 
+  
   <!-- Initialize Quill editor -->
   <script>
     const toolbarOptions = ['bold', 'italic', 'underline', 'strike'];
