@@ -1,5 +1,5 @@
 <main>
-  <h1>Case Notes Editor</h1>
+  <h1>Case Note Editor</h1>
   <p></p>
 
   <h2>Mini Mental Status Examination</h2>
@@ -20,11 +20,25 @@
 
         <div class="row mse">
 
-          <input type="checkbox" id="erratic" name="interest" value="coding" checked />
+          <input type="checkbox" id="beh_coop" name="interest" value="coding" checked />
+          <label for="beh_coop">Cooperative</label>
+
+          <input type="checkbox" id="erratic" name="interest" value="coding" />
           <label for="erratic">Erratic</label>
 
-          <input type="checkbox" id="restless" name="interest" value="coding" checked />
+          <input type="checkbox" id="restless" name="interest" value="coding" />
           <label for="restless">Restless</label>
+
+          <input type="checkbox" id="agitated" name="interest" value="coding" />
+          <label for="agitated">Agitated</label>
+
+          <input type="checkbox" id="beh_with" name="interest" value="coding" />
+          <label for="beh_with">Withdrawn</label>
+
+          <input type="checkbox" id="beh_agg" name="interest" value="coding" />
+          <label for="beh_agg">Aggressive</label>
+
+
         </div>
       </fieldset>
 
@@ -42,6 +56,24 @@
           </div>
         </div>
       </fieldset>
+
+      <fieldset>
+        <legend>Mood</legend>
+
+        <div class="row mse">
+            <input type="checkbox" id="mood_euth" name="interest" value="coding" checked />
+            <label for="mood_euth">Euthymic</label>
+            <input type="checkbox" id="mood_anx" name="interest" value="music" />
+            <label for="mood_anx">Anxious</label>
+            <input type="checkbox" id="mood_irr" name="interest" value="music" />
+            <label for="mood_irr">Irritable</label>
+            <input type="checkbox" id="mood_dep" name="interest" value="music" />
+            <label for="mood_dep">Depressed</label>
+
+          </div>
+      </fieldset>
+
+
 
 
 
@@ -64,19 +96,28 @@
         <legend>Thought Process & Content</legend>
 
         <div class="row mse">
-          <div class="col">
             <input type="checkbox" id="coding" name="interest" value="coding" checked />
             <label for="coding">Coding</label>
-          </div>
-          <div class="col">
             <input type="checkbox" id="music" name="interest" value="music" />
             <label for="music">Music</label>
-          </div>
         </div>
       </fieldset>
 
       <fieldset>
         <legend>Perception</legend>
+
+        <div class="row mse">
+          <div class="col">
+            <input type="checkbox" id="coding" name="interest" value="coding" />
+            <label for="coding">Hallucinations</label>
+            <input type="checkbox" id="music" name="interest" value="music" />
+            <label for="music">Delusions</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Cognition</legend>
 
         <div class="row mse">
           <div class="col">
@@ -87,6 +128,8 @@
           </div>
         </div>
       </fieldset>
+
+
 
       <fieldset>
         <legend>Insight & Judgment</legend>
