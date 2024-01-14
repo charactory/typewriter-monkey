@@ -2,171 +2,359 @@
   <h1>Case Note Editor</h1>
   <p></p>
 
-  <h2>Mini Mental Status Examination</h2>
-  <div class="row mse">
-    <div class="col">
-      <fieldset>
-        <legend>Appearance</legend>
+  <div class="row">
+    <div class="col mse">
+      <div>
+        <h2>Mini Mental Status Examination</h2>
+        <fieldset>
+          <legend>Appearance</legend>
 
-        <input type="radio" id="neat_d" name="contact" value="email" checked="true" />
-        <label for="neat_d">Neatly dressed</label>
-        <input type="radio" id="untidy" name="contact" value="email" />
-        <label for="untidy">Untidy</label>
+          <input
+            type="radio"
+            id="neat_d"
+            name="appearance"
+            value="neat"
+            checked
+          />
+          <label for="neat_d">Neatly dressed</label>
+          <input type="radio" id="untidy" name="appearance" value="untidy" />
+          <label for="untidy">Untidy</label>
+        </fieldset>
 
-      </fieldset>
+        <fieldset>
+          <legend>Behaviour</legend>
 
-      <fieldset>
-        <legend>Behaviour</legend>
+          <div class="row mse">
+            <input
+              type="checkbox"
+              id="beh_coop"
+              name="behaviour"
+              value="coop"
+              checked
+            />
+            <label for="beh_coop">Cooperative</label>
 
-        <div class="row mse">
+            <input type="checkbox" id="erratic" name="behaviour" value="err" />
+            <label for="erratic">Erratic</label>
 
-          <input type="checkbox" id="beh_coop" name="interest" value="coding" checked />
-          <label for="beh_coop">Cooperative</label>
+            <input
+              type="checkbox"
+              id="restless"
+              name="behaviour"
+              value="restless"
+            />
+            <label for="restless">Restless</label>
 
-          <input type="checkbox" id="erratic" name="interest" value="coding" />
-          <label for="erratic">Erratic</label>
+            <input
+              type="checkbox"
+              id="agitated"
+              name="behaviour"
+              value="agit"
+            />
+            <label for="agitated">Agitated</label>
 
-          <input type="checkbox" id="restless" name="interest" value="coding" />
-          <label for="restless">Restless</label>
+            <input
+              type="checkbox"
+              id="beh_with"
+              name="behaviour"
+              value="withdrawn"
+            />
+            <label for="beh_with">Withdrawn</label>
 
-          <input type="checkbox" id="agitated" name="interest" value="coding" />
-          <label for="agitated">Agitated</label>
-
-          <input type="checkbox" id="beh_with" name="interest" value="coding" />
-          <label for="beh_with">Withdrawn</label>
-
-          <input type="checkbox" id="beh_agg" name="interest" value="coding" />
-          <label for="beh_agg">Aggressive</label>
-
-
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Rate of speech</legend>
-
-        <div class="row mse">
-          <div class="col">
-            <input type="radio" id="contactChoice1" name="contact" value="email" checked />
-            <label for="contactChoice1">Normal</label>
-            <input type="radio" id="contactChoice1" name="contact" value="email" />
-            <label for="contactChoice1">Slow</label>
-            <input type="radio" id="contactChoice1" name="contact" value="email" />
-            <label for="contactChoice1">Fast</label>
+            <input
+              type="checkbox"
+              id="beh_agg"
+              name="behaviour"
+              value="aggressive"
+            />
+            <label for="beh_agg">Aggressive</label>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
 
-      <fieldset>
-        <legend>Mood</legend>
+        <fieldset>
+          <legend>Rate of speech</legend>
 
-        <div class="row mse">
-            <input type="checkbox" id="mood_euth" name="interest" value="coding" checked />
+          <div class="row mse">
+            <div class="col">
+              <input
+                type="radio"
+                id="speech_rate_normal"
+                name="speech_rate"
+                value="sr_norm"
+                checked
+              />
+              <label for="speech_rate_normal">Normal</label>
+              <input
+                type="radio"
+                id="speech_rate_slow"
+                name="speech_rate"
+                value="sr_slow"
+              />
+              <label for="speech_rate_slow">Slow</label>
+              <input
+                type="radio"
+                id="speech_rate_fast"
+                name="speech_rate"
+                value="sr_fast"
+              />
+              <label for="speech_rate_fast">Fast</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Mood</legend>
+
+          <div class="row mse">
+            <input
+              type="checkbox"
+              id="mood_euth"
+              name="interest"
+              value="coding"
+              checked
+            />
             <label for="mood_euth">Euthymic</label>
-            <input type="checkbox" id="mood_anx" name="interest" value="music" />
+            <input
+              type="checkbox"
+              id="mood_anx"
+              name="interest"
+              value="music"
+            />
             <label for="mood_anx">Anxious</label>
-            <input type="checkbox" id="mood_irr" name="interest" value="music" />
+            <input
+              type="checkbox"
+              id="mood_irr"
+              name="interest"
+              value="music"
+            />
             <label for="mood_irr">Irritable</label>
-            <input type="checkbox" id="mood_dep" name="interest" value="music" />
+            <input
+              type="checkbox"
+              id="mood_dep"
+              name="interest"
+              value="music"
+            />
             <label for="mood_dep">Depressed</label>
-
+            <input
+              type="checkbox"
+              id="mood_apa"
+              name="interest"
+              value="music"
+            />
+            <label for="mood_apa">Apathetic</label>
           </div>
-      </fieldset>
+        </fieldset>
 
+        <fieldset>
+          <legend>Affect</legend>
 
+          <div class="row mse">
+            <input
+              type="checkbox"
+              id="coding"
+              name="interest"
+              value="coding"
+              checked
+            />
+            <label for="coding">Normal</label>
+            <input type="checkbox" id="music" name="interest" value="music" />
+            <label for="music">Blunted</label>
+          </div>
+        </fieldset>
 
+        <fieldset>
+          <legend>Thought Process & Content</legend>
 
-
-      <fieldset>
-        <legend>Affect</legend>
-
-        <div class="row mse">
-          <div class="col">
-            <input type="checkbox" id="coding" name="interest" value="coding" checked />
+          <div class="row mse">
+            <input
+              type="checkbox"
+              id="coding"
+              name="interest"
+              value="coding"
+              checked
+            />
             <label for="coding">Coding</label>
-          </div>
-          <div class="col">
             <input type="checkbox" id="music" name="interest" value="music" />
             <label for="music">Music</label>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
 
-      <fieldset>
-        <legend>Thought Process & Content</legend>
+        <fieldset>
+          <legend>Perception</legend>
 
-        <div class="row mse">
-            <input type="checkbox" id="coding" name="interest" value="coding" checked />
-            <label for="coding">Coding</label>
-            <input type="checkbox" id="music" name="interest" value="music" />
-            <label for="music">Music</label>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Perception</legend>
-
-        <div class="row mse">
-          <div class="col">
-            <input type="checkbox" id="coding" name="interest" value="coding" />
-            <label for="coding">Hallucinations</label>
-            <input type="checkbox" id="music" name="interest" value="music" />
-            <label for="music">Delusions</label>
+          <div class="row mse">
+            <div class="col">
+              <input
+                type="checkbox"
+                id="coding"
+                name="interest"
+                value="coding"
+              />
+              <label for="coding">Hallucinations</label>
+              <input type="checkbox" id="music" name="interest" value="music" />
+              <label for="music">Delusions</label>
+            </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
 
-      <fieldset>
-        <legend>Cognition</legend>
+        <fieldset>
+          <legend>Cognition</legend>
 
-        <div class="row mse">
-          <div class="col">
-            <input type="checkbox" id="coding" name="interest" value="coding" checked />
-            <label for="coding">Hallucinations</label>
-            <input type="checkbox" id="music" name="interest" value="music" />
-            <label for="music">Delusions</label>
+          <div class="row mse">
+            <div class="col">
+              <input
+                type="checkbox"
+                id="coding"
+                name="interest"
+                value="coding"
+                checked
+              />
+              <label for="coding">Hallucinations</label>
+              <input type="checkbox" id="music" name="interest" value="music" />
+              <label for="music">Delusions</label>
+            </div>
           </div>
-        </div>
-      </fieldset>
+        </fieldset>
 
+        <fieldset>
+          <legend>Insight & Judgment</legend>
 
-
-      <fieldset>
-        <legend>Insight & Judgment</legend>
-
-        <div class="row mse">
-          <div class="col">
-            <input type="radio" id="contactChoice1" name="contact" value="email" checked />
-            <label for="contactChoice1">Good</label>
-            <input type="radio" id="contactChoice1" name="contact" value="email" />
-            <label for="contactChoice1">Poor</label>
+          <div class="row mse">
+            <div class="col">
+              <input
+                type="radio"
+                id="contactChoice1"
+                name="contact"
+                value="email"
+                checked
+              />
+              <label for="contactChoice1">Good</label>
+              <input
+                type="radio"
+                id="contactChoice1"
+                name="contact"
+                value="email"
+              />
+              <label for="contactChoice1">Poor</label>
+            </div>
           </div>
-        </div>
-      </fieldset>
-    </div>
-    <hr />
-
-    <div class="col">
-      <!-- Create the editor container -->
-      <h2>Editor</h2>
-      <div id="editor">
-        <p>Hello World!</p>
-        <p>Some initial <strong>bold</strong> text</p>
-        <p><br /></p>
+        </fieldset>
       </div>
     </div>
 
-    <!-- Include the Quill library -->
-    <script src="https://cdn.quilljs.com/1.3.6/quill.js" referrerpolicy="origin"></script>
+    <div class="col mse">
 
-    <!-- Initialize Quill editor -->
-    <script>
-      const toolbarOptions = [];
-      var quill = new Quill("#editor", {
-        modules: {
-          toolbar: toolbarOptions,
-        },
-        theme: "snow",
-      });
-    </script>
+      <h2>Risk assessment</h2>
+
+      <fieldset>
+        <legend>Self</legend>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Conflict</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Separation</label>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Others</legend>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Alcohol</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Marijuana</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Meth</label>
+
+      </fieldset>
+
+      
+      <h2>Presenting issue</h2>
+
+      <fieldset>
+        <legend>Relationships</legend>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Conflict</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Separation</label>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Substance use</legend>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Alcohol</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Marijuana</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Meth</label>
+
+      </fieldset>
+
+
+      <h2>Intervention</h2>
+      <fieldset>
+        <legend>CBT</legend>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Socratic questioning</label>
+
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Thought disputation</label>
+
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">ABC Model</label>
+
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Behavioural Activation</label>
+
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Exposure</label>
+
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Behavioural Experiment</label>
+      </fieldset>
+      <fieldset>
+        <legend>Other</legend>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Psychoeducation</label>
+
+        <input type="checkbox" id="music" name="interest" value="music" />
+        <label for="music">Motivational interviewing</label>
+
+        <input type="checkbox" id="music" name="interest" value="music" />
+        <label for="music">Relaxation/breathing/meditation</label>
+
+        <input type="checkbox" id="music" name="interest" value="music" />
+        <label for="music">Assertiveness</label>
+
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="col">
+    <!-- Create the editor container -->
+    <h2>Editor</h2>
+    <div id="editor">
+      <p>Hello World!</p>
+      <p>Some initial <strong>bold</strong> text</p>
+      <p><br /></p>
+    </div>
+  </div>
+
+  <!-- Include the Quill library -->
+  <script
+    src="https://cdn.quilljs.com/1.3.6/quill.js"
+    referrerpolicy="origin"
+  ></script>
+
+  <!-- Initialize Quill editor -->
+  <script>
+    const toolbarOptions = [];
+    var quill = new Quill("#editor", {
+      modules: {
+        toolbar: toolbarOptions,
+      },
+      theme: "snow",
+    });
+  </script>
+
+  <a class="button primary">Generate</a>
 </main>
