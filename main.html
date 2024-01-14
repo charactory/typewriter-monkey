@@ -13,7 +13,7 @@
             type="radio"
             id="neat_d"
             name="appearance"
-            value="neat"
+            value="neatly dressed"
             checked
           />
           <label for="neat_d">Neatly dressed</label>
@@ -29,7 +29,7 @@
               type="checkbox"
               id="beh_coop"
               name="behaviour"
-              value="coop"
+              value="cooperative"
               checked
             />
             <label for="beh_coop">Cooperative</label>
@@ -49,7 +49,7 @@
               type="checkbox"
               id="agitated"
               name="behaviour"
-              value="agit"
+              value="agitated"
             />
             <label for="agitated">Agitated</label>
 
@@ -80,7 +80,7 @@
                 type="radio"
                 id="speech_rate_normal"
                 name="speech_rate"
-                value="sr_norm"
+                value="normal"
                 checked
               />
               <label for="speech_rate_normal">Normal</label>
@@ -88,14 +88,14 @@
                 type="radio"
                 id="speech_rate_slow"
                 name="speech_rate"
-                value="sr_slow"
+                value="slow"
               />
               <label for="speech_rate_slow">Slow</label>
               <input
                 type="radio"
                 id="speech_rate_fast"
                 name="speech_rate"
-                value="sr_fast"
+                value="fast"
               />
               <label for="speech_rate_fast">Fast</label>
             </div>
@@ -110,7 +110,7 @@
               type="checkbox"
               id="mood_euth"
               name="interest"
-              value="coding"
+              value="euthymic"
               checked
             />
             <label for="mood_euth">Euthymic</label>
@@ -118,28 +118,28 @@
               type="checkbox"
               id="mood_anx"
               name="interest"
-              value="music"
+              value="anxious"
             />
             <label for="mood_anx">Anxious</label>
             <input
               type="checkbox"
               id="mood_irr"
               name="interest"
-              value="music"
+              value="irritable"
             />
             <label for="mood_irr">Irritable</label>
             <input
               type="checkbox"
               id="mood_dep"
               name="interest"
-              value="music"
+              value="depressed"
             />
             <label for="mood_dep">Depressed</label>
             <input
               type="checkbox"
               id="mood_apa"
               name="interest"
-              value="music"
+              value="apathetic"
             />
             <label for="mood_apa">Apathetic</label>
           </div>
@@ -151,13 +151,13 @@
           <div class="row mse">
             <input
               type="checkbox"
-              id="coding"
+              id="aff_norm"
               name="interest"
-              value="coding"
+              value="normal"
               checked
             />
-            <label for="coding">Normal</label>
-            <input type="checkbox" id="music" name="interest" value="music" />
+            <label for="aff_norm">Normal</label>
+            <input type="checkbox" id="music" name="interest" value="blunted" />
             <label for="music">Blunted</label>
           </div>
         </fieldset>
@@ -267,42 +267,55 @@
 
       <fieldset>
         <legend>Relationships</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Conflict</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Separation</label>
+        <input type="checkbox" id="relx_conf" name="relx_conf" value="coding" />
+        <label for="relx_conf">Conflict</label>
+        <input type="checkbox" id="relx_sep" name="relx_sep" value="coding" />
+        <label for="relx_sep">Separation</label>
       </fieldset>
 
       <fieldset>
+        <legend>Work</legend>
+        <input type="checkbox" id="work_conf_cow" name="work_conf_cow" value="coding" />
+        <label for="work_conf_cow">Conflict with co-worker</label>
+        <input type="checkbox" id="work_conf_sup" name="work_conf_sup" value="coding" />
+        <label for="work_conf_sup">Conflict with supervisor</label>
+        <input type="checkbox" id="work_balance" name="work_balance" value="coding" />
+        <label for="work_balance">Work/life balance</label>
+        <input type="checkbox" id="work_burnout" name="work_burnout" value="coding" />
+        <label for="work_burnout">Burnout</label>
+      </fieldset>
+
+
+      <fieldset>
         <legend>Substance use</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Alcohol</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Marijuana</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Meth</label>
+        <input type="checkbox" id="sub_alc" name="sub_alc" value="coding" />
+        <label for="sub_alc">Alcohol</label>
+        <input type="checkbox" id="sub_marj" name="sub_marj" value="coding" />
+        <label for="sub_marj">Marijuana</label>
+        <input type="checkbox" id="sub_meth" name="sub_meth" value="coding" />
+        <label for="sub_meth">Meth</label>
       </fieldset>
 
       <h2>Background Info</h2>
 
       <fieldset>
         <legend>Work</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Local</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">FIFO</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Unemployed</label>
+        <input type="checkbox" id="work_local" name="work_local" value="coding" />
+        <label for="work_local">Local</label>
+        <input type="checkbox" id="work_fifo" name="work_fifo" value="coding" />
+        <label for="work_fifo">FIFO</label>
+        <input type="checkbox" id="unemp" name="unemp" value="coding" />
+        <label for="unemp">Unemployed</label>
       </fieldset>
 
       <fieldset>
         <legend>Family</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Single</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">In relationship</label>
+        <input type="checkbox" id="fam_sing" name="fam_sing" value="coding" />
+        <label for="fam_sing">Single</label>
+        <input type="checkbox" id="fam_relx" name="fam_relx" value="coding" />
+        <label for="fam_relx">In relationship</label>
         <input type="checkbox" id="fam_kids" name="fam_kids" value="coding" />
-        <label for="bg_kids">Children</label>
+        <label for="fam_kids">Children</label>
         <input type="text" name="kids_text" id="kids_text" />
       </fieldset>
 
@@ -314,16 +327,6 @@
         <label for="int_lis">In relationship</label>
         <input type="checkbox" id="int_lis" name="interv" value="coding" />
         <label for="int_lis">Children</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>Substance use</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Alcohol</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Marijuana</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Meth</label>
       </fieldset>
 
       <h2>Intervention</h2>
@@ -412,7 +415,7 @@
       <p><br /></p>
     </div>
 
-    <a class="button primary" style="margin-top: 0.5rem">Generate</a>
+    <a class="button primary" style="margin-top: 0.5rem" id="generate_button">Generate</a>
     <hr />
   </div>
 
