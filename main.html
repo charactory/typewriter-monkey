@@ -8,22 +8,11 @@
   <fieldset>
       <legend>Appearance</legend>
       
-      <div class="row">
-        <div class="col">
-          <input
-            type="checkbox"
-            id="coding"
-            name="interest"
-            value="coding"
-            checked
-          />
-          <label for="coding">Neatly dressed</label>
-        </div>
-        <div class="col">
-          <input type="checkbox" id="music" name="interest" value="music" />
-          <label for="music">Music</label>
-        </div>
-      </div>
+        <input type="radio" id="neat_d" name="contact" value="email" checked="true"/>
+        <label for="neat_d">Neatly dressed</label>
+        <input type="radio" id="untidy" name="contact" value="email" />
+        <label for="untidy">Untidy</label>
+
   </fieldset>
 
 <fieldset>
@@ -118,11 +107,9 @@
           value="coding"
           checked
         />
-        <label for="coding">Coding</label>
-      </div>
-      <div class="col">
+        <label for="coding">Hallucinations</label>
         <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Music</label>
+        <label for="music">Delusions</label>
       </div>
     </div>
     </fieldset>
@@ -132,25 +119,19 @@
     
     <div class="row mse">
       <div class="col">
-        <input
-          type="checkbox"
-          id="coding"
-          name="interest"
-          value="coding"
-          checked
-        />
-        <label for="coding">Coding</label>
-      </div>
-      <div class="col">
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Music</label>
+        <input type="radio" id="contactChoice1" name="contact" value="email" checked/>
+        <label for="contactChoice1">Good</label>
+        <input type="radio" id="contactChoice1" name="contact" value="email" />
+        <label for="contactChoice1">Poor</label>
       </div>
     </div>
     </fieldset>
     </div>
   <hr />
+  
   <div class="col">
   <!-- Create the editor container -->
+  <h2>Editor</h2>
   <div id="editor">
     <p>Hello World!</p>
     <p>Some initial <strong>bold</strong> text</p>
@@ -166,7 +147,7 @@
 
   <!-- Initialize Quill editor -->
   <script>
-    const toolbarOptions = ["bold", "italic", "underline", "strike"];
+    const toolbarOptions = [];
     var quill = new Quill("#editor", {
       modules: {
         toolbar: toolbarOptions,
