@@ -2,8 +2,9 @@
   <h1>Case Notes Editor</h1>
   <p></p>
 
-  <h2>Mini Mental State Examination</h2>
-  
+  <h2>Mini Mental Status Examination</h2>
+  <div class="row mse">
+    <div class="col">
   <fieldset>
       <legend>Appearance</legend>
       
@@ -28,7 +29,7 @@
 <fieldset>
   <legend>Motor</legend>
   
-  <div class="row">
+  <div class="row mse">
     <div class="col">
       <input
         type="checkbox"
@@ -49,7 +50,7 @@
 <fieldset>
   <legend>Rate of speech</legend>
   
-  <div class="row">
+  <div class="row mse">
     <div class="col">
       <input type="radio" id="contactChoice1" name="contact" value="email" checked/>
       <label for="contactChoice1">Normal</label>
@@ -66,7 +67,7 @@
 <fieldset>
   <legend>Affect</legend>
   
-  <div class="row">
+  <div class="row mse">
     <div class="col">
       <input
         type="checkbox"
@@ -87,7 +88,7 @@
 <fieldset>
   <legend>Thought Process & Content</legend>
   
-  <div class="row">
+  <div class="row mse">
     <div class="col">
       <input
         type="checkbox"
@@ -108,7 +109,7 @@
   <fieldset>
     <legend>Perception</legend>
     
-    <div class="row">
+    <div class="row mse">
       <div class="col">
         <input
           type="checkbox"
@@ -129,7 +130,7 @@
   <fieldset>
     <legend>Insight & Judgment</legend>
     
-    <div class="row">
+    <div class="row mse">
       <div class="col">
         <input
           type="checkbox"
@@ -146,13 +147,15 @@
       </div>
     </div>
     </fieldset>
+    </div>
   <hr />
-
+  <div class="col">
   <!-- Create the editor container -->
   <div id="editor">
     <p>Hello World!</p>
     <p>Some initial <strong>bold</strong> text</p>
     <p><br /></p>
+  </div>
   </div>
 
   <!-- Include the Quill library -->
