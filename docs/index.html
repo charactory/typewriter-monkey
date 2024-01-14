@@ -16,7 +16,7 @@
     integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" -->
     <!-- crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script type="module" crossorigin>
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const o of r.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&i(o)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function i(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();
+(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))c(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const n of t.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&c(n)}).observe(document,{childList:!0,subtree:!0});function i(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerPolicy&&(t.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?t.credentials="include":e.crossOrigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function c(e){if(e.ep)return;e.ep=!0;const t=i(e);fetch(e.href,t)}})();document.getElementById("generate_button").onclick=u;function s(o){var r;return(r=document.querySelector(`input[name=${o}]:checked`))==null?void 0:r.value}function u(){const o=s("appearance");console.log(o)}
 
 </script>
     <style>
@@ -47,14 +47,19 @@
         font-size: 1.2rem;
       }
 
+      #kids_text {
+        display: none;
+      }
+      #fam_kids:checked ~ #kids_text {
+        display: block;
+      }
+
       @media screen and (max-width: 599px) {
         main {
           margin-left: 5%;
           /* --font-size: 1.9rem; */
           width: 90%;
         }
-
-
       }
 
       @media screen and (min-width: 1200px) {
@@ -70,7 +75,7 @@
   <div class="row">
     <div class="col mse">
       <div>
-        <h2>Mini Mental Status Examination</h2>
+        <h2>Presentation</h2>
         <fieldset>
           <legend>Appearance</legend>
 
@@ -304,102 +309,149 @@
             </div>
           </div>
         </fieldset>
+
+        <h2>Risk</h2>
+
+        <fieldset>
+          <legend>Self</legend>
+          <input type="checkbox" id="int_lis" name="interv" value="coding" />
+          <label for="int_lis">Conflict</label>
+          <input type="checkbox" id="int_lis" name="interv" value="coding" />
+          <label for="int_lis">Separation</label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Others</legend>
+          <input type="checkbox" id="int_lis" name="interv" value="coding" />
+          <label for="int_lis">Alcohol</label>
+          <input type="checkbox" id="int_lis" name="interv" value="coding" />
+          <label for="int_lis">Marijuana</label>
+          <input type="checkbox" id="int_lis" name="interv" value="coding" />
+          <label for="int_lis">Meth</label>
+        </fieldset>
       </div>
     </div>
 
     <div class="col mse">
-      <h2>Risk</h2>
-
-      <fieldset>
-        <legend>Self</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Conflict</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Separation</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>Others</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Alcohol</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Marijuana</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Meth</label>
-      </fieldset>
-
       <h2>Presenting Problems</h2>
 
       <fieldset>
         <legend>Relationships</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Conflict</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Separation</label>
+        <input type="checkbox" id="relx_conf" name="relx_conf" value="coding" />
+        <label for="relx_conf">Conflict</label>
+        <input type="checkbox" id="relx_sep" name="relx_sep" value="coding" />
+        <label for="relx_sep">Separation</label>
       </fieldset>
 
       <fieldset>
+        <legend>Work</legend>
+        <input type="checkbox" id="work_conf_cow" name="work_conf_cow" value="coding" />
+        <label for="work_conf_cow">Conflict with co-worker</label>
+        <input type="checkbox" id="work_conf_sup" name="work_conf_sup" value="coding" />
+        <label for="work_conf_sup">Conflict with supervisor</label>
+        <input type="checkbox" id="work_balance" name="work_balance" value="coding" />
+        <label for="work_balance">Work/life balance</label>
+        <input type="checkbox" id="work_burnout" name="work_burnout" value="coding" />
+        <label for="work_burnout">Burnout</label>
+      </fieldset>
+
+
+      <fieldset>
         <legend>Substance use</legend>
+        <input type="checkbox" id="sub_alc" name="sub_alc" value="coding" />
+        <label for="sub_alc">Alcohol</label>
+        <input type="checkbox" id="sub_marj" name="sub_marj" value="coding" />
+        <label for="sub_marj">Marijuana</label>
+        <input type="checkbox" id="sub_meth" name="sub_meth" value="coding" />
+        <label for="sub_meth">Meth</label>
+      </fieldset>
+
+      <h2>Background Info</h2>
+
+      <fieldset>
+        <legend>Work</legend>
+        <input type="checkbox" id="work_local" name="work_local" value="coding" />
+        <label for="work_local">Local</label>
+        <input type="checkbox" id="work_fifo" name="work_fifo" value="coding" />
+        <label for="work_fifo">FIFO</label>
+        <input type="checkbox" id="unemp" name="unemp" value="coding" />
+        <label for="unemp">Unemployed</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Family</legend>
+        <input type="checkbox" id="fam_sing" name="fam_sing" value="coding" />
+        <label for="fam_sing">Single</label>
+        <input type="checkbox" id="fam_relx" name="fam_relx" value="coding" />
+        <label for="fam_relx">In relationship</label>
+        <input type="checkbox" id="fam_kids" name="fam_kids" value="coding" />
+        <label for="fam_kids">Children</label>
+        <input type="text" name="kids_text" id="kids_text" />
+      </fieldset>
+
+      <fieldset>
+        <legend>Friends & acquaintances</legend>
         <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Alcohol</label>
+        <label for="int_lis">Single</label>
         <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Marijuana</label>
+        <label for="int_lis">In relationship</label>
         <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Meth</label>
+        <label for="int_lis">Children</label>
       </fieldset>
 
       <h2>Intervention</h2>
       <fieldset>
         <legend>CBT</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Socratic questioning</label>
+        <input type="checkbox" id="cbt_soc" name="cbt_soc" value="coding" />
+        <label for="cbt_soc">Socratic questioning</label>
 
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Thought disputation</label>
+        <input type="checkbox" id="cbt_dis" name="interv" value="coding" />
+        <label for="cbt_dis">Thought disputation</label>
 
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">ABC Model</label>
+        <input type="checkbox" id="cbt_abc" name="interv" value="coding" />
+        <label for="cbt_abc">ABC Model</label>
 
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Behavioural Activation</label>
+        <input type="checkbox" id="cbt_ba" name="interv" value="coding" />
+        <label for="cbt_ba">Behavioural Activation</label>
 
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Exposure</label>
+        <input type="checkbox" id="cbt_exp" name="interv" value="coding" />
+        <label for="cbt_exp">Exposure</label>
 
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Behavioural Experiment</label>
+        <input type="checkbox" id="cbt_experiment" name="interv" value="coding" />
+        <label for="cbt_experiment">Behavioural Experiment</label>
+        <input type="checkbox" id="cbt_reinf" name="interv" value="coding" />
+        <label for="cbt_reinf">Reinforcement</label>
+
       </fieldset>
       <fieldset>
         <legend>Psychoeducation</legend>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Depression</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Perfectionism</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Procrastination</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Worry</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Sleep hygiene</label>
-        <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Reinforcement</label>
+        <input type="checkbox" id="psy_dep" name="interv" value="coding" />
+        <label for="psy_dep">Depression</label>
+        <input type="checkbox" id="psy_perf" name="interv" value="coding" />
+        <label for="psy_perf">Perfectionism</label>
+        <input type="checkbox" id="psy_procras" name="interv" value="coding" />
+        <label for="psy_procras">Procrastination</label>
+        <input type="checkbox" id="psy_worry" name="interv" value="coding" />
+        <label for="psy_worry">Worry</label>
+        <input type="checkbox" id="psy_sleep_hyg" name="interv" value="coding" />
+        <label for="psy_sleep_hyg">Sleep hygiene</label>
       </fieldset>
       <fieldset>
         <legend>Other</legend>
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Motivational interviewing</label>
+        <input type="checkbox" id="motiv" name="interest" value="music" />
+        <label for="motiv">Motivational interviewing</label>
 
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Relaxation/breathing/meditation</label>
+        <input type="checkbox" id="relax" name="interest" value="music" />
+        <label for="relax">Relaxation/breathing/meditation</label>
 
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Decisional balance</label>
+        <input type="checkbox" id="decision_b" name="interest" value="music" />
+        <label for="decision_b">Decisional balance</label>
 
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Assertiveness</label>
+        <input type="checkbox" id="assertive" name="interest" value="music" />
+        <label for="assertive">Assertiveness</label>
 
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Values</label>
+        <input type="checkbox" id="val" name="interest" value="music" />
+        <label for="val">Values</label>
       </fieldset>
     </div>
   </div>
@@ -432,8 +484,9 @@
       <p>Some initial <strong>bold</strong> text</p>
       <p><br /></p>
     </div>
-      <a class="button primary">Generate</a>
-      <hr />
+
+    <a class="button primary" style="margin-top: 0.5rem" id="generate_button">Generate</a>
+    <hr />
   </div>
 
   <!-- Include the Quill library -->
@@ -452,8 +505,6 @@
       theme: "snow",
     });
   </script>
-
-
 </main>
 
 
