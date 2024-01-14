@@ -1,5 +1,5 @@
 {
-  "name": "auto-ysq",
+  "name": "case-notes-editor",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
-    "nunjucks": "^3.2.4",
-    "simpledotcss": "^2.2.1"
+    "chota": "^0.9.2",
+    "nunjucks": "^3.2.4"
   }
 }

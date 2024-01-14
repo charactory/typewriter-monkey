@@ -1,33 +1,50 @@
-<div class="container" id="app">
-  <h1></h1>
-  <p>
+<main>
+  <h1>Case Notes Editor</h1>
+  <p></p>
 
-
-  </p>
-
-  
+  <h2>Mini Mental State Examination</h2>
+  <fieldset>
+    <legend>Appearance</legend>
+    <div class="row">
+      <div class="col">
+        <input
+          type="checkbox"
+          id="coding"
+          name="interest"
+          value="coding"
+          checked
+        />
+        <label for="coding">Coding</label>
+      </div>
+      <div class="col">
+        <input type="checkbox" id="music" name="interest" value="music" />
+        <label for="music">Music</label>
+      </div>
+    </div>
+  </fieldset>
+  <hr />
 
   <!-- Create the editor container -->
   <div id="editor">
     <p>Hello World!</p>
     <p>Some initial <strong>bold</strong> text</p>
-    <p><br></p>
+    <p><br /></p>
   </div>
 
   <!-- Include the Quill library -->
-  <script src="https://cdn.quilljs.com/1.3.6/quill.js" referrerpolicy="origin"></script>
-  </script>
+  <script
+    src="https://cdn.quilljs.com/1.3.6/quill.js"
+    referrerpolicy="origin"
+  ></script>
 
-  
   <!-- Initialize Quill editor -->
   <script>
-    const toolbarOptions = ['bold', 'italic', 'underline', 'strike'];
-    var quill = new Quill('#editor', {
+    const toolbarOptions = ["bold", "italic", "underline", "strike"];
+    var quill = new Quill("#editor", {
       modules: {
-        toolbar: toolbarOptions
+        toolbar: toolbarOptions,
       },
-      theme: 'snow'
+      theme: "snow",
     });
   </script>
-
-</div>
+</main>
