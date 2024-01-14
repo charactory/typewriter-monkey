@@ -243,7 +243,7 @@
     </div>
 
     <div class="col mse">
-      <h2>Risk assessment</h2>
+      <h2>Risk</h2>
 
       <fieldset>
         <legend>Self</legend>
@@ -305,10 +305,22 @@
         <label for="int_lis">Behavioural Experiment</label>
       </fieldset>
       <fieldset>
-        <legend>Other</legend>
+        <legend>Psychoeducation</legend>
         <input type="checkbox" id="int_lis" name="interv" value="coding" />
-        <label for="int_lis">Psychoeducation</label>
-
+        <label for="int_lis">Depression</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Perfectionism</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Procrastination</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Worry</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Sleep hygiene</label>
+        <input type="checkbox" id="int_lis" name="interv" value="coding" />
+        <label for="int_lis">Reinforcement</label>
+      </fieldset>
+      <fieldset>
+        <legend>Other</legend>
         <input type="checkbox" id="music" name="interest" value="music" />
         <label for="music">Motivational interviewing</label>
 
@@ -318,13 +330,11 @@
         <input type="checkbox" id="music" name="interest" value="music" />
         <label for="music">Decisional balance</label>
 
-
         <input type="checkbox" id="music" name="interest" value="music" />
         <label for="music">Assertiveness</label>
 
         <input type="checkbox" id="music" name="interest" value="music" />
         <label for="music">Values</label>
-
       </fieldset>
     </div>
   </div>
@@ -333,10 +343,17 @@
     <h2>Actions</h2>
     <fieldset>
       <legend></legend>
-      <input type="checkbox" id="int_lis" name="interv" value="coding" />
+      <input
+        type="checkbox"
+        id="int_lis"
+        name="interv"
+        value="coding"
+        checked
+      />
       <label for="int_lis"
         >Explained confidentiality and terms and conditions of EAP
-        counselling</label>
+        counselling</label
+      >
       <input type="checkbox" id="int_lis" name="interv" value="coding" />
       <label for="int_lis">Administered ORS/SRS</label>
     </fieldset>
@@ -370,5 +387,5 @@
   </script>
 
   <a class="button primary">Generate</a>
-  <hr>
+  <hr />
 </main>
