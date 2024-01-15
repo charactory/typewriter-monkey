@@ -157,8 +157,13 @@
               checked
             />
             <label for="aff_norm">Normal</label>
-            <input type="checkbox" id="music" name="interest" value="blunted" />
-            <label for="music">Blunted</label>
+            <input
+              type="checkbox"
+              id="aff_blunted"
+              name="aff_blunted"
+              value="blunted"
+            />
+            <label for="aff_blunted">Blunted</label>
           </div>
         </fieldset>
 
@@ -168,14 +173,33 @@
           <div class="row mse">
             <input
               type="checkbox"
-              id="coding"
-              name="interest"
-              value="coding"
+              id="tho_disorg"
+              name="tho_disorg"
+              value="disorganized"
               checked
             />
-            <label for="coding">Coding</label>
-            <input type="checkbox" id="music" name="interest" value="music" />
-            <label for="music">Music</label>
+            <label for="tho_disorg">Disorganized</label>
+            <input
+              type="checkbox"
+              id="tho_logical"
+              name="tho_logical"
+              value="logical"
+            />
+            <label for="tho_logical">Logical</label>
+            <input
+              type="checkbox"
+              id="tho_grand"
+              name="tho_grand"
+              value="grandiose"
+            />
+            <label for="tho_grand">Grandiose</label>
+            <input
+              type="checkbox"
+              id="tho_race"
+              name="tho_race"
+              value="racing thoughts"
+            />
+            <label for="tho_race">Racing thoughts</label>
           </div>
         </fieldset>
 
@@ -243,12 +267,31 @@
         <h2>Risk</h2>
 
         <fieldset>
-          <legend>Self</legend>
-          <input type="checkbox" id="int_lis" name="interv" value="coding" />
-          <label for="int_lis">Conflict</label>
-          <input type="checkbox" id="int_lis" name="interv" value="coding" />
-          <label for="int_lis">Separation</label>
+          <legend>Suicidal Ideation</legend>
+          <input type="radio" id="risk_self_nil" name="risk_suicide" value="nil" />
+          <label for="risk_self_nil">Nil</label>
+          <input type="radio" id="risk_self_thoughts" name="risk_suicide" value="just having occasional thoughts" />
+          <label for="risk_self_thoughts">Occasional</label>
+          <input type="radio" id="risk_self_freq" name="risk_suicide" value="frequent thoughts" />
+          <label for="risk_self_freq">Frequent</label>
+          <input type="radio" id="risk_self_plan" name="risk_suicide" value="has thought of a plan" />
+          <label for="risk_self_plan">Has plan</label>
+          <input type="radio" id="risk_self_intent" name="risk_suicide" value="has plan and intent" />
+          <label for="risk_self_intent">Has plan and intent</label>
         </fieldset>
+
+        <fieldset>
+          <legend>NSSI</legend>
+          <input type="checkbox" id="risk_nssi_nil" name="risk_nssi" value="nil" />
+          <label for="risk_nssi_nil">Nil</label>
+          <input type="checkbox" id="risk_nssi_tried" name="risk_nssi" value="has done NSSI in past" />
+          <label for="risk_nssi_tried">Has done NSSI in past</label>
+          <input type="checkbox" id="risk_nssi_current" name="risk_nssi" value="ongoing NSSI use" />
+          <label for="risk_nssi_current">Ongoing NSSI use</label>
+        </fieldset>
+
+
+        
 
         <fieldset>
           <legend>Others</legend>
@@ -275,16 +318,35 @@
 
       <fieldset>
         <legend>Work</legend>
-        <input type="checkbox" id="work_conf_cow" name="work_conf_cow" value="coding" />
+        <input
+          type="checkbox"
+          id="work_conf_cow"
+          name="work_conf_cow"
+          value="coding"
+        />
         <label for="work_conf_cow">Conflict with co-worker</label>
-        <input type="checkbox" id="work_conf_sup" name="work_conf_sup" value="coding" />
+        <input
+          type="checkbox"
+          id="work_conf_sup"
+          name="work_conf_sup"
+          value="coding"
+        />
         <label for="work_conf_sup">Conflict with supervisor</label>
-        <input type="checkbox" id="work_balance" name="work_balance" value="coding" />
+        <input
+          type="checkbox"
+          id="work_balance"
+          name="work_balance"
+          value="coding"
+        />
         <label for="work_balance">Work/life balance</label>
-        <input type="checkbox" id="work_burnout" name="work_burnout" value="coding" />
+        <input
+          type="checkbox"
+          id="work_burnout"
+          name="work_burnout"
+          value="coding"
+        />
         <label for="work_burnout">Burnout</label>
       </fieldset>
-
 
       <fieldset>
         <legend>Substance use</legend>
@@ -300,7 +362,12 @@
 
       <fieldset>
         <legend>Work</legend>
-        <input type="checkbox" id="work_local" name="work_local" value="coding" />
+        <input
+          type="checkbox"
+          id="work_local"
+          name="work_local"
+          value="coding"
+        />
         <label for="work_local">Local</label>
         <input type="checkbox" id="work_fifo" name="work_fifo" value="coding" />
         <label for="work_fifo">FIFO</label>
@@ -347,41 +414,55 @@
         <input type="checkbox" id="cbt_exp" name="interv" value="coding" />
         <label for="cbt_exp">Exposure</label>
 
-        <input type="checkbox" id="cbt_experiment" name="interv" value="coding" />
+        <input
+          type="checkbox"
+          id="cbt_experiment"
+          name="interv"
+          value="coding"
+        />
         <label for="cbt_experiment">Behavioural Experiment</label>
         <input type="checkbox" id="cbt_reinf" name="interv" value="coding" />
         <label for="cbt_reinf">Reinforcement</label>
-
       </fieldset>
       <fieldset>
         <legend>Psychoeducation</legend>
-        <input type="checkbox" id="psy_dep" name="interv" value="coding" />
+        <input type="checkbox" id="psy_dep" name="psy_dep" value="depression" />
         <label for="psy_dep">Depression</label>
-        <input type="checkbox" id="psy_perf" name="interv" value="coding" />
+        <input type="checkbox" id="psy_perf" name="psy_perf" value="perfectionism" />
         <label for="psy_perf">Perfectionism</label>
-        <input type="checkbox" id="psy_procras" name="interv" value="coding" />
+        <input type="checkbox" id="psy_procras" name="psy_procras" value="procrastination" />
         <label for="psy_procras">Procrastination</label>
-        <input type="checkbox" id="psy_worry" name="interv" value="coding" />
+        <input type="checkbox" id="psy_worry" name="psy_worry" value="worry" />
         <label for="psy_worry">Worry</label>
-        <input type="checkbox" id="psy_sleep_hyg" name="interv" value="coding" />
+        <input
+          type="checkbox"
+          id="psy_sleep_hyg"
+          name="interv"
+          value="coding"
+        />
         <label for="psy_sleep_hyg">Sleep hygiene</label>
       </fieldset>
       <fieldset>
         <legend>Other</legend>
-        <input type="checkbox" id="motiv" name="interest" value="music" />
+        <input type="checkbox" id="motiv" name="motiv" value="motivational interviewing" />
         <label for="motiv">Motivational interviewing</label>
 
-        <input type="checkbox" id="relax" name="interest" value="music" />
+        <input type="checkbox" id="relax" name="relax" value="relaxation/controlled breathing/meditation" />
         <label for="relax">Relaxation/breathing/meditation</label>
 
-        <input type="checkbox" id="decision_b" name="interest" value="music" />
+        <input type="checkbox" id="decision_b" name="decision_b" value="decisional balance" />
         <label for="decision_b">Decisional balance</label>
 
-        <input type="checkbox" id="assertive" name="interest" value="music" />
+        <input type="checkbox" id="assertive" name="assertive" value="assertiveness" />
         <label for="assertive">Assertiveness</label>
 
-        <input type="checkbox" id="val" name="interest" value="music" />
+        <input type="checkbox" id="val" name="val" value="values" />
         <label for="val">Values</label>
+
+        <input type="checkbox" id="safety_plan" name="safety_plan" value="safety plan" />
+        <label for="safety_plan">Safety plan</label>
+
+
       </fieldset>
     </div>
   </div>
@@ -415,7 +496,9 @@
       <p><br /></p>
     </div>
 
-    <a class="button primary" style="margin-top: 0.5rem" id="generate_button">Generate</a>
+    <a class="button primary" style="margin-top: 0.5rem" id="generate_button"
+      >Generate</a
+    >
     <hr />
   </div>
 
