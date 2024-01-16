@@ -1,24 +1,30 @@
 <div>
-    <h2>Presentation</h2>
-    <fieldset>
-      <legend>Appearance</legend>
+  <h2>Presentation</h2>
+  <fieldset>
+    <legend>Appearance</legend>
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="neat_d"
+          name="appearance"
+          value="neatly dressed"
+          checked
+        />
+        <label for="neat_d">Neatly dressed</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="untidy" name="appearance" value="untidy" />
+        <label for="untidy">Untidy</label>
+      </div>
+    </div>
+  </fieldset>
 
-      <input
-        type="radio"
-        id="neat_d"
-        name="appearance"
-        value="neatly dressed"
-        checked
-      />
-      <label for="neat_d">Neatly dressed</label>
-      <input type="radio" id="untidy" name="appearance" value="untidy" />
-      <label for="untidy">Untidy</label>
-    </fieldset>
+  <fieldset>
+    <legend>Behaviour</legend>
 
-    <fieldset>
-      <legend>Behaviour</legend>
-
-      <div class="row mse">
+    <div class="row mse">
+      <div class="col">
         <input
           type="checkbox"
           id="beh_coop"
@@ -27,10 +33,12 @@
           checked
         />
         <label for="beh_coop">Cooperative</label>
-
+      </div>
+      <div class="col">
         <input type="checkbox" id="erratic" name="behaviour" value="err" />
         <label for="erratic">Erratic</label>
-
+      </div>
+      <div class="col">
         <input
           type="checkbox"
           id="restless"
@@ -38,9 +46,10 @@
           value="restless"
         />
         <label for="restless">Restless</label>
-        
-      </div><div class="row mse">
-
+      </div>
+    </div>
+    <div class="row mse">
+      <div class="col">
         <input
           type="checkbox"
           id="agitated"
@@ -48,7 +57,8 @@
           value="agitated"
         />
         <label for="agitated">Agitated</label>
-
+      </div>
+      <div class="col">
         <input
           type="checkbox"
           id="beh_with"
@@ -56,7 +66,8 @@
           value="withdrawn"
         />
         <label for="beh_with">Withdrawn</label>
-
+      </div>
+      <div class="col">
         <input
           type="checkbox"
           id="beh_agg"
@@ -65,155 +76,139 @@
         />
         <label for="beh_agg">Aggressive</label>
       </div>
-    </fieldset>
+    </div>
+  </fieldset>
 
-    <fieldset>
-      <legend>Speech</legend>
+  <fieldset>
+    <legend>Speech</legend>
 
-      <div class="row mse">
-        <div class="col">
-          <input
-            type="radio"
-            id="speech_rate_normal"
-            name="speech_rate"
-            value="normal"
-            checked
-          />
-          <label for="speech_rate_normal">Normal rate</label>
-          <input
-            type="radio"
-            id="speech_rate_slow"
-            name="speech_rate"
-            value="slow"
-          />
-          <label for="speech_rate_slow">Slow</label>
-          <input
-            type="radio"
-            id="speech_rate_fast"
-            name="speech_rate"
-            value="fast"
-          />
-          <label for="speech_rate_fast">Fast</label>
-        </div>
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="speech_rate_normal"
+          name="speech_rate"
+          value="normal"
+          checked
+        />
+        <label for="speech_rate_normal">Normal rate</label>
       </div>
-      <div class="row mse">
-        <div class="col">
-          <input
-            type="radio"
-            id="speech_norm"
-            name="speech_vol"
-            value="normal volume"
-            checked
-          />
-          <label for="speech_norm">Normal volume</label>
-
-          <input
-            type="radio"
-            id="speech_soft"
-            name="speech_vol"
-            value="soft"
-          />
-          <label for="speech_soft">Soft</label>
-
-          <input
-            type="radio"
-            id="speech_loud"
-            name="speech_vol"
-            value="loud"
-          />
-          <label for="speech_loud">Loud</label>
-        </div>
+      <div class="col">
+        <input
+          type="radio"
+          id="speech_rate_slow"
+          name="speech_rate"
+          value="slow"
+        />
+        <label for="speech_rate_slow">Slow</label>
       </div>
-    </fieldset>
-
-    <fieldset>
-      <legend>Mood</legend>
-
-      <div class="row mse">
-        <div class="col">
-          <input
-            type="checkbox"
-            id="mood_euth"
-            name="interest"
-            value="euthymic"
-            checked
-          />
-          <label for="mood_euth">Euthymic</label>
-          <input
-            type="checkbox"
-            id="mood_anx"
-            name="interest"
-            value="anxious"
-          />
-          <label for="mood_anx">Anxious</label>
-          <input
-            type="checkbox"
-            id="mood_irr"
-            name="interest"
-            value="irritable"
-          />
-          <label for="mood_irr">Irritable</label>
-          <input
-            type="checkbox"
-            id="mood_dep"
-            name="interest"
-            value="depressed"
-          />
-          <label for="mood_dep">Depressed</label>
-          <input
-            type="checkbox"
-            id="mood_apa"
-            name="interest"
-            value="apathetic"
-          />
-          <label for="mood_apa">Apathetic</label>
-        </div>
+      <div class="col">
+        <input
+          type="radio"
+          id="speech_rate_fast"
+          name="speech_rate"
+          value="fast"
+        />
+        <label for="speech_rate_fast">Fast</label>
       </div>
-    </fieldset>
-
-    <fieldset>
-      <legend>Affect</legend>
-
-      <div class="row mse">
-        <div class="col">
-          <input
-            type="radio"
-            id="aff_norm"
-            name="affect"
-            value="normal"
-            checked
-          />
-          <label for="aff_norm">Normal</label>
-        </div>
-        <div class="col">
-          <input
-            type="radio"
-            id="aff_blunted"
-            name="affect"
-            value="blunted"
-          />
-          <label for="aff_blunted">Blunted</label>
-        </div>
-        <div class="col">
-          <input type="radio" id="aff_flat" name="affect" value="flat" />
-          <label for="aff_flat">Flat</label>
-        </div>
-        <div class="col">
-          <input
-            type="radio"
-            id="aff_tearful"
-            name="affect"
-            value="tearful"
-          />
-          <label for="aff_tearful">Tearful</label>
-        </div>
+    </div>
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="speech_norm"
+          name="speech_vol"
+          value="normal volume"
+          checked
+        />
+        <label for="speech_norm">Normal volume</label>
       </div>
-    </fieldset>
+      <div class="col">
+        <input type="radio" id="speech_soft" name="speech_vol" value="soft" />
+        <label for="speech_soft">Soft</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="speech_loud" name="speech_vol" value="loud" />
+        <label for="speech_loud">Loud</label>
+      </div>
+    </div>
+  </fieldset>
 
-    <fieldset>
-      <legend>Thought Process & Content</legend>
+  <fieldset>
+    <legend>Mood</legend>
 
-      <div class="row mse">
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="checkbox"
+          id="mood_euth"
+          name="interest"
+          value="euthymic"
+          checked
+        />
+        <label for="mood_euth">Euthymic</label>
+        <input type="checkbox" id="mood_anx" name="interest" value="anxious" />
+        <label for="mood_anx">Anxious</label>
+        <input
+          type="checkbox"
+          id="mood_irr"
+          name="interest"
+          value="irritable"
+        />
+        <label for="mood_irr">Irritable</label>
+        <input
+          type="checkbox"
+          id="mood_dep"
+          name="interest"
+          value="depressed"
+        />
+        <label for="mood_dep">Depressed</label>
+        <input
+          type="checkbox"
+          id="mood_apa"
+          name="interest"
+          value="apathetic"
+        />
+        <label for="mood_apa">Apathetic</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Affect</legend>
+
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="aff_norm"
+          name="affect"
+          value="normal"
+          checked
+        />
+        <label for="aff_norm">Normal</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="aff_blunted" name="affect" value="blunted" />
+        <label for="aff_blunted">Blunted</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="aff_flat" name="affect" value="flat" />
+        <label for="aff_flat">Flat</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="aff_tearful" name="affect" value="tearful" />
+        <label for="aff_tearful">Tearful</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <!-- <legend>Thought Process & Content</legend> -->
+    <legend>Thought Process</legend>
+
+    <div class="row mse">
+      <div class="col">
         <input
           type="checkbox"
           id="tho_logical"
@@ -222,6 +217,8 @@
           checked
         />
         <label for="tho_logical">Logical</label>
+      </div>
+      <div class="col">
         <input
           type="checkbox"
           id="tho_disorg"
@@ -229,66 +226,63 @@
           value="disorganized"
         />
         <label for="tho_disorg">Disorganized</label>
+      </div>
+      <!-- <input
+      type="checkbox"
+      id="tho_grand"
+      name="tho_grand"
+      value="grandiose"
+    />
+
+      <label for="tho_grand">Grandiose</label>
+      <input
+        type="checkbox"
+        id="tho_race"
+        name="tho_race"
+        value="racing thoughts"
+      />
+      <label for="tho_race">Racing thoughts</label> -->
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Perception</legend>
+
+    <div class="row mse">
+      <div class="col">
+        <input type="checkbox" id="coding" name="interest" value="coding" />
+        <label for="coding">Hallucinations</label>
+        <input type="checkbox" id="music" name="interest" value="music" />
+        <label for="music">Delusions</label>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Cognition</legend>
+
+    <div class="row mse">
+      <div class="col">
         <input
-          type="checkbox"
-          id="tho_grand"
-          name="tho_grand"
-          value="grandiose"
+          type="radio"
+          id="cog_attentive"
+          name="cog_attention"
+          value="attentive"
+          checked
         />
-        <label for="tho_grand">Grandiose</label>
+        <label for="cog_attention">Attentive</label>
         <input
-          type="checkbox"
-          id="tho_race"
-          name="tho_race"
-          value="racing thoughts"
+          type="radio"
+          id="cog_inattentive"
+          name="cog_attention"
+          value="inattentive"
         />
-        <label for="tho_race">Racing thoughts</label>
+        <label for="cog_inattentive">Inattentive</label>
       </div>
-    </fieldset>
+    </div>
+  </fieldset>
 
-    <fieldset>
-      <legend>Perception</legend>
-
-      <div class="row mse">
-        <div class="col">
-          <input
-            type="checkbox"
-            id="coding"
-            name="interest"
-            value="coding"
-          />
-          <label for="coding">Hallucinations</label>
-          <input type="checkbox" id="music" name="interest" value="music" />
-          <label for="music">Delusions</label>
-        </div>
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <legend>Cognition</legend>
-
-      <div class="row mse">
-        <div class="col">
-          <input
-            type="radio"
-            id="cog_attentive"
-            name="cog_attention"
-            value="attentive"
-            checked
-          />
-          <label for="cog_attention">Attentive</label>
-          <input
-            type="radio"
-            id="cog_inattentive"
-            name="cog_attention"
-            value="inattentive"
-          />
-          <label for="cog_inattentive">Inattentive</label>
-        </div>
-      </div>
-    </fieldset>
-
-    <!-- <fieldset>
+  <!-- <fieldset>
       <legend>Insight & Judgment</legend>
 
       <div class="row mse">
@@ -312,71 +306,71 @@
       </div>
     </fieldset> -->
 
-    <h2>Risk</h2>
+  <h2>Risk</h2>
 
-    <fieldset>
-      <legend>Suicidal Ideation</legend>
-      <input
-        type="radio"
-        id="risk_self_nil"
-        name="risk_suicide"
-        value="nil"
-        checked
-      />
-      <label for="risk_self_nil">Nil</label>
-      <input
-        type="radio"
-        id="risk_self_thoughts"
-        name="risk_suicide"
-        value="just having occasional thoughts"
-      />
-      <label for="risk_self_thoughts">Occasional</label>
-      <input
-        type="radio"
-        id="risk_self_freq"
-        name="risk_suicide"
-        value="frequent thoughts"
-      />
-      <label for="risk_self_freq">Frequent</label>
-      <input
-        type="radio"
-        id="risk_self_plan"
-        name="risk_suicide"
-        value="has thought of a plan"
-      />
-      <label for="risk_self_plan">Has plan</label>
-      <input
-        type="radio"
-        id="risk_self_intent"
-        name="risk_suicide"
-        value="has plan and intent"
-      />
-      <label for="risk_self_intent">Has plan and intent</label>
-    </fieldset>
+  <fieldset>
+    <legend>Suicidal Ideation</legend>
+    <input
+      type="radio"
+      id="risk_self_nil"
+      name="risk_suicide"
+      value="nil"
+      checked
+    />
+    <label for="risk_self_nil">Nil</label>
+    <input
+      type="radio"
+      id="risk_self_thoughts"
+      name="risk_suicide"
+      value="just having occasional thoughts"
+    />
+    <label for="risk_self_thoughts">Occasional</label>
+    <input
+      type="radio"
+      id="risk_self_freq"
+      name="risk_suicide"
+      value="frequent thoughts"
+    />
+    <label for="risk_self_freq">Frequent</label>
+    <input
+      type="radio"
+      id="risk_self_plan"
+      name="risk_suicide"
+      value="has thought of a plan"
+    />
+    <label for="risk_self_plan">Has plan</label>
+    <input
+      type="radio"
+      id="risk_self_intent"
+      name="risk_suicide"
+      value="has plan and intent"
+    />
+    <label for="risk_self_intent">Has plan and intent</label>
+  </fieldset>
 
-    <fieldset>
-      <legend>NSSI</legend>
-      <input
-        type="checkbox"
-        id="risk_nssi_nil"
-        name="risk_nssi"
-        value="nil"
-        checked
-      />
-      <label for="risk_nssi_nil">Nil</label>
-      <input
-        type="checkbox"
-        id="risk_nssi_tried"
-        name="risk_nssi"
-        value="has done NSSI in past"
-      />
-      <label for="risk_nssi_tried">Has done NSSI in past</label>
-      <input
-        type="checkbox"
-        id="risk_nssi_current"
-        name="risk_nssi"
-        value="ongoing NSSI"
-      />
-      <label for="risk_nssi_current">Ongoing NSSI</label>
-    </fieldset>
-  </div>
+  <fieldset>
+    <legend>NSSI</legend>
+    <input
+      type="checkbox"
+      id="risk_nssi_nil"
+      name="risk_nssi"
+      value="nil"
+      checked
+    />
+    <label for="risk_nssi_nil">Nil</label>
+    <input
+      type="checkbox"
+      id="risk_nssi_tried"
+      name="risk_nssi"
+      value="has done NSSI in past"
+    />
+    <label for="risk_nssi_tried">Has done NSSI in past</label>
+    <input
+      type="checkbox"
+      id="risk_nssi_current"
+      name="risk_nssi"
+      value="ongoing NSSI"
+    />
+    <label for="risk_nssi_current">Ongoing NSSI</label>
+  </fieldset>
+</div>
