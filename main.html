@@ -72,7 +72,7 @@
         </fieldset>
 
         <fieldset>
-          <legend>Rate of speech</legend>
+          <legend>Speech</legend>
 
           <div class="row mse">
             <div class="col">
@@ -83,7 +83,7 @@
                 value="normal"
                 checked
               />
-              <label for="speech_rate_normal">Normal</label>
+              <label for="speech_rate_normal">Normal rate</label>
               <input
                 type="radio"
                 id="speech_rate_slow"
@@ -100,48 +100,78 @@
               <label for="speech_rate_fast">Fast</label>
             </div>
           </div>
+          <div class="row mse">
+            <div class="col">
+              <input
+                type="radio"
+                id="speech_norm"
+                name="speech_vol"
+                value="normal volume"
+                checked
+              />
+              <label for="speech_norm">Normal volume</label>
+
+              <input
+                type="radio"
+                id="speech_soft"
+                name="speech_vol"
+                value="soft"
+              />
+              <label for="speech_soft">Soft</label>
+
+              <input
+                type="radio"
+                id="speech_loud"
+                name="speech_vol"
+                value="loud"
+              />
+              <label for="speech_loud">Loud</label>
+            </div>
+          </div>
         </fieldset>
 
         <fieldset>
           <legend>Mood</legend>
 
           <div class="row mse">
-            <input
-              type="checkbox"
-              id="mood_euth"
-              name="interest"
-              value="euthymic"
-              checked
-            />
-            <label for="mood_euth">Euthymic</label>
-            <input
-              type="checkbox"
-              id="mood_anx"
-              name="interest"
-              value="anxious"
-            />
-            <label for="mood_anx">Anxious</label>
-            <input
-              type="checkbox"
-              id="mood_irr"
-              name="interest"
-              value="irritable"
-            />
-            <label for="mood_irr">Irritable</label>
-            <input
-              type="checkbox"
-              id="mood_dep"
-              name="interest"
-              value="depressed"
-            />
-            <label for="mood_dep">Depressed</label>
-            <input
-              type="checkbox"
-              id="mood_apa"
-              name="interest"
-              value="apathetic"
-            />
-            <label for="mood_apa">Apathetic</label>
+            <div class="col">
+              <input
+                type="checkbox"
+                id="mood_euth"
+                name="interest"
+                value="euthymic"
+                checked
+              />
+              <label for="mood_euth">Euthymic</label>
+              <input
+                type="checkbox"
+                id="mood_anx"
+                name="interest"
+                value="anxious"
+              />
+              <label for="mood_anx">Anxious</label>
+              <input
+                type="checkbox"
+                id="mood_irr"
+                name="interest"
+                value="irritable"
+              />
+              <label for="mood_irr">Irritable</label>
+              <input
+                type="checkbox"
+                id="mood_dep"
+                name="interest"
+                value="depressed"
+              />
+              <label for="mood_dep">Depressed</label>
+              <input
+                type="checkbox"
+                id="mood_apa"
+                name="interest"
+                value="apathetic"
+              />
+              <label for="mood_apa">Apathetic</label>
+            </div>
           </div>
         </fieldset>
 
@@ -150,20 +180,31 @@
 
           <div class="row mse">
             <input
-              type="checkbox"
+              type="radio"
               id="aff_norm"
-              name="interest"
+              name="affect"
               value="normal"
               checked
             />
             <label for="aff_norm">Normal</label>
             <input
-              type="checkbox"
+              type="radio"
               id="aff_blunted"
-              name="aff_blunted"
+              name="affect"
               value="blunted"
             />
             <label for="aff_blunted">Blunted</label>
+
+            <input type="radio" id="aff_flat" name="affect" value="flat" />
+            <label for="aff_flat">Flat</label>
+
+            <input
+              type="radio"
+              id="aff_tearful"
+              name="affect"
+              value="tearful"
+            />
+            <label for="aff_tearful">Tearful</label>
           </div>
         </fieldset>
 
@@ -227,14 +268,19 @@
           <div class="row mse">
             <div class="col">
               <input
-                type="checkbox"
-                id="coding"
-                name="interest"
-                value="coding"
+                type="radio"
+                id="cog_attentive"
+                name="cog_attention"
+                value="attentive"
               />
-              <label for="coding">Hallucinations</label>
-              <input type="checkbox" id="music" name="interest" value="music" />
-              <label for="music">Delusions</label>
+              <label for="cog_attention">Attentive</label>
+              <input
+                type="radio"
+                id="cog_inattentive"
+                name="cog_attention"
+                value="inattentive"
+              />
+              <label for="cog_inattentive">Inattentive</label>
             </div>
           </div>
         </fieldset>
@@ -330,16 +376,6 @@
           />
           <label for="risk_nssi_current">Ongoing NSSI use</label>
         </fieldset>
-
-        <fieldset>
-          <legend>Others</legend>
-          <input type="checkbox" id="int_lis" name="interv" value="coding" />
-          <label for="int_lis">Alcohol</label>
-          <input type="checkbox" id="int_lis" name="interv" value="coding" />
-          <label for="int_lis">Marijuana</label>
-          <input type="checkbox" id="int_lis" name="interv" value="coding" />
-          <label for="int_lis">Meth</label>
-        </fieldset>
       </div>
     </div>
 
@@ -428,24 +464,39 @@
       <fieldset>
         <legend>Unhelpful Negative Emotions</legend>
         <div class="row">
-        <input type="checkbox" id="une_dep" name="une_dep" value="depression" />
-        <label for="une_dep">Depression</label>
-        <input type="checkbox" id="une_anx" name="une_anx" value="anxiety" />
-        <label for="une_anx">Anxiety</label>
-        <input type="checkbox" id="une_ang" name="une_ang" value="anger" />
-        <label for="une_ang">Anger</label>
-        <input type="checkbox" id="une_shame" name="une_shame" value="shame" />
-        <label for="une_shame">Shame</label>
+          <input
+            type="checkbox"
+            id="une_dep"
+            name="une_dep"
+            value="depression"
+          />
+          <label for="une_dep">Depression</label>
+          <input type="checkbox" id="une_anx" name="une_anx" value="anxiety" />
+          <label for="une_anx">Anxiety</label>
+          <input type="checkbox" id="une_ang" name="une_ang" value="anger" />
+          <label for="une_ang">Anger</label>
+          <input
+            type="checkbox"
+            id="une_shame"
+            name="une_shame"
+            value="shame"
+          />
+          <label for="une_shame">Shame</label>
         </div>
         <div class="row">
-        <input type="checkbox" id="une_guilt" name="une_guilt" value="guilt" />
-        <label for="une_guilt">Guilt</label>
-        <input type="checkbox" id="une_hurt" name="une_hurt" value="hurt" />
-        <label for="une_hurt">Hurt</label>
-        <input type="checkbox" id="une_jea" name="une_jea" value="jealousy" />
-        <label for="une_jea">Jealousy</label>
-        <input type="checkbox" id="une_envy" name="une_envy" value="envy" />
-        <label for="une_envy">Envy</label>
+          <input
+            type="checkbox"
+            id="une_guilt"
+            name="une_guilt"
+            value="guilt"
+          />
+          <label for="une_guilt">Guilt</label>
+          <input type="checkbox" id="une_hurt" name="une_hurt" value="hurt" />
+          <label for="une_hurt">Hurt</label>
+          <input type="checkbox" id="une_jea" name="une_jea" value="jealousy" />
+          <label for="une_jea">Jealousy</label>
+          <input type="checkbox" id="une_envy" name="une_envy" value="envy" />
+          <label for="une_envy">Envy</label>
         </div>
       </fieldset>
 
@@ -492,24 +543,26 @@
         <legend>CBT</legend>
         <div class="row">
           <div class="col">
-          <input type="checkbox" id="cbt_soc" name="cbt_soc" value="coding" />
-          <label for="cbt_soc">Socratic questioning</label>
-</div>
-<div class="col">
-          <input type="checkbox" id="cbt_dis" name="interv" value="coding" />
-          <label for="cbt_dis">Thought disputation</label>
-</div>  <div class="col">
-          <input type="checkbox" id="cbt_abc" name="interv" value="coding" />
-          <label for="cbt_abc">ABC Model</label>
+            <input type="checkbox" id="cbt_soc" name="cbt_soc" value="coding" />
+            <label for="cbt_soc">Socratic questioning</label>
+          </div>
+          <div class="col">
+            <input type="checkbox" id="cbt_dis" name="interv" value="coding" />
+            <label for="cbt_dis">Thought disputation</label>
+          </div>
+          <div class="col">
+            <input type="checkbox" id="cbt_abc" name="interv" value="coding" />
+            <label for="cbt_abc">ABC Model</label>
           </div>
         </div>
         <div class="row">
           <div class="col">
-          <input type="checkbox" id="cbt_ba" name="interv" value="coding" />
-          <label for="cbt_ba">Behavioural Activation</label>
-</div>  <div class="col">
-          <input type="checkbox" id="cbt_exp" name="interv" value="coding" />
-          <label for="cbt_exp">Exposure</label>
+            <input type="checkbox" id="cbt_ba" name="interv" value="coding" />
+            <label for="cbt_ba">Behavioural Activation</label>
+          </div>
+          <div class="col">
+            <input type="checkbox" id="cbt_exp" name="interv" value="coding" />
+            <label for="cbt_exp">Exposure</label>
           </div>
         </div>
         <div class="row">
@@ -637,26 +690,35 @@
   <a class="button primary" style="margin-top: 0.5rem" id="generate_button"
     >Generate</a
   >
+  <hr />
 
   <div class="col">
     <!-- Create the editor container -->
-    <h2>Editor</h2>
+    <!-- <h2>Editor</h2>
     <div id="editor">
       <p>Hello World!</p>
       <p>Some initial <strong>bold</strong> text</p>
       <p><br /></p>
-    </div>
+    </div> -->
+    <h2>Output</h2>
+    <textarea
+      name="note_output"
+      rows="5"
+      cols="30"
+      style="margin-top: 0.5rem"
+    ></textarea>
+
     <hr />
   </div>
 
   <!-- Include the Quill library -->
-  <script
+  <!-- <script
     src="https://cdn.quilljs.com/1.3.6/quill.js"
     referrerpolicy="origin"
-  ></script>
+  ></script> -->
 
   <!-- Initialize Quill editor -->
-  <script>
+  <!-- <script>
     const toolbarOptions = [];
     var quill = new Quill("#editor", {
       modules: {
@@ -664,5 +726,5 @@
       },
       theme: "snow",
     });
-  </script>
+  </script> -->
 </main>
