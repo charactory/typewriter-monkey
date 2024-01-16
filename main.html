@@ -278,6 +278,7 @@
                 id="cog_attentive"
                 name="cog_attention"
                 value="attentive"
+                checked
               />
               <label for="cog_attention">Attentive</label>
               <input
@@ -378,9 +379,9 @@
             type="checkbox"
             id="risk_nssi_current"
             name="risk_nssi"
-            value="ongoing NSSI use"
+            value="ongoing NSSI"
           />
-          <label for="risk_nssi_current">Ongoing NSSI use</label>
+          <label for="risk_nssi_current">Ongoing NSSI</label>
         </fieldset>
       </div>
     </div>
@@ -598,7 +599,8 @@
           </div>
         </div>
         <div class="row">
-          <input
+          <div class="col">
+            <input
             type="checkbox"
             id="cbt_experiment"
             name="cbt_experiment"
@@ -606,9 +608,12 @@
           />
 
           <label for="cbt_experiment">Behavioural Experiment</label>
+        </div>
+        <div class="col">
+
           <input type="checkbox" id="cbt_reinf" name="interv" value="coding" />
           <label for="cbt_reinf">Reinforcement</label>
-        </div>
+        </div></div>
       </fieldset>
       <fieldset>
         <legend>Psychoeducation</legend>
@@ -640,13 +645,17 @@
       </fieldset>
       <fieldset>
         <legend>Other</legend>
-        <input
+        <div class="row">
+        <div class="col">
+              <input
           type="checkbox"
           id="motiv"
           name="motiv"
           value="motivational interviewing"
         />
         <label for="motiv">Motivational interviewing</label>
+      </div>
+      <div class="col">
 
         <input
           type="checkbox"
@@ -655,6 +664,8 @@
           value="relaxation/controlled breathing/meditation"
         />
         <label for="relax">Relaxation/breathing/meditation</label>
+      </div>
+      <div class="col">
 
         <input
           type="checkbox"
@@ -663,6 +674,11 @@
           value="decisional balance"
         />
         <label for="decision_b">Decisional balance</label>
+      </div>
+    </div>
+    <div class="row">
+    
+      <div class="col">
 
         <input
           type="checkbox"
@@ -671,9 +687,13 @@
           value="assertiveness"
         />
         <label for="assertive">Assertiveness</label>
+      </div>
+      <div class="col">
 
         <input type="checkbox" id="val" name="val" value="values" />
         <label for="val">Values</label>
+      </div>
+      <div class="col">
 
         <input
           type="checkbox"
@@ -682,6 +702,7 @@
           value="safety plan"
         />
         <label for="safety_plan">Safety plan</label>
+        </div>
       </fieldset>
     </div>
   </div>
