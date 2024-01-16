@@ -50,9 +50,9 @@ function generateNoteTemplate() {
     ", " +
     speech_vol;
 
-  const risk_string = "Risk: ";
+  const risk_string = "Risk: \n";
   const intervention_string =
-    "Intervention: active listening & validation, " + cbt_string;
+    "Intervention: \n Active listening & validation. " + cbt_string;
 
   output!.value =
     presentation_string + "\n\n" + risk_string + "\n" + intervention_string;
