@@ -10,6 +10,10 @@ function getValue(name: String) {
 }
 
 function generateNoteTemplate() {
+  let output : HTMLTextAreaElement | null = <HTMLTextAreaElement>(document.getElementById("note_output"));
   const app = getValue("appearance");
+  const beh_coop = getValue("beh_coop");
+  
+  output!.value = "Appearance: " + app + "\n" + "Behaviour: " + beh_coop;
   console.log(app);
 }
