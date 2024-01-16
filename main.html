@@ -3,15 +3,11 @@
   <p></p>
 
   <div class="row">
-    <div class="col mse">
-      {% include "presentation.html" %}
-    </div>
+    <div class="col mse">{% include "presentation.html" %}</div>
 
     <div class="col mse">
-      {% include "problems.html" %}
-
-      {% include "background.html" %}
-      {% include "intervention.html" %}
+      {% include "problems.html" %} {% include "background.html" %} {% include
+      "intervention.html" %}
     </div>
   </div>
 
@@ -19,18 +15,43 @@
     <h2>Actions</h2>
     <fieldset>
       <legend></legend>
-      <input type="checkbox" id="consent" name="consent" value="Explained confidentiality and terms and conditions of EAP
-        counselling" checked />
-      <label for="int_lis">Explained confidentiality and terms and conditions of EAP
-        counselling</label>
-      <input type="checkbox" id="ors_srs" name="ors_srs" value="Administered ORS/SRS" />
-      <label for="ors_srs">Administered ORS/SRS</label>
-      <input type="checkbox" id="debrief_manager" name="debrief_manager" value="Debriefed with manager" />
-      <label for="debrief_manager">Debriefed with manager</label>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          value="Explained confidentiality and terms and conditions of EAP counselling. Client agreed and gave consent to continue"
+          checked
+        />
+        <label for="consent"
+          >Explained confidentiality and terms and conditions of EAP
+          counselling. Client agreed and gave consent to continue</label
+        >
+      </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="ors_srs"
+          name="ors_srs"
+          value="Administered ORS/SRS"
+        />
+        <label for="ors_srs">Administered ORS/SRS</label>
+      </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="debrief_manager"
+          name="debrief_manager"
+          value="Debriefed with manager"
+        />
+        <label for="debrief_manager">Debriefed with manager</label>
+      </div>
     </fieldset>
   </div>
 
-  <a class="button primary" style="margin-top: 0.5rem" id="generate_button">Generate</a>
+  <a class="button primary" style="margin-top: 0.5rem" id="generate_button"
+    >Generate</a
+  >
   <hr />
 
   <div class="col">
@@ -42,7 +63,13 @@
       <p><br /></p>
     </div> -->
     <h2>Output</h2>
-    <textarea name="note_output" id="note_output" rows="15" cols="30" style="margin-top: 0.5rem"></textarea>
+    <textarea
+      name="note_output"
+      id="note_output"
+      rows="15"
+      cols="30"
+      style="margin-top: 0.5rem"
+    ></textarea>
 
     <hr />
   </div>

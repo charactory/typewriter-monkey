@@ -100,6 +100,14 @@ function generateNoteTemplate() {
     psy_ed_string +
     other_interv_string;
 
+  let actions_string = "";
+
+  const consent_string = getValue("consent");
+  const ors_srs_string = getValue("ors_srs");
+  actions_string =
+    "Actions: \n" +
+    [consent_string, ors_srs_string].filter((item) => item).join("\n");
+
   output!.value =
     presentation_string +
     "\n\n" +
@@ -109,6 +117,9 @@ function generateNoteTemplate() {
     "\n\n" +
     bg_string +
     "\n\n" +
-    intervention_string;
+    intervention_string +
+    "\n\n" +
+    actions_string +
+    "\n";
   console.log(app);
 }
