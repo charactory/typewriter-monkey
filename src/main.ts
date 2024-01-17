@@ -67,13 +67,16 @@ function generateNoteTemplate() {
     getValue("decision_b"),
     getValue("assertive"),
     getValue("val"),
-    getValue("safety_plan"),
+    getValue("cog_defusion"),
+    getValue("goal_setting"),
+    getValue("relapse"),
+    getValue("safety_plan")
   ].filter((item) => item);
 
   let other_interv_string: String;
 
   if (other_interv.length > 0) {
-    other_interv_string = other_interv.join(", ") + ".";
+    other_interv_string = other_interv.join(". ") + ".";
   } else {
     other_interv_string = "";
   }
@@ -106,7 +109,7 @@ function generateNoteTemplate() {
   const ors_srs_string = getValue("ors_srs");
   actions_string =
     "Actions: \n" +
-    [consent_string, ors_srs_string].filter((item) => item).join("\n");
+    [consent_string, ors_srs_string, getValue("self_care")].filter((item) => item).join("\n");
 
   output!.value =
     presentation_string +
