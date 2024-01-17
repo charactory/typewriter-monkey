@@ -16,19 +16,20 @@
     integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" -->
     <!-- crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script type="module" crossorigin>
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const s of n.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function l(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(t){if(t.ep)return;t.ep=!0;const n=l(t);fetch(t.href,n)}})();document.getElementById("generate_button").onclick=A;function e(c){var o;return(o=document.querySelector(`input[name=${c}]:checked`))==null?void 0:o.value}function A(){let c=document.getElementById("note_output");const o=e("appearance"),l=e("beh_coop");e("beh_err");const i=e("speech_rate"),t=e("speech_vol"),n=e("cbt_soc"),s=e("cbt_abc"),b=e("cbt_dis"),h=e("cbt_ba"),m=e("cbt_exp"),y=e("cbt_experiment"),v=e("cbt_reinf"),u=[n,s,b,h,m,y,v].filter(r=>r);let p;u.length>0?p="CBT: "+u.join(", ")+". ":p="";const f=[e("psy_dep"),e("psy_perf"),e("psy_procras"),e("psy_worry"),e("psy_sleep_hyg")].filter(r=>r);let a;f.length>0?a="Psychoeducation: "+f.join(", ")+". ":a="";const d=[e("motiv"),e("relax"),e("decision_b"),e("assertive"),e("val"),e("safety_plan")].filter(r=>r);let _;d.length>0?_=d.join(", ")+".":_="";const P="Appearance: "+o+`
-Behaviour: `+l+`
-Speech: `+i+", "+t,O=`Risk: 
-`,x=`Presenting Problems: 
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const l of n.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&i(l)}).observe(document,{childList:!0,subtree:!0});function s(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(t){if(t.ep)return;t.ep=!0;const n=s(t);fetch(t.href,n)}})();document.getElementById("generate_button").onclick=E;function e(r){var o;return(o=document.querySelector(`input[name=${r}]:checked`))==null?void 0:o.value}function w(r,o=""){let s;return r.length>0?s=o+r.filter(i=>i).join(", "):s="",s}function E(){let r=document.getElementById("note_output");const o=e("appearance");e("beh_coop"),e("beh_err"),e("beh_restless"),e("beh_agit"),e("beh_with"),e("beh_agg");const s=e("beh_coop");e("beh_err");const i=e("speech_rate"),t=e("speech_vol"),n=[e("mood_euth"),e("mood_anx"),e("mood_irr"),e("mood_dep"),e("mood_apa")],l=w(n);e("affect");const b=e("cbt_soc"),h=e("cbt_abc"),m=e("cbt_dis"),y=e("cbt_ba"),v=e("cbt_exp"),P=e("cbt_experiment"),x=e("cbt_reinf"),u=[b,h,m,y,v,P,x].filter(c=>c);let _;u.length>0?_="CBT: "+u.join(", ")+". ":_="";const d=[e("psy_dep"),e("psy_perf"),e("psy_procras"),e("psy_worry"),e("psy_sleep_hyg")].filter(c=>c);let a;d.length>0?a="Psychoeducation: "+d.join(", ")+". ":a="";const f=[e("motiv"),e("relax"),e("decision_b"),e("assertive"),e("val"),e("cog_defusion"),e("goal_setting"),e("relapse"),e("safety_plan")].filter(c=>c);let p;f.length>0?p=f.join(". ")+".":p="";const L="Appearance: "+o+`
+Behaviour: `+s+`
+Speech: `+i+", "+t+`
+Mood: `+l,O=`Risk: 
+`,j=`Presenting Problems: 
 `,B=`Background Info: 
 `,I=`Intervention: 
-Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_srs");g=`Actions: 
-`+[L,j].filter(r=>r).join(`
-`),c.value=P+`
+Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_srs");g=`Actions: 
+`+[A,N,e("self_care")].filter(c=>c).join(`
+`),r.value=L+`
 
 `+O+`
 
-`+x+`
+`+j+`
 
 `+B+`
 
@@ -241,31 +242,31 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
         <input
           type="checkbox"
           id="mood_euth"
-          name="interest"
+          name="mood_euth"
           value="euthymic"
           checked
         />
         <label for="mood_euth">Euthymic</label>
-        <input type="checkbox" id="mood_anx" name="interest" value="anxious" />
+        <input type="checkbox" id="mood_anx" name="mood_anx" value="anxious" />
         <label for="mood_anx">Anxious</label>
         <input
           type="checkbox"
           id="mood_irr"
-          name="interest"
+          name="mood_irr"
           value="irritable"
         />
         <label for="mood_irr">Irritable</label>
         <input
           type="checkbox"
           id="mood_dep"
-          name="interest"
+          name="mood_dep"
           value="depressed"
         />
         <label for="mood_dep">Depressed</label>
         <input
           type="checkbox"
           id="mood_apa"
-          name="interest"
+          name="mood_apa"
           value="apathetic"
         />
         <label for="mood_apa">Apathetic</label>
@@ -608,11 +609,21 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
   <legend>CBT</legend>
   <div class="row">
     <div class="col">
-      <input type="checkbox" id="cbt_soc" name="cbt_soc" value="Socratic questioning" />
+      <input
+        type="checkbox"
+        id="cbt_soc"
+        name="cbt_soc"
+        value="Socratic questioning"
+      />
       <label for="cbt_soc">Socratic questioning</label>
     </div>
     <div class="col">
-      <input type="checkbox" id="cbt_dis" name="cbt_dis" value="thought disputation" />
+      <input
+        type="checkbox"
+        id="cbt_dis"
+        name="cbt_dis"
+        value="thought disputation"
+      />
       <label for="cbt_dis">Thought disputation</label>
     </div>
     <div class="col">
@@ -622,7 +633,12 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
   </div>
   <div class="row">
     <div class="col">
-      <input type="checkbox" id="cbt_ba" name="cbt_ba" value="behavioural activation" />
+      <input
+        type="checkbox"
+        id="cbt_ba"
+        name="cbt_ba"
+        value="behavioural activation"
+      />
       <label for="cbt_ba">Behavioural Activation</label>
     </div>
     <div class="col">
@@ -649,21 +665,45 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
 </fieldset>
 <fieldset>
   <legend>Psychoeducation</legend>
-  <input type="checkbox" id="psy_dep" name="psy_dep" value="depression" />
-  <label for="psy_dep">Depression</label>
-  <input type="checkbox" id="psy_perf" name="psy_perf" value="perfectionism" />
-  <label for="psy_perf">Perfectionism</label>
-  <input
-    type="checkbox"
-    id="psy_procras"
-    name="psy_procras"
-    value="procrastination"
-  />
-  <label for="psy_procras">Procrastination</label>
-  <input type="checkbox" id="psy_worry" name="psy_worry" value="worry" />
-  <label for="psy_worry">Worry</label>
-  <input type="checkbox" id="psy_sleep_hyg" name="psy_sleep_hyg" value="sleep hygiene" />
-  <label for="psy_sleep_hyg">Sleep hygiene</label>
+  <div class="row">
+    <div class="col">
+      <input type="checkbox" id="psy_dep" name="psy_dep" value="depression" />
+      <label for="psy_dep">Depression</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="psy_perf"
+        name="psy_perf"
+        value="perfectionism"
+      />
+      <label for="psy_perf">Perfectionism</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="psy_procras"
+        name="psy_procras"
+        value="procrastination"
+      />
+      <label for="psy_procras">Procrastination</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="psy_worry" name="psy_worry" value="worry" />
+      <label for="psy_worry">Worry</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="psy_sleep_hyg"
+        name="psy_sleep_hyg"
+        value="sleep hygiene"
+      />
+      <label for="psy_sleep_hyg">Sleep hygiene</label>
+    </div>
+  </div>
 </fieldset>
 
 <fieldset>
@@ -674,7 +714,7 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
         type="checkbox"
         id="motiv"
         name="motiv"
-        value="motivational interviewing"
+        value="Motivational interviewing"
       />
       <label for="motiv">Motivational interviewing</label>
     </div>
@@ -683,7 +723,7 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
         type="checkbox"
         id="relax"
         name="relax"
-        value="relaxation/controlled breathing/meditation"
+        value="Relaxation/controlled breathing/meditation"
       />
       <label for="relax">Relaxation/meditation</label>
     </div>
@@ -692,7 +732,7 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
         type="checkbox"
         id="decision_b"
         name="decision_b"
-        value="decisional balance"
+        value="Decisional balance"
       />
       <label for="decision_b">Decisional balance</label>
     </div>
@@ -703,20 +743,50 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
         type="checkbox"
         id="assertive"
         name="assertive"
-        value="assertiveness"
+        value="Assertiveness"
       />
       <label for="assertive">Assertiveness</label>
     </div>
     <div class="col">
-      <input type="checkbox" id="val" name="val" value="values" />
+      <input type="checkbox" id="val" name="val" value="Values" />
       <label for="val">Values</label>
     </div>
     <div class="col">
       <input
         type="checkbox"
+        id="cog_defusion"
+        name="cog_defusion"
+        value="Cognitive defusion"
+      />
+      <label for="cog_defusion">Cognitive defusion</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="goal_setting"
+        name="goal_setting"
+        value="Goal setting"
+      />
+      <label for="goal_setting">Goal setting</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="relapse"
+        name="relapse"
+        value="Relapse prevention"
+      />
+      <label for="relapse">Relapse prevention</label>
+    </div>
+
+    <div class="col">
+      <input
+        type="checkbox"
         id="safety_plan"
         name="safety_plan"
-        value="safety plan"
+        value="Safety plan"
       />
       <label for="safety_plan">Safety plan</label>
     </div>
@@ -755,6 +825,17 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
       <div class="row">
         <input
           type="checkbox"
+          id="self_care"
+          name="self_care"
+          value="Encouraged self-care"
+          checked
+        />
+        <label for="ors_srs">Encouraged self-care</label>
+      </div>
+
+      <div class="row">
+        <input
+          type="checkbox"
           id="debrief_manager"
           name="debrief_manager"
           value="Debriefed with manager"
@@ -781,7 +862,7 @@ Active listening & validation. `+p+a+_;let g="";const L=e("consent"),j=e("ors_sr
     <textarea
       name="note_output"
       id="note_output"
-      rows="15"
+      rows="25"
       cols="30"
       style="margin-top: 0.5rem"
     ></textarea>

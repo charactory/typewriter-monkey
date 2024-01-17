@@ -9,15 +9,48 @@ function getValue(name: String) {
   ))?.value;
 }
 
+function formatList(list: String[], prefix = ""): String {
+  let identifier_string: String;
+
+  if (list.length > 0) {
+    identifier_string = prefix + list.filter((item) => item).join(", ");
+  } else {
+    identifier_string = "";
+  }
+  return identifier_string;
+}
+
 function generateNoteTemplate() {
   let output: HTMLTextAreaElement | null = <HTMLTextAreaElement>(
     document.getElementById("note_output")
   );
   const app = getValue("appearance");
+
+  const beh = [
+    getValue("beh_coop"),
+    getValue("beh_err"),
+    getValue("beh_restless"),
+    getValue("beh_agit"),
+    getValue("beh_with"),
+    getValue("beh_agg"),
+  ];
+
   const beh_coop = getValue("beh_coop");
   const beh_err = getValue("beh_err");
   const speech_rate = getValue("speech_rate");
   const speech_vol = getValue("speech_vol");
+
+  const mood = [
+    getValue("mood_euth"),
+    getValue("mood_anx"),
+    getValue("mood_irr"),
+    getValue("mood_dep"),
+    getValue("mood_apa"),
+  ];
+
+  const mood_string = formatList(mood);
+
+  const affect = getValue("affect");
 
   const cbt_soc = getValue("cbt_soc");
   const cbt_abc = getValue("cbt_abc");
@@ -70,7 +103,7 @@ function generateNoteTemplate() {
     getValue("cog_defusion"),
     getValue("goal_setting"),
     getValue("relapse"),
-    getValue("safety_plan")
+    getValue("safety_plan"),
   ].filter((item) => item);
 
   let other_interv_string: String;
@@ -91,7 +124,10 @@ function generateNoteTemplate() {
     "Speech: " +
     speech_rate +
     ", " +
-    speech_vol;
+    speech_vol +
+    "\n" +
+    "Mood: " +
+    mood_string;
 
   const risk_string = "Risk: \n";
   const problem_string = "Presenting Problems: \n";
@@ -109,7 +145,9 @@ function generateNoteTemplate() {
   const ors_srs_string = getValue("ors_srs");
   actions_string =
     "Actions: \n" +
-    [consent_string, ors_srs_string, getValue("self_care")].filter((item) => item).join("\n");
+    [consent_string, ors_srs_string, getValue("self_care")]
+      .filter((item) => item)
+      .join("\n");
 
   output!.value =
     presentation_string +
