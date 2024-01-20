@@ -16,26 +16,27 @@
     integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" -->
     <!-- crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script type="module" crossorigin>
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const l of n.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&i(l)}).observe(document,{childList:!0,subtree:!0});function s(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function i(t){if(t.ep)return;t.ep=!0;const n=s(t);fetch(t.href,n)}})();document.getElementById("generate_button").onclick=E;function e(r){var o;return(o=document.querySelector(`input[name=${r}]:checked`))==null?void 0:o.value}function w(r,o=""){let s;return r.length>0?s=o+r.filter(i=>i).join(", "):s="",s}function E(){let r=document.getElementById("note_output");const o=e("appearance");e("beh_coop"),e("beh_err"),e("beh_restless"),e("beh_agit"),e("beh_with"),e("beh_agg");const s=e("beh_coop");e("beh_err");const i=e("speech_rate"),t=e("speech_vol"),n=[e("mood_euth"),e("mood_anx"),e("mood_irr"),e("mood_dep"),e("mood_apa")],l=w(n);e("affect");const b=e("cbt_soc"),h=e("cbt_abc"),m=e("cbt_dis"),y=e("cbt_ba"),v=e("cbt_exp"),P=e("cbt_experiment"),x=e("cbt_reinf"),u=[b,h,m,y,v,P,x].filter(c=>c);let _;u.length>0?_="CBT: "+u.join(", ")+". ":_="";const d=[e("psy_dep"),e("psy_perf"),e("psy_procras"),e("psy_worry"),e("psy_sleep_hyg")].filter(c=>c);let a;d.length>0?a="Psychoeducation: "+d.join(", ")+". ":a="";const f=[e("motiv"),e("relax"),e("decision_b"),e("assertive"),e("val"),e("cog_defusion"),e("goal_setting"),e("relapse"),e("safety_plan")].filter(c=>c);let p;f.length>0?p=f.join(". ")+".":p="";const L="Appearance: "+o+`
-Behaviour: `+s+`
-Speech: `+i+", "+t+`
-Mood: `+l,O=`Risk: 
-`,j=`Presenting Problems: 
-`,B=`Background Info: 
-`,I=`Intervention: 
-Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_srs");g=`Actions: 
-`+[A,N,e("self_care")].filter(c=>c).join(`
-`),r.value=L+`
-
-`+O+`
-
-`+j+`
-
-`+B+`
-
-`+I+`
+(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))c(t);new MutationObserver(t=>{for(const n of t)if(n.type==="childList")for(const _ of n.addedNodes)_.tagName==="LINK"&&_.rel==="modulepreload"&&c(_)}).observe(document,{childList:!0,subtree:!0});function r(t){const n={};return t.integrity&&(n.integrity=t.integrity),t.referrerPolicy&&(n.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?n.credentials="include":t.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function c(t){if(t.ep)return;t.ep=!0;const n=r(t);fetch(t.href,n)}})();document.getElementById("generate_button").onclick=q;function e(s){var o;return(o=document.querySelector(`input[name=${s}]:checked`))==null?void 0:o.value}function m(s,o=""){let r;return s.length>0?r=o+s.filter(c=>c).join(", "):r="",r}function q(){let s=document.getElementById("note_output");const o=e("appearance"),r=[e("beh_coop"),e("beh_err"),e("beh_restless"),e("beh_agit"),e("beh_with"),e("beh_agg")],c=e("beh_eye"),t=m(r),n=e("speech_rate"),_=e("speech_vol"),y=[e("mood_euth"),e("mood_anx"),e("mood_irr"),e("mood_dep"),e("mood_apa")],v=m(y);e("affect");const P=e("tho_organisation"),x=e("cbt_soc"),L=e("cbt_abc"),O=e("cbt_dis"),j=e("cbt_ba"),B=e("cbt_exp"),I=e("cbt_experiment"),A=e("cbt_reinf"),p=[x,L,O,j,B,I,A].filter(i=>i);let l;p.length>0?l="CBT: "+p.join(", ")+". ":l="";const d=[e("psy_dep"),e("psy_perf"),e("psy_procras"),e("psy_worry"),e("psy_sleep_hyg")].filter(i=>i);let a;d.length>0?a="Psychoeducation: "+d.join(", ")+". ":a="";const f=[e("motiv"),e("relax"),e("decision_b"),e("assertive"),e("val"),e("cog_defusion"),e("goal_setting"),e("relapse"),e("safety_plan")].filter(i=>i);let u;f.length>0?u=f.join(". ")+".":u="";const N="Appearance: "+o+`
+Behaviour: `+c+", "+t+`
+Speech: `+n+", "+_+`
+Mood: `+v+`
+Thoughts: `+P;let g="Risk: "+e("risk_suicide");const h=e("risk_previous_suicide");h!=null&&(g+=`
+`+h);const k=`Presenting Problems: 
+`,w=`Background Info: 
+`,E=`Intervention: 
+Active listening & validation. `+l+a+u;let b="";const S=e("consent"),T=e("ors_srs");b=`Actions: 
+`+[S,T,e("self_care")].filter(i=>i).join(`
+`),s.value=N+`
 
 `+g+`
+
+`+k+`
+
+`+w+`
+
+`+E+`
+
+`+b+`
 `,console.log(o)}
 
 </script>
@@ -126,6 +127,27 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
     <div class="row mse">
       <div class="col">
         <input
+          type="radio"
+          id="beh_good_eye"
+          name="beh_eye"
+          value="good eye contact"
+          checked
+        />
+        <label for="beh_good_eye">Good eye contact</label>
+      </div>
+      <div class="col">
+        <input
+          type="radio"
+          id="beh_bad_eye"
+          name="beh_eye"
+          value="poor eye contact"
+        />
+        <label for="beh_bad_eye">Little eye contact</label>
+      </div>
+    </div>
+    <div class="row mse">
+      <div class="col">
+        <input
           type="checkbox"
           id="beh_coop"
           name="beh_coop"
@@ -135,7 +157,7 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
         <label for="beh_coop">Cooperative</label>
       </div>
       <div class="col">
-        <input type="checkbox" id="erratic" name="beh_err" value="err" />
+        <input type="checkbox" id="erratic" name="beh_err" value="erratic" />
         <label for="erratic">Erratic</label>
       </div>
       <div class="col">
@@ -150,30 +172,20 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
     </div>
     <div class="row mse">
       <div class="col">
-        <input
-          type="checkbox"
-          id="agitated"
-          name="beh_agit"
-          value="agitated"
-        />
+        <input type="checkbox" id="agitated" name="beh_agit" value="agitated" />
         <label for="agitated">Agitated</label>
       </div>
       <div class="col">
         <input
           type="checkbox"
           id="beh_with"
-          name="behaviour"
+          name="beh_with"
           value="withdrawn"
         />
         <label for="beh_with">Withdrawn</label>
       </div>
       <div class="col">
-        <input
-          type="checkbox"
-          id="beh_agg"
-          name="behaviour"
-          value="aggressive"
-        />
+        <input type="checkbox" id="beh_agg" name="beh_agg" value="aggressive" />
         <label for="beh_agg">Aggressive</label>
       </div>
     </div>
@@ -224,11 +236,21 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
         <label for="speech_norm">Normal volume</label>
       </div>
       <div class="col">
-        <input type="radio" id="speech_soft" name="speech_vol" value="speaks softly" />
+        <input
+          type="radio"
+          id="speech_soft"
+          name="speech_vol"
+          value="speaks softly"
+        />
         <label for="speech_soft">Soft</label>
       </div>
       <div class="col">
-        <input type="radio" id="speech_loud" name="speech_vol" value="speaks loudly" />
+        <input
+          type="radio"
+          id="speech_loud"
+          name="speech_vol"
+          value="speaks loudly"
+        />
         <label for="speech_loud">Loud</label>
       </div>
     </div>
@@ -310,19 +332,19 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
     <div class="row mse">
       <div class="col">
         <input
-          type="checkbox"
+          type="radio"
           id="tho_logical"
-          name="tho_logical"
-          value="logical"
+          name="tho_organisation"
+          value="logically organized"
           checked
         />
         <label for="tho_logical">Logical</label>
       </div>
       <div class="col">
         <input
-          type="checkbox"
+          type="radio"
           id="tho_disorg"
-          name="tho_disorg"
+          name="tho_organisation"
           value="disorganized"
         />
         <label for="tho_disorg">Disorganized</label>
@@ -350,10 +372,20 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
 
     <div class="row mse">
       <div class="col">
-        <input type="checkbox" id="coding" name="interest" value="coding" />
-        <label for="coding">Hallucinations</label>
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Delusions</label>
+        <input
+          type="checkbox"
+          id="hallucinations"
+          name="hallucinations"
+          value="hallucinations"
+        />
+        <label for="hallucinations">Hallucinations</label>
+        <input
+          type="checkbox"
+          id="delusions"
+          name="delusions"
+          value="delusions"
+        />
+        <label for="delusions">Delusions</label>
       </div>
     </div>
   </fieldset>
@@ -410,42 +442,66 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
 
   <fieldset>
     <legend>Suicidal Ideation</legend>
-    <input
-      type="radio"
-      id="risk_self_nil"
-      name="risk_suicide"
-      value="nil"
-      checked
-    />
-    <label for="risk_self_nil">Nil</label>
-    <input
-      type="radio"
-      id="risk_self_thoughts"
-      name="risk_suicide"
-      value="just having occasional thoughts"
-    />
-    <label for="risk_self_thoughts">Occasional</label>
-    <input
-      type="radio"
-      id="risk_self_freq"
-      name="risk_suicide"
-      value="frequent thoughts"
-    />
-    <label for="risk_self_freq">Frequent</label>
-    <input
-      type="radio"
-      id="risk_self_plan"
-      name="risk_suicide"
-      value="has thought of a plan"
-    />
-    <label for="risk_self_plan">Has plan</label>
-    <input
-      type="radio"
-      id="risk_self_intent"
-      name="risk_suicide"
-      value="has plan and intent"
-    />
-    <label for="risk_self_intent">Has plan and intent</label>
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="risk_self_nil"
+          name="risk_suicide"
+          value="nil"
+          checked
+        />
+        <label for="risk_self_nil">Nil</label>
+      </div>
+      <div class="col">
+        <input
+          type="radio"
+          id="risk_self_thoughts"
+          name="risk_suicide"
+          value="Has occasional thoughts about suicide with no clear plan or intent"
+        />
+        <label for="risk_self_thoughts">Occasional</label>
+      </div>
+      <div class="col">
+        <input
+          type="radio"
+          id="risk_self_freq"
+          name="risk_suicide"
+          value="Has frequent thoughts about suicide but denied plan or intent"
+        />
+        <label for="risk_self_freq">Frequent</label>
+      </div>
+    </div>
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="risk_self_plan"
+          name="risk_suicide"
+          value="Has thought of a suicide plan"
+        />
+        <label for="risk_self_plan">Has plan</label>
+      </div>
+      <div class="col">
+        <input
+          type="radio"
+          id="risk_self_intent"
+          name="risk_suicide"
+          value="Has a suicide plan and expressed intent to act on it"
+        />
+        <label for="risk_self_intent">Has plan and intent</label>
+      </div>
+    </div>
+    <div class="row mse">
+      <div class="col">
+      <input
+        type="checkbox"
+        id="risk_previous_suicide"
+        name="risk_previous_suicide"
+        value="Has attempted suicide before"
+      />
+      <label for="risk_previous_suicide">Has attempted suicide before</label>
+    </div></div>
   </fieldset>
 
   <fieldset>
@@ -830,7 +886,7 @@ Active listening & validation. `+_+a+p;let g="";const A=e("consent"),N=e("ors_sr
           value="Encouraged self-care"
           checked
         />
-        <label for="ors_srs">Encouraged self-care</label>
+        <label for="self_care">Encouraged self-care</label>
       </div>
 
       <div class="row">

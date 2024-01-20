@@ -34,11 +34,11 @@ function generateNoteTemplate() {
     getValue("beh_with"),
     getValue("beh_agg"),
   ];
+
+  const eye_contact = getValue("beh_eye");
   
   const behaviour_string = formatList(beh);
 
-  const beh_coop = getValue("beh_coop");
-  const beh_err = getValue("beh_err");
   const speech_rate = getValue("speech_rate");
   const speech_vol = getValue("speech_vol");
 
@@ -53,6 +53,9 @@ function generateNoteTemplate() {
   const mood_string = formatList(mood);
 
   const affect = getValue("affect");
+
+  const thought_string = getValue("tho_organisation");
+
 
   const cbt_soc = getValue("cbt_soc");
   const cbt_abc = getValue("cbt_abc");
@@ -121,6 +124,7 @@ function generateNoteTemplate() {
     app +
     "\n" +
     "Behaviour: " +
+    eye_contact + ", " +
     behaviour_string +
     "\n" +
     "Speech: " +
@@ -129,9 +133,15 @@ function generateNoteTemplate() {
     speech_vol +
     "\n" +
     "Mood: " +
-    mood_string;
+    mood_string +
+    "\n" +
+    "Thoughts: " + thought_string;
 
-  const risk_string = "Risk: \n" +  getValue("risk_suicide") + "\n" + getValue("risk_previous_suicide");
+  let risk_string = "Risk: " +  getValue("risk_suicide");
+  const previous_risk_string = getValue("risk_previous_suicide");
+  if (previous_risk_string != undefined) {
+    risk_string += "\n" + previous_risk_string;
+  }
   const problem_string = "Presenting Problems: \n";
   const bg_string = "Background Info: \n";
 
