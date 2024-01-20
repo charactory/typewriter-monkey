@@ -34,6 +34,8 @@ function generateNoteTemplate() {
     getValue("beh_with"),
     getValue("beh_agg"),
   ];
+  
+  const behaviour_string = formatList(beh);
 
   const beh_coop = getValue("beh_coop");
   const beh_err = getValue("beh_err");
@@ -119,7 +121,7 @@ function generateNoteTemplate() {
     app +
     "\n" +
     "Behaviour: " +
-    beh_coop +
+    behaviour_string +
     "\n" +
     "Speech: " +
     speech_rate +
@@ -129,7 +131,7 @@ function generateNoteTemplate() {
     "Mood: " +
     mood_string;
 
-  const risk_string = "Risk: \n";
+  const risk_string = "Risk: \n" +  getValue("risk_suicide") + "\n" + getValue("risk_previous_suicide");
   const problem_string = "Presenting Problems: \n";
   const bg_string = "Background Info: \n";
 

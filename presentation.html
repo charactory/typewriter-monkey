@@ -26,6 +26,27 @@
     <div class="row mse">
       <div class="col">
         <input
+          type="radio"
+          id="beh_good_eye"
+          name="beh_eye"
+          value="good eye contact"
+          checked
+        />
+        <label for="beh_good_eye">good eye contact</label>
+      </div>
+      <div class="col">
+        <input
+          type="radio"
+          id="beh_bad_eye"
+          name="beh_eye"
+          value="poor eye contact"
+        />
+        <label for="beh_bad_eye">little eye contact</label>
+      </div>
+
+      </div>    <div class="row mse">
+      <div class="col">
+        <input
           type="checkbox"
           id="beh_coop"
           name="beh_coop"
@@ -35,7 +56,7 @@
         <label for="beh_coop">Cooperative</label>
       </div>
       <div class="col">
-        <input type="checkbox" id="erratic" name="beh_err" value="err" />
+        <input type="checkbox" id="erratic" name="beh_err" value="erratic" />
         <label for="erratic">Erratic</label>
       </div>
       <div class="col">
@@ -62,7 +83,7 @@
         <input
           type="checkbox"
           id="beh_with"
-          name="behaviour"
+          name="beh_with"
           value="withdrawn"
         />
         <label for="beh_with">Withdrawn</label>
@@ -71,7 +92,7 @@
         <input
           type="checkbox"
           id="beh_agg"
-          name="behaviour"
+          name="beh_agg"
           value="aggressive"
         />
         <label for="beh_agg">Aggressive</label>
@@ -212,8 +233,8 @@
         <input
           type="checkbox"
           id="tho_logical"
-          name="tho_logical"
-          value="logical"
+          name="tho_organisation"
+          value="logically organized"
           checked
         />
         <label for="tho_logical">Logical</label>
@@ -222,7 +243,7 @@
         <input
           type="checkbox"
           id="tho_disorg"
-          name="tho_disorg"
+          name="tho_organisation"
           value="disorganized"
         />
         <label for="tho_disorg">Disorganized</label>
@@ -250,10 +271,10 @@
 
     <div class="row mse">
       <div class="col">
-        <input type="checkbox" id="coding" name="interest" value="coding" />
-        <label for="coding">Hallucinations</label>
-        <input type="checkbox" id="music" name="interest" value="music" />
-        <label for="music">Delusions</label>
+        <input type="checkbox" id="hallucinations" name="hallucinations" value="hallucinations" />
+        <label for="hallucinations">Hallucinations</label>
+        <input type="checkbox" id="delusions" name="delusions" value="delusions" />
+        <label for="delusions">Delusions</label>
       </div>
     </div>
   </fieldset>
@@ -310,6 +331,8 @@
 
   <fieldset>
     <legend>Suicidal Ideation</legend>
+    <div class="row mse">
+      <div class="col">
     <input
       type="radio"
       id="risk_self_nil"
@@ -318,34 +341,52 @@
       checked
     />
     <label for="risk_self_nil">Nil</label>
+    </div>      <div class="col">
+
     <input
       type="radio"
       id="risk_self_thoughts"
       name="risk_suicide"
-      value="just having occasional thoughts"
+      value="Has occasional thoughts about suicide with no clear plan or intent"
     />
     <label for="risk_self_thoughts">Occasional</label>
+  </div>      <div class="col">
+
     <input
       type="radio"
       id="risk_self_freq"
       name="risk_suicide"
-      value="frequent thoughts"
+      value="Has frequent thoughts about suicide but denied plan or intent"
     />
     <label for="risk_self_freq">Frequent</label>
+    </div>
+    </div>
+    <div class="row mse">
+      <div class="col">
     <input
       type="radio"
       id="risk_self_plan"
       name="risk_suicide"
-      value="has thought of a plan"
+      value="Has thought of a suicide plan"
     />
     <label for="risk_self_plan">Has plan</label>
+    </div>      <div class="col">
     <input
       type="radio"
       id="risk_self_intent"
       name="risk_suicide"
-      value="has plan and intent"
+      value="Has a suicide plan and expressed intent to act on it"
     />
     <label for="risk_self_intent">Has plan and intent</label>
+</div>      <div class="col">
+    <input
+    type="checkbox"
+    id="risk_previous_suicide"
+    name="risk_previous_suicide"
+    value="Has attempted suicide before"
+  />
+  <label for="risk_previous_suicide">Has attempted suicide before</label>
+</div></div>
   </fieldset>
 
   <fieldset>
