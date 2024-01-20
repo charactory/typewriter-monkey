@@ -86,6 +86,7 @@ function generateNoteTemplate() {
   const psy_ed = [
     getValue("psy_dep"),
     getValue("psy_perf"),
+    getValue("psy_grief"),
     getValue("psy_procras"),
     getValue("psy_worry"),
     getValue("psy_sleep_hyg"),
