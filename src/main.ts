@@ -3,6 +3,10 @@ import "chota";
 
 document.getElementById("generate_button")!.onclick = generateNoteTemplate;
 
+// const problems_textarea_editor = document.getElementById("detail_relx_conf");
+
+
+
 function getValue(name: String) {
   return (<HTMLInputElement>(
     document.querySelector(`input[name=${name}]:checked`)
@@ -36,7 +40,7 @@ function generateNoteTemplate() {
   ];
 
   const eye_contact = getValue("beh_eye");
-  
+
   const behaviour_string = formatList(beh);
 
   const speech_rate = getValue("speech_rate");
@@ -55,7 +59,6 @@ function generateNoteTemplate() {
   const affect = getValue("affect");
 
   const thought_string = getValue("tho_organisation");
-
 
   const cbt_soc = getValue("cbt_soc");
   const cbt_abc = getValue("cbt_abc");
@@ -125,7 +128,8 @@ function generateNoteTemplate() {
     app +
     "\n" +
     "Behaviour: " +
-    eye_contact + ", " +
+    eye_contact +
+    ", " +
     behaviour_string +
     "\n" +
     "Speech: " +
@@ -136,9 +140,10 @@ function generateNoteTemplate() {
     "Mood: " +
     mood_string +
     "\n" +
-    "Thoughts: " + thought_string;
+    "Thoughts: " +
+    thought_string;
 
-  let risk_string = "Risk: " +  getValue("risk_suicide");
+  let risk_string = "Risk: " + getValue("risk_suicide");
   const previous_risk_string = getValue("risk_previous_suicide");
   if (previous_risk_string != undefined) {
     risk_string += "\n" + previous_risk_string;
