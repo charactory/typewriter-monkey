@@ -6,11 +6,14 @@
     <div class="col mse">{% include "presentation.html" %}</div>
 
     <div class="col mse">
-      {% include "problems.html" %} {% include "background.html" %} {% include
+     {% include "background.html" %} {% include
       "intervention.html" %}
     </div>
   </div>
 
+  <div class="col">
+  {% include "problems.html" %}
+  </div>
   <div class="col">
     <h2>Actions</h2>
     <fieldset>
@@ -43,7 +46,6 @@
           id="self_care"
           name="self_care"
           value="Encouraged self-care"
-          checked
         />
         <label for="self_care">Encouraged self-care</label>
       </div>
@@ -57,6 +59,24 @@
         />
         <label for="debrief_manager">Debriefed with manager</label>
       </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="homework"
+          name="homework"
+          value="Discussed and set homework task: "
+        />
+        <label for="homework">Discussed and set homework task</label>
+      </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="rebook"
+          name="rebook"
+          value="Client to contact reception to rebook"
+        />
+        <label for="rebook">Client to contact reception to rebook</label>
+      </div>
     </fieldset>
   </div>
 
@@ -66,13 +86,6 @@
   <hr />
 
   <div class="col">
-    <!-- Create the editor container -->
-    <!-- <h2>Editor</h2>
-    <div id="editor">
-      <p>Hello World!</p>
-      <p>Some initial <strong>bold</strong> text</p>
-      <p><br /></p>
-    </div> -->
     <h2>Output</h2>
     <textarea
       name="note_output"
@@ -84,21 +97,4 @@
 
     <hr />
   </div>
-
-  <!-- Include the Quill library -->
-  <!-- <script
-    src="https://cdn.quilljs.com/1.3.6/quill.js"
-    referrerpolicy="origin"
-  ></script> -->
-
-  <!-- Initialize Quill editor -->
-  <!-- <script>
-    const toolbarOptions = [];
-    var quill = new Quill("#editor", {
-      modules: {
-        toolbar: toolbarOptions,
-      },
-      theme: "snow",
-    });
-  </script> -->
 </main>

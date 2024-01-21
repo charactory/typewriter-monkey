@@ -3,11 +3,7 @@ import "chota";
 
 document.getElementById("generate_button")!.onclick = generateNoteTemplate;
 
-
-
 // const problems_textarea_editor = document.getElementById("detail_relx_conf");
-
-
 
 function getValue(name: String) {
   return (<HTMLInputElement>(
@@ -151,24 +147,23 @@ function generateNoteTemplate() {
     risk_string += "\n" + previous_risk_string;
   }
 
-
   let problem_string: string;
 
-  const problem_text = (<HTMLTextAreaElement> document.getElementById("details")).value;
+  const problem_text = (<HTMLTextAreaElement>document.getElementById("details"))
+    .value;
   if (problem_text === undefined || problem_text === "") {
     problem_string = "";
   } else {
     problem_string = "Presenting Problems: \n" + problem_text + "\n\n";
   }
 
-  let bg_string : string;
+  let bg_string: string;
   const bg_text = "";
   if (bg_text === undefined || bg_text === "") {
     bg_string = "";
   } else {
     bg_string = "Background Info: \n" + bg_text + "\n\n";
   }
-
 
   const intervention_string =
     "Intervention: \nActive listening & validation. " +
@@ -182,7 +177,14 @@ function generateNoteTemplate() {
   const ors_srs_string = getValue("ors_srs");
   actions_string =
     "Actions: \n" +
-    [consent_string, ors_srs_string, getValue("self_care")]
+    [
+      consent_string,
+      ors_srs_string,
+      getValue("self_care"),
+      getValue("debrief_manager"),
+      getValue("homework"),
+      getValue("rebook"),
+    ]
       .filter((item) => item)
       .join("\n");
 
