@@ -1,7 +1,34 @@
 // import './style.css'
 import "chota";
+import 'multiselect-combo-box/multiselect-combo-box.js';
 
 document.getElementById("generate_button")!.onclick = generateNoteTemplate;
+
+
+customElements.whenDefined('multiselect-combo-box').then(() => {
+  const comboBox : any = document.querySelector('#problems');
+
+  comboBox!.items = [
+    { id: 1, name: 'Relationship conflict' },
+    { id: 2, name: 'Work conflict' },
+    { id: 3, name: 'Family conflict' },
+    { id: 4, name: 'Stress' },
+    { id: 5, name: 'Parenting' },
+    { id: 6, name: 'Alcohol use' },
+    { id: 7, name: 'Other substance use' },
+    { id: 8, name: 'Health problems' },
+    { id: 9, name: 'Financial stress' },
+    { id: 10, name: 'Anxiety' }
+  ];
+
+  comboBox.addEventListener('custom-values-set', function (event: any) {
+    comboBox.items.push(event.detail);
+    const selectedItemsUpdate = comboBox.selectedItems.slice(0);
+    selectedItemsUpdate.push(event.detail);
+    comboBox.selectedItems = selectedItemsUpdate;
+  });
+
+});
 
 // const problems_textarea_editor = document.getElementById("detail_relx_conf");
 

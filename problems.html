@@ -1,11 +1,20 @@
 <h2>Presenting Problems</h2>
 
-<fieldset>
+<multiselect-combo-box
+id="problems"
+label="Presenting problem"
+required
+error-message="Please select a presenting problem."
+item-value-path="id"
+item-label-path="name"
+></multiselect-combo-box>
+<textarea class="mention" id="detail_relx_conf"></textarea>
+
+
+<!-- <fieldset>
   <legend>Relationships</legend>
   <input type="checkbox" id="relx_conf" name="relx_conf" value="Conflict" />
   <label for="relx_conf">Conflict</label>
-
-  <textarea class='mention' id ="detail_relx_conf"></textarea>
 
 
   <input type="checkbox" id="relx_sep" name="relx_sep" value="Separation" />
@@ -56,7 +65,7 @@
   <label for="sub_meth">Meth</label>
   <input type="checkbox" id="sub_other" name="sub_meth" value="coding" />
   <label for="sub_meth">Other</label>
-</fieldset>
+</fieldset> -->
 
 <fieldset>
   <legend>Unhelpful Negative Emotions</legend>
