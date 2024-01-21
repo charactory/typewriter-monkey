@@ -1,34 +1,9 @@
 // import './style.css'
 import "chota";
-import 'multiselect-combo-box/multiselect-combo-box.js';
 
 document.getElementById("generate_button")!.onclick = generateNoteTemplate;
 
 
-customElements.whenDefined('multiselect-combo-box').then(() => {
-  const comboBox : any = document.querySelector('#problems');
-
-  comboBox!.items = [
-    { id: 1, name: 'Relationship conflict' },
-    { id: 2, name: 'Work conflict' },
-    { id: 3, name: 'Family conflict' },
-    { id: 4, name: 'Stress' },
-    { id: 5, name: 'Parenting' },
-    { id: 6, name: 'Alcohol use' },
-    { id: 7, name: 'Other substance use' },
-    { id: 8, name: 'Health problems' },
-    { id: 9, name: 'Financial stress' },
-    { id: 10, name: 'Anxiety' }
-  ];
-
-  comboBox.addEventListener('custom-values-set', function (event: any) {
-    comboBox.items.push(event.detail);
-    const selectedItemsUpdate = comboBox.selectedItems.slice(0);
-    selectedItemsUpdate.push(event.detail);
-    comboBox.selectedItems = selectedItemsUpdate;
-  });
-
-});
 
 // const problems_textarea_editor = document.getElementById("detail_relx_conf");
 
@@ -175,8 +150,25 @@ function generateNoteTemplate() {
   if (previous_risk_string != undefined) {
     risk_string += "\n" + previous_risk_string;
   }
-  const problem_string = "Presenting Problems: \n";
-  const bg_string = "Background Info: \n";
+
+
+  let problem_string: string;
+
+  const problem_text = (<HTMLTextAreaElement> document.getElementById("details")).value;
+  if (problem_text === undefined || problem_text === "") {
+    problem_string = "";
+  } else {
+    problem_string = "Presenting Problems: \n" + problem_text + "\n\n";
+  }
+
+  let bg_string : string;
+  const bg_text = "";
+  if (bg_text === undefined || bg_text === "") {
+    bg_string = "";
+  } else {
+    bg_string = "Background Info: \n" + bg_text + "\n\n";
+  }
+
 
   const intervention_string =
     "Intervention: \nActive listening & validation. " +
@@ -200,9 +192,7 @@ function generateNoteTemplate() {
     risk_string +
     "\n\n" +
     problem_string +
-    "\n\n" +
     bg_string +
-    "\n\n" +
     intervention_string +
     "\n\n" +
     actions_string +
