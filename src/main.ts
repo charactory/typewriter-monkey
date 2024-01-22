@@ -58,22 +58,14 @@ function generateNoteTemplate() {
 
   const thought_string = getValue("tho_organisation");
 
-  const cbt_soc = getValue("cbt_soc");
-  const cbt_abc = getValue("cbt_abc");
-  const cbt_dis = getValue("cbt_dis");
-  const cbt_ba = getValue("cbt_ba");
-  const cbt_exp = getValue("cbt_exp");
-  const cbt_experiment = getValue("cbt_experiment");
-  const cbt_reinf = getValue("cbt_reinf");
-
   const cbt = [
-    cbt_soc,
-    cbt_abc,
-    cbt_dis,
-    cbt_ba,
-    cbt_exp,
-    cbt_experiment,
-    cbt_reinf,
+    getValue("cbt_soc"),
+    getValue("cbt_abc"),
+    getValue("cbt_dis"),
+    getValue("cbt_ba"),
+    getValue("cbt_exp"),
+    getValue("cbt_experiment"),
+    getValue("cbt_reinf"),
   ].filter((item) => item);
 
   let cbt_string: String;
@@ -111,6 +103,8 @@ function generateNoteTemplate() {
     getValue("goal_setting"),
     getValue("relapse"),
     getValue("safety_plan"),
+    getValue("unconditional_acc"),
+    getValue("comm_skill_training"),
   ].filter((item) => item);
 
   let other_interv_string: String;
@@ -145,6 +139,10 @@ function generateNoteTemplate() {
   const previous_risk_string = getValue("risk_previous_suicide");
   if (previous_risk_string != undefined) {
     risk_string += "\n" + previous_risk_string;
+  }
+  const nssi_string = getValue("risk_nssi");
+  if (nssi_string !== "nil") {
+    risk_string = risk_string + ", " + nssi_string;
   }
 
   let problem_string: string;
