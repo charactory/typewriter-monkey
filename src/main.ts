@@ -167,10 +167,12 @@ function generateNoteTemplate() {
     document.querySelector("#relx_status")
   )).value;
 
-  let work_status_details = (<HTMLTextAreaElement>document.getElementById("work_status_details"))
-  .value;
-  let relx_status_details = (<HTMLTextAreaElement>document.getElementById("relx_status_details"))
-  .value;
+  let work_status_details = (<HTMLTextAreaElement>(
+    document.getElementById("work_status_details")
+  )).value;
+  let relx_status_details = (<HTMLTextAreaElement>(
+    document.getElementById("relx_status_details")
+  )).value;
 
   let work_status_details_string: String;
   let relx_status_details_string: String;
