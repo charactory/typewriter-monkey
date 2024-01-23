@@ -159,12 +159,43 @@ function generateNoteTemplate() {
   }
 
   let bg_string: string;
-  const bg_text = "";
-  if (bg_text === undefined || bg_text === "") {
-    bg_string = "";
+
+  const work_status = (<HTMLSelectElement>(
+    document.querySelector("#work_status")
+  )).value;
+  const relx_status = (<HTMLSelectElement>(
+    document.querySelector("#relx_status")
+  )).value;
+
+  let work_status_details = (<HTMLTextAreaElement>document.getElementById("work_status_details"))
+  .value;
+  let relx_status_details = (<HTMLTextAreaElement>document.getElementById("relx_status_details"))
+  .value;
+
+  let work_status_details_string: String;
+  let relx_status_details_string: String;
+
+  if (work_status_details === undefined || work_status_details === "") {
+    work_status_details_string = "";
   } else {
-    bg_string = "Background Info: \n" + bg_text + "\n\n";
+    work_status_details_string = work_status_details;
   }
+
+  if (relx_status_details === undefined || relx_status_details === "") {
+    relx_status_details_string = "";
+  } else {
+    relx_status_details_string = relx_status_details;
+  }
+
+  bg_string =
+    "Background Info: \n" +
+    work_status +
+    ". " +
+    work_status_details_string +
+    "\n" +
+    relx_status +
+    ". " +
+    relx_status_details_string;
 
   const intervention_string =
     "Intervention: \nActive listening & validation. " +
@@ -196,6 +227,7 @@ function generateNoteTemplate() {
     "\n\n" +
     problem_string +
     bg_string +
+    "\n\n" +
     intervention_string +
     "\n\n" +
     actions_string +
