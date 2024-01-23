@@ -54,7 +54,7 @@ function generateNoteTemplate() {
 
   const mood_string = formatList(mood);
 
-  const affect = getValue("affect");
+  const affect_string = getValue("affect");
 
   const thought_string = getValue("tho_organisation");
 
@@ -131,6 +131,9 @@ function generateNoteTemplate() {
     "\n" +
     "Mood: " +
     mood_string +
+    "\n" +
+    "Affect: " +
+    affect_string +
     "\n" +
     "Thoughts: " +
     thought_string;

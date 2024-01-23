@@ -91,6 +91,11 @@ $(function () {
           name: "Clt disagreed",
           type: "contact",
         },
+        {
+          id: 17,
+          name: "Clt described",
+          type: "contact",
+        },
       ];
 
       data = _.filter(data, function (item) {
