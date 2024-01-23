@@ -1,25 +1,61 @@
-<!-- <h2>Background Info</h2>
+<h2>Background Info</h2>
 
 <fieldset>
   <legend>Work</legend>
-  <input type="checkbox" id="work_local" name="work_local" value="Local" />
-  <label for="work_local">Local</label>
-  <input type="checkbox" id="work_fifo" name="work_fifo" value="FIFO" />
-  <label for="work_fifo">FIFO</label>
-  <input type="checkbox" id="unemp" name="unemp" value="Unemployed" />
-  <label for="unemp">Unemployed</label>
+  <select
+    name="work_status"
+    id="work_status"
+    autocomplete="on"
+    style="width: 50%; margin-bottom: 0.7rem;"
+    required
+  >
+    <option>Works locally</option>
+    <option>Works FIFO</option>
+    <option>Unemployed</option>
+  </select>
+  Details:
+  <input
+    type="text"
+    id="work_status_details"
+    name="work_status_details"
+    size="15"
+    style="width: 100%; margin-bottom: 0.2rem; font-size: larger; height: auto"
+  />
 </fieldset>
 
 <fieldset>
   <legend>Family</legend>
-  <input type="checkbox" id="fam_sing" name="fam_sing" value="coding" />
+
+  <select
+    name="relx_status"
+    id="relx_status"
+    autocomplete="on"
+    style="width: 50%; margin-bottom: 0.7rem;"
+    required
+  >
+    <option>Single</option>
+    <option>Married</option>
+    <option>Defacto</option>
+  </select>
+  Details:
+  <input
+    type="text"
+    id="relx_status_details"
+    name="relx_status_details"
+    size="15"
+    style="width: 100%; margin-bottom: 0.2rem; font-size: larger; height: auto"
+  />
+
+  <!-- <input type="checkbox" id="fam_sing" name="fam_sing" value="coding" />
   <label for="fam_sing">Single</label>
+  <input type="text" name="fam_sing_details" id="fam_sing_details" />
   <input type="checkbox" id="fam_relx" name="fam_relx" value="coding" />
   <label for="fam_relx">In relationship</label>
+  <input type="text" name="fam_relx_details" id="fam_relx_details" />
   <input type="checkbox" id="fam_kids" name="fam_kids" value="coding" />
   <label for="fam_kids">Children</label>
-  <input type="text" name="kids_text" id="kids_text" />
-</fieldset> -->
+  <input type="text" name="kids_details" id="kids_details" /> -->
+</fieldset>
 
 <!-- <fieldset>
   <legend>Friends & acquaintances</legend>
