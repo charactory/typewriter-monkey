@@ -2,6 +2,7 @@
 import "chota";
 
 document.getElementById("generate_button")!.onclick = generateNoteTemplate;
+document.getElementById("bg_switch")!.onclick = toggleBGSection;
 
 // const problems_textarea_editor = document.getElementById("detail_relx_conf");
 
@@ -9,6 +10,24 @@ function getValue(name: String) {
   return (<HTMLInputElement>(
     document.querySelector(`input[name=${name}]:checked`)
   ))?.value;
+}
+
+function toggleBGSection() {
+const work_status_select = <HTMLSelectElement> document.getElementById("work_status");
+setEnableElement(work_status_select);
+const relx_status_select = <HTMLSelectElement> document.getElementById("relx_status");
+setEnableElement(relx_status_select);
+setEnableElement(<HTMLInputElement>document.getElementById("work_status_details"));
+setEnableElement(<HTMLInputElement>document.getElementById("relx_status_details"));
+}
+
+function setEnableElement(select : HTMLSelectElement | HTMLInputElement) {
+  if (select.disabled == true) {
+    select.disabled = false;
+  } else {
+    select.disabled = true;
+  }
+  
 }
 
 function formatList(list: String[], prefix = ""): String {

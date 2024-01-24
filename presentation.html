@@ -1,440 +1,318 @@
-<div>
-  <h2>Presentation</h2>
-  <fieldset>
-    <legend>Appearance</legend>
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="neat_d"
-          name="appearance"
-          value="neatly dressed"
-          checked
-        />
-        <label for="neat_d">Neatly dressed</label>
-      </div>
-      <div class="col">
-        <input type="radio" id="untidy" name="appearance" value="untidy" />
-        <label for="untidy">Untidy</label>
-      </div>
+<h2>
+  <label>
+    Presentation
+    <input type="checkbox" class="switch" id="presentation_switch" checked />
+  </label>
+</h2>
+<fieldset>
+  <legend>Appearance</legend>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="neat_d"
+        name="appearance"
+        value="neatly dressed"
+        checked
+      />
+      <label for="neat_d">Neatly dressed</label>
     </div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Behaviour</legend>
-
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="beh_good_eye"
-          name="beh_eye"
-          value="good eye contact"
-          checked
-        />
-        <label for="beh_good_eye">Good eye contact</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="beh_bad_eye"
-          name="beh_eye"
-          value="poor eye contact"
-        />
-        <label for="beh_bad_eye">Little eye contact</label>
-      </div>
+    <div class="col">
+      <input type="radio" id="untidy" name="appearance" value="untidy" />
+      <label for="untidy">Untidy</label>
     </div>
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="checkbox"
-          id="beh_coop"
-          name="beh_coop"
-          value="cooperative"
-          checked
-        />
-        <label for="beh_coop">Cooperative</label>
-      </div>
-      <div class="col">
-        <input type="checkbox" id="erratic" name="beh_err" value="erratic" />
-        <label for="erratic">Erratic</label>
-      </div>
-      <div class="col">
-        <input
-          type="checkbox"
-          id="restless"
-          name="beh_restless"
-          value="restless"
-        />
-        <label for="restless">Restless</label>
-      </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Behaviour</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="beh_good_eye"
+        name="beh_eye"
+        value="good eye contact"
+        checked
+      />
+      <label for="beh_good_eye">Good eye contact</label>
     </div>
-    <div class="row mse">
-      <div class="col">
-        <input type="checkbox" id="agitated" name="beh_agit" value="agitated" />
-        <label for="agitated">Agitated</label>
-      </div>
-      <div class="col">
-        <input
-          type="checkbox"
-          id="beh_with"
-          name="beh_with"
-          value="withdrawn"
-        />
-        <label for="beh_with">Withdrawn</label>
-      </div>
-      <div class="col">
-        <input type="checkbox" id="beh_agg" name="beh_agg" value="aggressive" />
-        <label for="beh_agg">Aggressive</label>
-      </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="beh_bad_eye"
+        name="beh_eye"
+        value="poor eye contact"
+      />
+      <label for="beh_bad_eye">Little eye contact</label>
     </div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Speech</legend>
-
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="speech_rate_normal"
-          name="speech_rate"
-          value="normal rate"
-          checked
-        />
-        <label for="speech_rate_normal">Normal rate</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="speech_rate_slow"
-          name="speech_rate"
-          value="spoke slowly"
-        />
-        <label for="speech_rate_slow">Slow</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="speech_rate_fast"
-          name="speech_rate"
-          value="spoke quickly"
-        />
-        <label for="speech_rate_fast">Fast</label>
-      </div>
-    </div>
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="speech_norm"
-          name="speech_vol"
-          value="normal volume"
-          checked
-        />
-        <label for="speech_norm">Normal volume</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="speech_soft"
-          name="speech_vol"
-          value="speaks softly"
-        />
-        <label for="speech_soft">Soft</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="speech_loud"
-          name="speech_vol"
-          value="speaks loudly"
-        />
-        <label for="speech_loud">Loud</label>
-      </div>
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Mood</legend>
-
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="checkbox"
-          id="mood_euth"
-          name="mood_euth"
-          value="euthymic"
-          checked
-        />
-        <label for="mood_euth">Euthymic</label>
-        <input type="checkbox" id="mood_anx" name="mood_anx" value="anxious" />
-        <label for="mood_anx">Anxious</label>
-        <input
-          type="checkbox"
-          id="mood_irr"
-          name="mood_irr"
-          value="irritable"
-        />
-        <label for="mood_irr">Irritable</label>
-        <input
-          type="checkbox"
-          id="mood_dep"
-          name="mood_dep"
-          value="depressed"
-        />
-        <label for="mood_dep">Depressed</label>
-        <input
-          type="checkbox"
-          id="mood_apa"
-          name="mood_apa"
-          value="apathetic"
-        />
-        <label for="mood_apa">Apathetic</label>
-      </div>
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Affect</legend>
-
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="aff_norm"
-          name="affect"
-          value="normal"
-          checked
-        />
-        <label for="aff_norm">Normal</label>
-      </div>
-      <div class="col">
-        <input type="radio" id="aff_flat" name="affect" value="flat" />
-        <label for="aff_flat">Flat</label>
-      </div>
-
-      <!-- <div class="col">
-        <input type="radio" id="aff_reactive" name="affect" value="reactive" />
-        <label for="aff_reactive">Reactive</label>
-      </div>
-      <div class="col">
-        <input type="radio" id="aff_blunted" name="affect" value="blunted" />
-        <label for="aff_blunted">Blunted</label>
-      </div> -->
-      </div>    <div class="row mse">
-      <div class="col">
-        <input type="radio" id="aff_tearful" name="affect" value="tearful" />
-        <label for="aff_tearful">Tearful</label>
-      </div>
-      <div class="col">
-        <input type="radio" id="aff_labile" name="affect" value="labile" />
-        <label for="aff_labile">Labile</label>
-      </div>
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <!-- <legend>Thought Process & Content</legend> -->
-    <legend>Thought Process</legend>
-
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="tho_logical"
-          name="tho_organisation"
-          value="logically organized"
-          checked
-        />
-        <label for="tho_logical">Logical</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="tho_disorg"
-          name="tho_organisation"
-          value="disorganized"
-        />
-        <label for="tho_disorg">Disorganized</label>
-      </div>
-
-      <!-- <input
-      type="checkbox"
-      id="tho_grand"
-      name="tho_grand"
-      value="grandiose"
-    />
-
-      <label for="tho_grand">Grandiose</label>
+  </div>
+  <div class="row mse">
+    <div class="col">
       <input
         type="checkbox"
-        id="tho_race"
-        name="tho_race"
-        value="racing thoughts"
+        id="beh_coop"
+        name="beh_coop"
+        value="cooperative"
+        checked
       />
-      <label for="tho_race">Racing thoughts</label> -->
-
-
-    <!-- </div>
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="cog_attentive"
-          name="cog_attention"
-          value="attentive"
-          checked
-        />
-        <label for="cog_attention">Attentive</label>
-        </div>      <div class="col">
-        <input
-          type="radio"
-          id="cog_inattentive"
-          name="cog_attention"
-          value="inattentive"
-        />
-        <label for="cog_inattentive">Inattentive</label>
-      </div>
-    </div> -->
-  </fieldset>
-
-  <!-- <fieldset>
-    <legend>Perception</legend>
-
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="checkbox"
-          id="hallucinations"
-          name="hallucinations"
-          value="hallucinations"
-        />
-        <label for="hallucinations">Hallucinations</label>
-        <input
-          type="checkbox"
-          id="delusions"
-          name="delusions"
-          value="delusions"
-        />
-        <label for="delusions">Delusions</label>
-      </div>
+      <label for="beh_coop">Cooperative</label>
     </div>
-  </fieldset> -->
-  <!-- <fieldset>
-      <legend>Insight & Judgment</legend>
-
-      <div class="row mse">
-        <div class="col">
-          <input
-            type="radio"
-            id="contactChoice1"
-            name="contact"
-            value="email"
-            checked
-          />
-          <label for="contactChoice1">Good</label>
-          <input
-            type="radio"
-            id="contactChoice1"
-            name="contact"
-            value="email"
-          />
-          <label for="contactChoice1">Poor</label>
-        </div>
-      </div>
-    </fieldset> -->
-
-  <h2>Risk</h2>
-
-  <fieldset>
-    <legend>Suicidal Ideation</legend>
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="risk_self_nil"
-          name="risk_suicide"
-          value="nil"
-          checked
-        />
-        <label for="risk_self_nil">Nil</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="risk_self_thoughts"
-          name="risk_suicide"
-          value="Has occasional thoughts about suicide with no clear plan or intent"
-        />
-        <label for="risk_self_thoughts">Occasional</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="risk_self_freq"
-          name="risk_suicide"
-          value="Has frequent thoughts about suicide but denied plan or intent"
-        />
-        <label for="risk_self_freq">Frequent</label>
-      </div>
+    <div class="col">
+      <input type="checkbox" id="erratic" name="beh_err" value="erratic" />
+      <label for="erratic">Erratic</label>
     </div>
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="radio"
-          id="risk_self_plan"
-          name="risk_suicide"
-          value="Has thought of a suicide plan"
-        />
-        <label for="risk_self_plan">Has plan</label>
-      </div>
-      <div class="col">
-        <input
-          type="radio"
-          id="risk_self_intent"
-          name="risk_suicide"
-          value="Has a suicide plan and expressed intent to act on it"
-        />
-        <label for="risk_self_intent">Has plan and intent</label>
-      </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="restless"
+        name="beh_restless"
+        value="restless"
+      />
+      <label for="restless">Restless</label>
     </div>
-    <div class="row mse">
-      <div class="col">
-        <input
-          type="checkbox"
-          id="risk_previous_suicide"
-          name="risk_previous_suicide"
-          value="Has attempted suicide before"
-        />
-        <label for="risk_previous_suicide">Has attempted suicide before</label>
-      </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input type="checkbox" id="agitated" name="beh_agit" value="agitated" />
+      <label for="agitated">Agitated</label>
     </div>
-  </fieldset>
+    <div class="col">
+      <input type="checkbox" id="beh_with" name="beh_with" value="withdrawn" />
+      <label for="beh_with">Withdrawn</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="beh_agg" name="beh_agg" value="aggressive" />
+      <label for="beh_agg">Aggressive</label>
+    </div>
+  </div>
+</fieldset>
 
-  <fieldset>
-    <legend>NSSI</legend>
-    <input
-      type="radio"
-      id="risk_nssi_nil"
-      name="risk_nssi"
-      value="nil"
-      checked
-    />
-    <label for="risk_nssi_nil">Nil</label>
-    <input
-      type="radio"
-      id="risk_nssi_tried"
-      name="risk_nssi"
-      value="has done NSSI in past"
-    />
-    <label for="risk_nssi_tried">Has done NSSI in past</label>
-    <input
-      type="radio"
-      id="risk_nssi_current"
-      name="risk_nssi"
-      value="ongoing NSSI"
-    />
-    <label for="risk_nssi_current">Ongoing NSSI</label>
-  </fieldset>
-</div>
+<fieldset>
+  <legend>Speech</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_rate_normal"
+        name="speech_rate"
+        value="normal rate"
+        checked
+      />
+      <label for="speech_rate_normal">Normal rate</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_rate_slow"
+        name="speech_rate"
+        value="spoke slowly"
+      />
+      <label for="speech_rate_slow">Slow</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_rate_fast"
+        name="speech_rate"
+        value="spoke quickly"
+      />
+      <label for="speech_rate_fast">Fast</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_norm"
+        name="speech_vol"
+        value="normal volume"
+        checked
+      />
+      <label for="speech_norm">Normal volume</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_soft"
+        name="speech_vol"
+        value="speaks softly"
+      />
+      <label for="speech_soft">Soft</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_loud"
+        name="speech_vol"
+        value="speaks loudly"
+      />
+      <label for="speech_loud">Loud</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Mood</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="mood_euth"
+        name="mood_euth"
+        value="euthymic"
+        checked
+      />
+      <label for="mood_euth">Euthymic</label>
+      <input type="checkbox" id="mood_anx" name="mood_anx" value="anxious" />
+      <label for="mood_anx">Anxious</label>
+      <input type="checkbox" id="mood_irr" name="mood_irr" value="irritable" />
+      <label for="mood_irr">Irritable</label>
+      <input type="checkbox" id="mood_dep" name="mood_dep" value="depressed" />
+      <label for="mood_dep">Depressed</label>
+      <input type="checkbox" id="mood_apa" name="mood_apa" value="apathetic" />
+      <label for="mood_apa">Apathetic</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Affect</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input type="radio" id="aff_norm" name="affect" value="normal" checked />
+      <label for="aff_norm">Normal</label>
+    </div>
+    <div class="col">
+      <input type="radio" id="aff_flat" name="affect" value="flat" />
+      <label for="aff_flat">Flat</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input type="radio" id="aff_tearful" name="affect" value="tearful" />
+      <label for="aff_tearful">Tearful</label>
+    </div>
+    <div class="col">
+      <input type="radio" id="aff_labile" name="affect" value="labile" />
+      <label for="aff_labile">Labile</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Thought Process</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="tho_logical"
+        name="tho_organisation"
+        value="logically organized"
+        checked
+      />
+      <label for="tho_logical">Logical</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="tho_disorg"
+        name="tho_organisation"
+        value="disorganized"
+      />
+      <label for="tho_disorg">Disorganized</label>
+    </div>
+  </div>
+</fieldset>
+
+<h2>Risk</h2>
+
+<fieldset>
+  <legend>Suicidal Ideation</legend>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_nil"
+        name="risk_suicide"
+        value="nil"
+        checked
+      />
+      <label for="risk_self_nil">Nil</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_thoughts"
+        name="risk_suicide"
+        value="Has occasional thoughts about suicide with no clear plan or intent"
+      />
+      <label for="risk_self_thoughts">Occasional</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_freq"
+        name="risk_suicide"
+        value="Has frequent thoughts about suicide but denied plan or intent"
+      />
+      <label for="risk_self_freq">Frequent</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_plan"
+        name="risk_suicide"
+        value="Has thought of a suicide plan"
+      />
+      <label for="risk_self_plan">Has plan</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_intent"
+        name="risk_suicide"
+        value="Has a suicide plan and expressed intent to act on it"
+      />
+      <label for="risk_self_intent">Has plan and intent</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="risk_previous_suicide"
+        name="risk_previous_suicide"
+        value="Has attempted suicide before"
+      />
+      <label for="risk_previous_suicide">Has attempted suicide before</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>NSSI</legend>
+  <input type="radio" id="risk_nssi_nil" name="risk_nssi" value="nil" checked />
+  <label for="risk_nssi_nil">Nil</label>
+  <input
+    type="radio"
+    id="risk_nssi_tried"
+    name="risk_nssi"
+    value="has done NSSI in past"
+  />
+  <label for="risk_nssi_tried">Has done NSSI in past</label>
+  <input
+    type="radio"
+    id="risk_nssi_current"
+    name="risk_nssi"
+    value="ongoing NSSI"
+  />
+  <label for="risk_nssi_current">Ongoing NSSI</label>
+</fieldset>
