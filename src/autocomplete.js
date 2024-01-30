@@ -3,6 +3,7 @@ $(function () {
     triggerChar: "/",
     showAvatars: false,
     minChars: 1,
+    elastic: false,
     allowRepeat: true,
     onDataRequest: function (mode, query, callback) {
       var data = [

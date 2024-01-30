@@ -3,6 +3,8 @@ import "chota";
 
 document.getElementById("generate_button")!.onclick = generateNoteTemplate;
 document.getElementById("bg_switch")!.onclick = toggleBGSection;
+document.getElementById("presentation_switch")!.onclick =
+  togglePresentationSection;
 
 // const problems_textarea_editor = document.getElementById("detail_relx_conf");
 
@@ -10,6 +12,17 @@ function getValue(name: String) {
   return (<HTMLInputElement>(
     document.querySelector(`input[name=${name}]:checked`)
   ))?.value;
+}
+
+function togglePresentationSection() {
+  setFieldSetStatus("f_appearance");
+  setFieldSetStatus("f_behaviour");
+  setFieldSetStatus("f_speech");
+  setFieldSetStatus("f_mood");
+  setFieldSetStatus("f_affect");
+  setFieldSetStatus("f_thought_process");
+  setFieldSetStatus("f_si");
+  setFieldSetStatus("f_nssi");
 }
 
 function toggleBGSection() {
@@ -264,18 +277,40 @@ function generateNoteTemplate() {
       .filter((item) => item)
       .join("\n");
 
-  const template_string =
-    presentation_string +
-    "\n\n" +
-    risk_string +
-    "\n\n" +
-    problem_string +
-    bg_string +
-    "\n\n" +
-    intervention_string +
-    "\n\n" +
-    actions_string +
-    "\n";
+  let template_string: string = "";
+  if (getFieldSetStatus("f_appearance").disabled == false) {
+    template_string += presentation_string + "\n\n";
+  }
+  if (getFieldSetStatus("f_si").disabled == false) {
+    template_string += risk_string + "\n\n";
+  }
+
+  template_string += problem_string + "\n\n";
+
+  if (getFieldSetStatus("f_work").disabled == false) {
+    template_string += bg_string + "\n\n";
+  }
+
+
+  template_string += 
+  intervention_string +
+  "\n\n" +
+  actions_string +
+  "\n";
+
+
+  // template_string =
+  //   presentation_string
+  //   "\n\n" +
+  //   risk_string +
+  //   "\n\n" +
+  //   problem_string +
+  //   bg_string +
+  //   "\n\n" +
+  //   intervention_string +
+  //   "\n\n" +
+  //   actions_string +
+  //   "\n";
 
   output!.value = template_string;
   console.log(template_string);
