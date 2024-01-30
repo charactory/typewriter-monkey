@@ -13,21 +13,28 @@ function getValue(name: String) {
 }
 
 function toggleBGSection() {
-const work_status_select = <HTMLSelectElement> document.getElementById("work_status");
-setEnableElement(work_status_select);
-const relx_status_select = <HTMLSelectElement> document.getElementById("relx_status");
-setEnableElement(relx_status_select);
-setEnableElement(<HTMLInputElement>document.getElementById("work_status_details"));
-setEnableElement(<HTMLInputElement>document.getElementById("relx_status_details"));
+  const work_status_select = <HTMLSelectElement>(
+    document.getElementById("work_status")
+  );
+  setEnableElement(work_status_select);
+  const relx_status_select = <HTMLSelectElement>(
+    document.getElementById("relx_status")
+  );
+  setEnableElement(relx_status_select);
+  setEnableElement(
+    <HTMLInputElement>document.getElementById("work_status_details")
+  );
+  setEnableElement(
+    <HTMLInputElement>document.getElementById("relx_status_details")
+  );
 }
 
-function setEnableElement(select : HTMLSelectElement | HTMLInputElement) {
+function setEnableElement(select: HTMLSelectElement | HTMLInputElement) {
   if (select.disabled == true) {
     select.disabled = false;
   } else {
     select.disabled = true;
   }
-  
 }
 
 function formatList(list: String[], prefix = ""): String {
@@ -241,7 +248,7 @@ function generateNoteTemplate() {
       .filter((item) => item)
       .join("\n");
 
-  output!.value =
+  const template_string =
     presentation_string +
     "\n\n" +
     risk_string +
@@ -253,5 +260,7 @@ function generateNoteTemplate() {
     "\n\n" +
     actions_string +
     "\n";
-  console.log(app);
+
+  output!.value = template_string;
+  console.log(template_string);
 }
