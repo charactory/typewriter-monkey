@@ -13,20 +13,36 @@ function getValue(name: String) {
 }
 
 function toggleBGSection() {
-  const work_status_select = <HTMLSelectElement>(
-    document.getElementById("work_status")
-  );
-  setEnableElement(work_status_select);
-  const relx_status_select = <HTMLSelectElement>(
-    document.getElementById("relx_status")
-  );
-  setEnableElement(relx_status_select);
-  setEnableElement(
-    <HTMLInputElement>document.getElementById("work_status_details")
-  );
-  setEnableElement(
-    <HTMLInputElement>document.getElementById("relx_status_details")
-  );
+  setFieldSetStatus("f_work");
+  setFieldSetStatus("f_family");
+  // const work_status_select = <HTMLSelectElement>(
+  //   document.getElementById("work_status")
+  // );
+  // setEnableElement(work_status_select);
+  // const relx_status_select = <HTMLSelectElement>(
+  //   document.getElementById("relx_status")
+  // );
+  // setEnableElement(relx_status_select);
+  // setEnableElement(
+  //   <HTMLInputElement>document.getElementById("work_status_details")
+  // );
+  // setEnableElement(
+  //   <HTMLInputElement>document.getElementById("relx_status_details")
+  // );
+}
+
+function getFieldSetStatus(name: string): HTMLFieldSetElement {
+  const status = <HTMLFieldSetElement>document.getElementById(name);
+  return status;
+}
+
+function setFieldSetStatus(name: string) {
+  const status = getFieldSetStatus(name);
+  if (status.disabled == true) {
+    status.disabled = false;
+  } else {
+    status.disabled = true;
+  }
 }
 
 function setEnableElement(select: HTMLSelectElement | HTMLInputElement) {
