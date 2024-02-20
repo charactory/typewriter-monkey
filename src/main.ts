@@ -264,15 +264,20 @@ function generateNoteTemplate() {
 
   const consent_string = getValue("consent");
   const ors_srs_string = getValue("ors_srs");
+  const self_care_string = getValue("self_care");
+  const debrief_man_string = getValue("debrief_manager");
+  const homework_string = getValue("homework");
+  const rebook_string = getValue("rebook");
+
   actions_string =
     "Actions: \n" +
     [
       consent_string,
       ors_srs_string,
-      getValue("self_care"),
-      getValue("debrief_manager"),
-      getValue("homework"),
-      getValue("rebook"),
+      self_care_string,
+      debrief_man_string,
+      homework_string,
+      rebook_string,
     ]
       .filter((item) => item)
       .join("\n");
@@ -292,11 +297,18 @@ function generateNoteTemplate() {
   }
 
 
-  template_string += 
-  intervention_string +
-  "\n\n" +
-  actions_string +
-  "\n";
+  if (
+    consent_string === undefined &&
+    ors_srs_string === undefined &&
+    self_care_string === undefined &&
+    self_care_string === undefined &&
+    debrief_man_string === undefined &&
+    homework_string === undefined &&
+    rebook_string === undefined
+  ) {
+  } else {
+    template_string += intervention_string + "\n\n" + actions_string + "\n";
+  }
 
 
   // template_string =
