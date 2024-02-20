@@ -9,6 +9,6 @@ export default {
     plugins: [
         nunjucks(),
         viteSingleFile(),
-        ViteMinifyPlugin({}),
+        // ViteMinifyPlugin({}),
     ]
 }

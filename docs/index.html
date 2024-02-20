@@ -1,34 +1,1022 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Case Notes Template Generator</title><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script><script type="module" crossorigin>
-  (function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const p of document.querySelectorAll('link[rel="modulepreload"]'))u(p);new MutationObserver(p=>{for(const c of p)if(c.type==="childList")for(const m of c.addedNodes)m.tagName==="LINK"&&m.rel==="modulepreload"&&u(m)}).observe(document,{childList:!0,subtree:!0});function o(p){const c={};return p.integrity&&(c.integrity=p.integrity),p.referrerPolicy&&(c.referrerPolicy=p.referrerPolicy),p.crossOrigin==="use-credentials"?c.credentials="include":p.crossOrigin==="anonymous"?c.credentials="omit":c.credentials="same-origin",c}function u(p){if(p.ep)return;p.ep=!0;const c=o(p);fetch(p.href,c)}})();(function(n){n.event.special.input={setup:function(o,u){var p,c=this,m=c.value,t=document.createElement(this.tagName),v="oninput"in t||i(t),l="inputEventNS"+~~(Math.random()*1e7),C=["focus","blur","paste","cut","keydown","drop",""].join("."+l+" ");function f(){var y=n(c);c.value!=m&&!y.data("triggering.inputEvent")&&(m=c.value,y.data("triggering.inputEvent",!0).trigger("input"),window.setTimeout(function(){y.data("triggering.inputEvent",!1)},0))}function E(y){y.type=="focus"?(f(),clearInterval(p),p=window.setInterval(f,250)):y.type=="blur"?window.clearInterval(p):window.setTimeout(f,0)}if(v)return!1;n(this).find("input, textarea").andSelf().filter("input, textarea").bind(C,E),n(this).data("inputEventHandlerNS",l)},teardown:function(){var o=n(this);o.find("input, textarea").unbind(o.data("inputEventHandlerNS")),o.data("inputEventHandlerNS","")}},n.fn.input=function(o){return o?this.bind("input",o):this.trigger("input")};function i(o){if(o.setAttribute("oninput","return"),typeof o.oninput=="function")return!0;try{var u=document.createEvent("KeyboardEvent"),p=!1,c=function(m){p=!0,m.preventDefault(),m.stopPropagation()};return document.body.appendChild(o),o.addEventListener("input",c,!1),o.removeEventListener("input",c,!1),document.body.removeChild(o),p}catch{}}})(jQuery);(function(n){jQuery.fn.extend({elastic:function(){var i=["paddingTop","paddingRight","paddingBottom","paddingLeft","fontSize","lineHeight","fontFamily","width","fontWeight","border-top-width","border-right-width","border-bottom-width","border-left-width","borderTopStyle","borderTopColor","borderRightStyle","borderRightColor","borderBottomStyle","borderBottomColor","borderLeftStyle","borderLeftColor"];return this.each(function(){if(this.type!=="textarea")return!1;var o=jQuery(this),u=jQuery("<div />").css({position:"absolute",display:"none","word-wrap":"break-word","white-space":"pre-wrap"}),p=parseInt(o.css("line-height"),10)||parseInt(o.css("font-size"),"10"),c=parseInt(o.css("height"),10)||p*3,m=parseInt(o.css("max-height"),10)||Number.MAX_VALUE;m<0&&(m=Number.MAX_VALUE),u.appendTo(o.parent());for(var t=i.length;t--;)u.css(i[t].toString(),o.css(i[t].toString()));function v(){var f=Math.floor(parseInt(o.width(),10));u.width()!==f&&(u.css({width:f+"px"}),C(!0))}function l(f,E){var y=Math.floor(parseInt(f,10));o.height()!==y&&o.css({height:y+"px",overflow:E})}function C(f){var E=o.val().replace(/&/g,"&amp;").replace(/ {2}/g,"&nbsp;").replace(/<|>/g,"&gt;").replace(/\n/g,"<br />"),y=u.html().replace(/<br>/ig,"<br />");if((f||E+"&nbsp;"!==y)&&(u.html(E+"&nbsp;"),Math.abs(u.height()+p-o.height())>3)){var w=u.height()+p;w>=m?l(m,"auto"):w<=c?l(c,"hidden"):l(w,"hidden")}}o.css({overflow:"hidden"}),o.bind("keyup change cut paste",function(){C()}),n(window).bind("resize",v),o.bind("resize",v),o.bind("update",C),o.bind("blur",function(){u.height()<m&&(u.height()>c?o.height(u.height()):o.height(c))}),o.bind("input paste",function(f){setTimeout(C,250)}),C()})}})})(jQuery);(function(n,i,o){var u={BACKSPACE:8,TAB:9,RETURN:13,ESC:27,LEFT:37,UP:38,RIGHT:39,DOWN:40,COMMA:188,SPACE:32,HOME:36,END:35},p={triggerChar:"@",onDataRequest:n.noop,minChars:2,allowRepeat:!1,showAvatars:!0,elastic:!0,defaultValue:"",onCaret:!1,classes:{autoCompleteItemActive:"active"},templates:{wrapper:i.template('<div class="mentions-input-box"></div>'),autocompleteList:i.template('<div class="mentions-autocomplete-list"></div>'),autocompleteListItem:i.template('<li data-ref-id="<%= id %>" data-ref-type="<%= type %>" data-display="<%= display %>"><%= content %></li>'),autocompleteListItemAvatar:i.template('<img src="<%= avatar %>" />'),autocompleteListItemIcon:i.template('<div class="icon <%= icon %>"></div>'),mentionsOverlay:i.template('<div class="mentions"><div></div></div>'),mentionItemSyntax:i.template("@[<%= value %>](<%= type %>:<%= id %>)"),mentionItemHighlight:i.template("<strong><span><%= value %></span></strong>")}},c={htmlEncode:function(t){return i.escape(t)},regexpEncode:function(t){return t.replace(/([.*+?^=!:${}()|\[\]\/\\])/g,"\\$1")},highlightTerm:function(t,v){return!v&&!v.length?t:t.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)("+v+")(?![^<>]*>)(?![^&;]+;)","gi"),"<b>$1</b>")},setCaratPosition:function(t,v){if(t.createTextRange){var l=t.createTextRange();l.move("character",v),l.select()}else t.selectionStart?(t.focus(),t.setSelectionRange(v,v)):t.focus()},rtrim:function(t){return t.replace(/\s+$/,"")}},m=function(t){var v,l,C,f,E,y,w,I=[],H={},B=[],k="";t=n.extend(!0,{},p,t);function q(){l=n(v),l.attr("data-mentions-input")!=="true"&&(C=l.parent(),E=n(t.templates.wrapper()),l.wrapAll(E),E=C.find("> div.mentions-input-box"),l.attr("data-mentions-input","true"),l.bind("keydown",Z),l.bind("keypress",Q),l.bind("click",Y),l.bind("blur",J),navigator.userAgent.indexOf("MSIE 8")>-1?l.bind("propertychange",K):l.bind("input",K),t.elastic&&l.elastic())}function G(){f=n(t.templates.autocompleteList()),f.appendTo(E),f.delegate("li","mousedown",ne)}function F(){y=n(t.templates.mentionsOverlay()),y.prependTo(E)}function O(){var e=P();i.each(I,function(h){var s=t.templates.mentionItemSyntax(h);e=e.replace(new RegExp(c.regexpEncode(h.value),"g"),s)});var a=c.htmlEncode(e);i.each(I,function(h){var s=i.extend({},h,{value:c.htmlEncode(h.value)}),d=t.templates.mentionItemSyntax(s),b=t.templates.mentionItemHighlight(s);a=a.replace(new RegExp(c.regexpEncode(d),"g"),b)}),a=a.replace(/\n/g,"<br />"),a=a.replace(/ {2}/g,"&nbsp; "),l.data("messageText",e),l.trigger("updated"),y.find("div").html(a)}function N(){B=[]}function te(){var e=P();I=i.reject(I,function(a,h){return!a.value||e.indexOf(a.value)==-1}),I=i.compact(I)}function X(e){for(var a=P(),h=l[0].selectionStart,s=!1,d=!1,b=new RegExp("\\"+t.triggerChar+k,"gi");b.exec(a);)(s===!1||Math.abs(b.lastIndex-h)<s)&&(s=Math.abs(b.lastIndex-h),d=b.lastIndex);var S=d-k.length-1,x=d,T=a.substr(0,S),g=a.substr(x,a.length),M=(T+e.value).length+1;i.find(I,function(oe){return oe.id==e.id})||I.push(e),N(),k="",j();var D=T+e.value+" "+g;l.val(D),l.trigger("mention"),O(),l.focus(),c.setCaratPosition(l[0],M)}function P(){return n.trim(l.val())}function W(e){var a,h,s,d,b,S,x,T,g,M,D;if((g=e[0])&&n(g).is("textarea")&&g.selectionEnd!=null){for(x={position:"absolute",overflow:"auto",whiteSpace:"pre-wrap",wordWrap:"break-word",boxSizing:"content-box",top:0,left:-9999},T=["boxSizing","fontFamily","fontSize","fontStyle","fontVariant","fontWeight","height","letterSpacing","lineHeight","paddingBottom","paddingLeft","paddingRight","paddingTop","textDecoration","textIndent","textTransform","width","word-spacing"],M=0,D=T.length;M<D;M++)b=T[M],x[b]=n(g).css(b);return s=document.createElement("div"),n(s).css(x),n(g).after(s),h=document.createTextNode(g.value.substring(0,g.selectionEnd)),a=document.createTextNode(g.value.substring(g.selectionEnd)),d=document.createElement("span"),d.innerHTML="&nbsp;",s.appendChild(h),s.appendChild(d),s.appendChild(a),s.scrollTop=g.scrollTop,S=n(d).position(),n(s).remove(),S}}function z(e){var a,h,s,d,b,S,x,T,g,M,D;if((g=e[0])&&n(g).is("textarea")&&g.selectionEnd!=null){for(x={position:"absolute",overflow:"auto",whiteSpace:"pre-wrap",wordWrap:"break-word",boxSizing:"content-box",top:0,left:-9999},T=["boxSizing","fontFamily","fontSize","fontStyle","fontVariant","fontWeight","height","letterSpacing","lineHeight","paddingBottom","paddingLeft","paddingRight","paddingTop","textDecoration","textIndent","textTransform","width","word-spacing"],M=0,D=T.length;M<D;M++)b=T[M],x[b]=n(g).css(b);return s=document.createElement("div"),n(s).css(x),n(g).after(s),h=document.createTextNode(g.value.substring(0,g.selectionEnd)),a=document.createTextNode(g.value.substring(g.selectionEnd)),d=document.createElement("span"),d.innerHTML="&nbsp;",s.appendChild(h),s.appendChild(d),s.appendChild(a),s.scrollTop=g.scrollTop,S=n(d).offset(),n(s).remove(),S}}function V(){var e=n(l).offset().top,a=n("body").offset().top,h=n(window).scrollTop();h>e&&n(window).scrollTop(e-a)}function ne(e){var a=n(this),h=H[a.attr("data-uid")];return X(h),V(),!1}function Y(e){N()}function J(e){j()}function K(e){O(),te();var a=i.lastIndexOf(B,t.triggerChar);a>-1&&(k=B.slice(a+1).join(""),k=c.rtrim(k),i.defer(i.bind(L,this,k)))}function Q(e){if(e.keyCode!==u.BACKSPACE){var a=String.fromCharCode(e.which||e.keyCode);B.push(a)}}function Z(e){if(e.keyCode===u.LEFT||e.keyCode===u.RIGHT||e.keyCode===u.HOME||e.keyCode===u.END){i.defer(N),navigator.userAgent.indexOf("MSIE 9")>-1&&i.defer(O);return}if(e.keyCode===u.BACKSPACE){B=B.slice(0,-1+B.length);return}if(!f.is(":visible"))return!0;switch(e.keyCode){case u.UP:case u.DOWN:var a=null;return e.keyCode===u.DOWN?w&&w.length?a=w.next():a=f.find("li").first():a=n(w).prev(),a.length&&U(a),!1;case u.RETURN:case u.TAB:if(w&&w.length)return w.trigger("mousedown"),!1;break}return!0}function j(){w=null,f.empty().hide()}function U(e){e.addClass(t.classes.autoCompleteItemActive),e.siblings().removeClass(t.classes.autoCompleteItemActive),w=e}function R(e,a){if(f.show(),!t.allowRepeat){var h=i.pluck(I,"value");a=i.reject(a,function(d){return i.include(h,d.name)})}if(!a.length){j();return}f.empty();var s=n("<ul>").appendTo(f).hide();i.each(a,function(d,b){var S=i.uniqueId("mention_");H[S]=i.extend({},d,{value:d.name});var x=n(t.templates.autocompleteListItem({id:c.htmlEncode(d.id),display:c.htmlEncode(d.name),type:c.htmlEncode(d.type),content:c.highlightTerm(c.htmlEncode(d.display?d.display:d.name),e)})).attr("data-uid",S);if(b===0&&U(x),t.showAvatars){var T;d.avatar?T=n(t.templates.autocompleteListItemAvatar({avatar:d.avatar})):T=n(t.templates.autocompleteListItemIcon({icon:d.icon})),T.prependTo(x)}x=x.appendTo(s)}),f.show(),t.onCaret&&re(f,l),s.show()}function L(e){e&&e.length&&e.length>=t.minChars?t.onDataRequest.call(this,"search",e,function(a){R(e,a)}):j()}function re(e,a){var h=e.css("position");if(h=="absolute"){var s=W(a),d=parseInt(a.css("line-height"),10)||18;e.css("width","15em"),e.css("left",s.left),e.css("top",d+s.top);var b=a.offset().left+a.width(),S=e.offset().left+e.width();b<=S&&e.css("left",Math.abs(e.position().left-(S-b)))}else if(h=="fixed"){var x=z(a),d=parseInt(a.css("line-height"),10)||18;e.css("width","15em"),e.css("left",x.left+1e4),e.css("top",d+x.top)}}function ie(e){I=[];for(var a=c.htmlEncode(e),h=new RegExp("("+t.triggerChar+")\\[(.*?)\\]\\((.*?):(.*?)\\)","gi"),s,d=a;(s=h.exec(a))!=null;)d=d.replace(s[0],s[1]+s[2]),I.push({id:s[4],type:s[3],value:s[2],trigger:s[1]});l.val(d),O()}return{init:function(e){v=e,q(),G(),F(),ie(t.defaultValue),t.prefillMention&&X(t.prefillMention)},val:function(e){i.isFunction(e)&&e.call(this,I.length?l.data("messageText"):P())},reset:function(){ie()},reinit:function(){ie(!1)},getMentions:function(e){i.isFunction(e)&&e.call(this,I)}}};n.fn.mentionsInput=function(t,v){var l=arguments;return(typeof t=="object"||!t)&&(v=t),this.each(function(){var C=n.data(this,"mentionsInput")||n.data(this,"mentionsInput",new m(v));if(i.isFunction(C[t]))return C[t].apply(this,Array.prototype.slice.call(l,1));if(typeof t=="object"||!t)return C.init.call(this,this);n.error("Method "+t+" does not exist")})}})(jQuery,_);$(function(){$("textarea.mention").mentionsInput({triggerChar:"/",showAvatars:!1,minChars:1,elastic:!1,allowRepeat:!0,onDataRequest:function(n,i,o){var u=[{id:1,name:"Clt reported",type:"contact"},{id:2,name:"Therapist suggested",type:"contact"},{id:3,name:"partner",type:"contact"},{id:4,name:"Clt acknowledged",type:"contact"},{id:5,name:"Clt agreed",type:"contact"},{id:6,name:"Clt denied",type:"contact"},{id:7,name:"Clt expressed",type:"contact"},{id:8,name:"They reported",type:"contact"},{id:8,name:"Therapist explained",type:"contact"},{id:9,name:"but maintained that",type:"contact"},{id:10,name:"Clt requested",type:"contact"},{id:11,name:"Clt did not want",type:"contact"},{id:12,name:"Clt was unsure",type:"contact"},{id:13,name:"Clt became emotional in the session",type:"contact"},{id:14,name:"Clt decided",type:"contact"},{id:15,name:"Clt did not understand",type:"contact"},{id:16,name:"Clt disagreed",type:"contact"},{id:17,name:"Clt described",type:"contact"}];u=_.filter(u,function(p){return p.name.toLowerCase().indexOf(i.toLowerCase())>-1}),o.call(this,u)}})});document.getElementById("generate_button").onclick=le;document.getElementById("bg_switch").onclick=ce;document.getElementById("presentation_switch").onclick=se;function r(n){var i;return(i=document.querySelector(`input[name=${n}]:checked`))==null?void 0:i.value}function se(){A("f_appearance"),A("f_behaviour"),A("f_speech"),A("f_mood"),A("f_affect"),A("f_thought_process"),A("f_si"),A("f_nssi")}function ce(){A("f_work"),A("f_family")}function ee(n){return document.getElementById(n)}function A(n){const i=ee(n);i.disabled==!0?i.disabled=!1:i.disabled=!0}function ae(n,i=""){let o;return n.length>0?o=i+n.filter(u=>u).join(", "):o="",o}function le(){let n=document.getElementById("note_output");const i=r("appearance"),o=[r("beh_coop"),r("beh_err"),r("beh_restless"),r("beh_agit"),r("beh_with"),r("beh_agg")],u=r("beh_eye"),p=ae(o),c=r("speech_rate"),m=r("speech_vol"),t=[r("mood_euth"),r("mood_anx"),r("mood_irr"),r("mood_dep"),r("mood_apa")],v=ae(t),l=r("affect"),C=r("tho_organisation"),f=[r("cbt_soc"),r("cbt_abc"),r("cbt_dis"),r("cbt_ba"),r("cbt_exp"),r("cbt_experiment"),r("cbt_reinf")].filter(L=>L);let E;f.length>0?E="CBT: "+f.join(", ")+". ":E="";const y=[r("psy_dep"),r("psy_perf"),r("psy_grief"),r("psy_procras"),r("psy_worry"),r("psy_sleep_hyg")].filter(L=>L);let w;y.length>0?w="Psychoeducation: "+y.join(", ")+". ":w="";const I=[r("motiv"),r("relax"),r("decision_b"),r("assertive"),r("val"),r("cog_defusion"),r("goal_setting"),r("relapse"),r("safety_plan"),r("unconditional_acc"),r("comm_skill_training")].filter(L=>L);let H;I.length>0?H=I.join(". ")+".":H="";const B="Appearance: "+i+`
-  Behaviour: `+u+", "+p+`
-  Speech: `+c+", "+m+`
-  Mood: `+v+`
-  Affect: `+l+`
-  Thoughts: `+C;let k="Risk: "+r("risk_suicide");const q=r("risk_previous_suicide");q!=null&&(k+=`
-  `+q);const G=r("risk_nssi");G!=="nil"&&(k=k+", "+G);let F;const O=document.getElementById("details").value;O===void 0||O===""?F="":F=`Presenting Problems: 
-  `+O+`
-  
-  `;let N;const te=document.querySelector("#work_status").value,X=document.querySelector("#relx_status").value;let P=document.getElementById("work_status_details").value,W=document.getElementById("relx_status_details").value,z,V;P===void 0||P===""?z="":z=P,W===void 0||W===""?V="":V=W,N=`Background Info: 
-  `+te+". "+z+`
-  `+X+". "+V;const ne=`Intervention: 
-  Active listening & validation. `+E+w+H;let Y="";const J=r("consent"),K=r("ors_srs"),Q=r("self_care"),Z=r("debrief_manager"),j=r("homework"),U=r("rebook");Y=`Actions: 
-  `+[J,K,Q,Z,j,U].filter(L=>L).join(`
-  `);let R="";ee("f_appearance").disabled==!1&&(R+=B+`
-  
-  `),ee("f_si").disabled==!1&&(R+=k+`
-  
-  `),R+=F+`
-  
-  `,ee("f_work").disabled==!1&&(R+=N+`
-  
-  `),J===void 0&&K===void 0&&Q===void 0&&Q===void 0&&Z===void 0&&j===void 0&&U===void 0||(R+=ne+`
-  
-  `+Y+`
-  `),n.value=R,console.log(R)}
-  
-  </script><style>
-  .mentions-input-box{position:relative;background:#fff}.mentions-input-box textarea{width:100%;display:block;height:18px;padding:9px;border:1px solid #dcdcdc;border-radius:3px;overflow:hidden;background:transparent;position:relative;outline:0;resize:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.mentions-input-box .mentions-autocomplete-list{display:none;background:#fff;border:1px solid #b2b2b2;position:absolute;left:0;right:0;z-index:10000;margin-top:-2px;border-radius:0 0 5px 5px;-webkit-box-shadow:0 2px 5px rgba(0,0,0,.148438);-moz-box-shadow:0 2px 5px rgba(0,0,0,.148438);box-shadow:0 2px 5px #00000026}.mentions-input-box .mentions-autocomplete-list ul{margin:0;padding:0}.mentions-input-box .mentions-autocomplete-list li{background-color:#fff;padding:0 5px;margin:0;width:auto;border-bottom:1px solid #eee;height:26px;line-height:26px;overflow:hidden;cursor:pointer;list-style:none;white-space:nowrap}.mentions-input-box .mentions-autocomplete-list li:last-child{border-radius:5px}.mentions-input-box .mentions-autocomplete-list li>img,.mentions-input-box .mentions-autocomplete-list li>div.icon{width:16px;height:16px;float:left;margin-top:5px;margin-right:5px;-moz-background-origin:3px;border-radius:3px}.mentions-input-box .mentions-autocomplete-list li em{font-weight:700;font-style:none}.mentions-input-box .mentions-autocomplete-list li:hover,.mentions-input-box .mentions-autocomplete-list li.active{background-color:#f2f2f2}.mentions-input-box .mentions-autocomplete-list li b{background:#ff9;font-weight:400}.mentions-input-box .mentions{position:absolute;left:1px;right:0;top:1px;bottom:0;padding:9px;color:#fff;overflow:hidden;white-space:pre-wrap;word-wrap:break-word}.mentions-input-box .mentions>div{color:#fff;white-space:pre-wrap;width:100%}.mentions-input-box .mentions>div>strong{font-weight:400;background:#d8dfea}.mentions-input-box .mentions>div>strong>span{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)}/*!
-   * chota.css v0.9.2 | MIT License | https://github.com/jenil/chota
-   */:root{--bg-color:#fff;--bg-secondary-color:#f3f3f6;--color-primary:#14854f;--color-lightGrey:#d2d6dd;--color-grey:#747681;--color-darkGrey:#3f4144;--color-error:#d43939;--color-success:#28bd14;--grid-maxWidth:120rem;--grid-gutter:2rem;--font-size:1.6rem;--font-color:#333;--font-family-sans:-apple-system,"BlinkMacSystemFont","Avenir","Avenir Next","Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;--font-family-mono:monaco,"Consolas","Lucida Console",monospace}html{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;-ms-text-size-adjust:100%;text-size-adjust:100%;-webkit-box-sizing:border-box;box-sizing:border-box;font-size:62.5%;line-height:1.15}*,:after,:before{-webkit-box-sizing:inherit;box-sizing:inherit}body{background-color:var(--bg-color);color:var(--font-color);font-family:Segoe UI,Helvetica Neue,sans-serif;font-family:var(--font-family-sans);font-size:var(--font-size);line-height:1.6;margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:500;margin:.35em 0 .7em}h1{font-size:2em}h2{font-size:1.75em}h3{font-size:1.5em}h4{font-size:1.25em}h5{font-size:1em}h6{font-size:.85em}a{color:var(--color-primary);text-decoration:none}a:hover:not(.button){opacity:.75}button{font-family:inherit}p{margin-top:0}blockquote{background-color:var(--bg-secondary-color);border-left:3px solid var(--color-lightGrey);padding:1.5rem 2rem}dl dt{font-weight:700}hr{background-color:var(--color-lightGrey);height:1px;margin:1rem 0}hr,table{border:none}table{border-collapse:collapse;border-spacing:0;text-align:left;width:100%}table.striped tr:nth-of-type(2n){background-color:var(--bg-secondary-color)}td,th{padding:1.2rem .4rem;vertical-align:middle}thead{border-bottom:2px solid var(--color-lightGrey)}tfoot{border-top:2px solid var(--color-lightGrey)}code,kbd,pre,samp,tt{font-family:var(--font-family-mono)}code,kbd{border-radius:4px;color:var(--color-error);font-size:90%;padding:.2em .4em;white-space:pre-wrap}code,kbd,pre{background-color:var(--bg-secondary-color)}pre{font-size:1em;overflow-x:auto;padding:1rem}pre code{background:none;padding:0}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}img{max-width:100%}fieldset{border:1px solid var(--color-lightGrey)}iframe{border:0}.container{margin:0 auto;max-width:var(--grid-maxWidth);padding:0 calc(var(--grid-gutter)/2);width:96%}.row{-webkit-box-direction:normal;-webkit-box-pack:start;-ms-flex-pack:start;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;justify-content:flex-start;margin-left:calc(var(--grid-gutter)/-2);margin-right:calc(var(--grid-gutter)/-2)}.row,.row.reverse{-webkit-box-orient:horizontal}.row.reverse{-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col{-webkit-box-flex:1;-ms-flex:1;flex:1}.col,[class*=" col-"],[class^=col-]{margin:0 calc(var(--grid-gutter)/2) calc(var(--grid-gutter)/2)}.col-1{-ms-flex:0 0 calc(8.33333% - var(--grid-gutter));flex:0 0 calc(8.33333% - var(--grid-gutter));max-width:calc(8.33333% - var(--grid-gutter))}.col-1,.col-2{-webkit-box-flex:0}.col-2{-ms-flex:0 0 calc(16.66667% - var(--grid-gutter));flex:0 0 calc(16.66667% - var(--grid-gutter));max-width:calc(16.66667% - var(--grid-gutter))}.col-3{-ms-flex:0 0 calc(25% - var(--grid-gutter));flex:0 0 calc(25% - var(--grid-gutter));max-width:calc(25% - var(--grid-gutter))}.col-3,.col-4{-webkit-box-flex:0}.col-4{-ms-flex:0 0 calc(33.33333% - var(--grid-gutter));flex:0 0 calc(33.33333% - var(--grid-gutter));max-width:calc(33.33333% - var(--grid-gutter))}.col-5{-ms-flex:0 0 calc(41.66667% - var(--grid-gutter));flex:0 0 calc(41.66667% - var(--grid-gutter));max-width:calc(41.66667% - var(--grid-gutter))}.col-5,.col-6{-webkit-box-flex:0}.col-6{-ms-flex:0 0 calc(50% - var(--grid-gutter));flex:0 0 calc(50% - var(--grid-gutter));max-width:calc(50% - var(--grid-gutter))}.col-7{-ms-flex:0 0 calc(58.33333% - var(--grid-gutter));flex:0 0 calc(58.33333% - var(--grid-gutter));max-width:calc(58.33333% - var(--grid-gutter))}.col-7,.col-8{-webkit-box-flex:0}.col-8{-ms-flex:0 0 calc(66.66667% - var(--grid-gutter));flex:0 0 calc(66.66667% - var(--grid-gutter));max-width:calc(66.66667% - var(--grid-gutter))}.col-9{-ms-flex:0 0 calc(75% - var(--grid-gutter));flex:0 0 calc(75% - var(--grid-gutter));max-width:calc(75% - var(--grid-gutter))}.col-10,.col-9{-webkit-box-flex:0}.col-10{-ms-flex:0 0 calc(83.33333% - var(--grid-gutter));flex:0 0 calc(83.33333% - var(--grid-gutter));max-width:calc(83.33333% - var(--grid-gutter))}.col-11{-ms-flex:0 0 calc(91.66667% - var(--grid-gutter));flex:0 0 calc(91.66667% - var(--grid-gutter));max-width:calc(91.66667% - var(--grid-gutter))}.col-11,.col-12{-webkit-box-flex:0}.col-12{-ms-flex:0 0 calc(100% - var(--grid-gutter));flex:0 0 calc(100% - var(--grid-gutter));max-width:calc(100% - var(--grid-gutter))}@media screen and (max-width:599px){.container{width:100%}.col,[class*=col-],[class^=col-]{-webkit-box-flex:0;-ms-flex:0 1 100%;flex:0 1 100%;max-width:100%}}@media screen and (min-width:900px){.col-1-md{-webkit-box-flex:0;-ms-flex:0 0 calc(8.33333% - var(--grid-gutter));flex:0 0 calc(8.33333% - var(--grid-gutter));max-width:calc(8.33333% - var(--grid-gutter))}.col-2-md{-webkit-box-flex:0;-ms-flex:0 0 calc(16.66667% - var(--grid-gutter));flex:0 0 calc(16.66667% - var(--grid-gutter));max-width:calc(16.66667% - var(--grid-gutter))}.col-3-md{-webkit-box-flex:0;-ms-flex:0 0 calc(25% - var(--grid-gutter));flex:0 0 calc(25% - var(--grid-gutter));max-width:calc(25% - var(--grid-gutter))}.col-4-md{-webkit-box-flex:0;-ms-flex:0 0 calc(33.33333% - var(--grid-gutter));flex:0 0 calc(33.33333% - var(--grid-gutter));max-width:calc(33.33333% - var(--grid-gutter))}.col-5-md{-webkit-box-flex:0;-ms-flex:0 0 calc(41.66667% - var(--grid-gutter));flex:0 0 calc(41.66667% - var(--grid-gutter));max-width:calc(41.66667% - var(--grid-gutter))}.col-6-md{-webkit-box-flex:0;-ms-flex:0 0 calc(50% - var(--grid-gutter));flex:0 0 calc(50% - var(--grid-gutter));max-width:calc(50% - var(--grid-gutter))}.col-7-md{-webkit-box-flex:0;-ms-flex:0 0 calc(58.33333% - var(--grid-gutter));flex:0 0 calc(58.33333% - var(--grid-gutter));max-width:calc(58.33333% - var(--grid-gutter))}.col-8-md{-webkit-box-flex:0;-ms-flex:0 0 calc(66.66667% - var(--grid-gutter));flex:0 0 calc(66.66667% - var(--grid-gutter));max-width:calc(66.66667% - var(--grid-gutter))}.col-9-md{-webkit-box-flex:0;-ms-flex:0 0 calc(75% - var(--grid-gutter));flex:0 0 calc(75% - var(--grid-gutter));max-width:calc(75% - var(--grid-gutter))}.col-10-md{-webkit-box-flex:0;-ms-flex:0 0 calc(83.33333% - var(--grid-gutter));flex:0 0 calc(83.33333% - var(--grid-gutter));max-width:calc(83.33333% - var(--grid-gutter))}.col-11-md{-webkit-box-flex:0;-ms-flex:0 0 calc(91.66667% - var(--grid-gutter));flex:0 0 calc(91.66667% - var(--grid-gutter));max-width:calc(91.66667% - var(--grid-gutter))}.col-12-md{-webkit-box-flex:0;-ms-flex:0 0 calc(100% - var(--grid-gutter));flex:0 0 calc(100% - var(--grid-gutter));max-width:calc(100% - var(--grid-gutter))}}@media screen and (min-width:1200px){.col-1-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(8.33333% - var(--grid-gutter));flex:0 0 calc(8.33333% - var(--grid-gutter));max-width:calc(8.33333% - var(--grid-gutter))}.col-2-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(16.66667% - var(--grid-gutter));flex:0 0 calc(16.66667% - var(--grid-gutter));max-width:calc(16.66667% - var(--grid-gutter))}.col-3-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(25% - var(--grid-gutter));flex:0 0 calc(25% - var(--grid-gutter));max-width:calc(25% - var(--grid-gutter))}.col-4-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(33.33333% - var(--grid-gutter));flex:0 0 calc(33.33333% - var(--grid-gutter));max-width:calc(33.33333% - var(--grid-gutter))}.col-5-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(41.66667% - var(--grid-gutter));flex:0 0 calc(41.66667% - var(--grid-gutter));max-width:calc(41.66667% - var(--grid-gutter))}.col-6-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(50% - var(--grid-gutter));flex:0 0 calc(50% - var(--grid-gutter));max-width:calc(50% - var(--grid-gutter))}.col-7-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(58.33333% - var(--grid-gutter));flex:0 0 calc(58.33333% - var(--grid-gutter));max-width:calc(58.33333% - var(--grid-gutter))}.col-8-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(66.66667% - var(--grid-gutter));flex:0 0 calc(66.66667% - var(--grid-gutter));max-width:calc(66.66667% - var(--grid-gutter))}.col-9-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(75% - var(--grid-gutter));flex:0 0 calc(75% - var(--grid-gutter));max-width:calc(75% - var(--grid-gutter))}.col-10-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(83.33333% - var(--grid-gutter));flex:0 0 calc(83.33333% - var(--grid-gutter));max-width:calc(83.33333% - var(--grid-gutter))}.col-11-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(91.66667% - var(--grid-gutter));flex:0 0 calc(91.66667% - var(--grid-gutter));max-width:calc(91.66667% - var(--grid-gutter))}.col-12-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(100% - var(--grid-gutter));flex:0 0 calc(100% - var(--grid-gutter));max-width:calc(100% - var(--grid-gutter))}}fieldset{padding:.5rem 2rem}legend{font-size:.8em;letter-spacing:.1rem;text-transform:uppercase}input:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]),select,textarea,textarea[type=text]{border:1px solid var(--color-lightGrey);border-radius:4px;display:block;font-family:inherit;font-size:1em;padding:.8rem 1rem;-webkit-transition:all .2s ease;transition:all .2s ease;width:100%}select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:#f3f3f6 no-repeat 100%;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='40' fill='%23555'><polygon points='0,0 60,0 30,40'/></svg>");background-origin:content-box;background-size:1ex}.button,[type=button],[type=reset],[type=submit],button{background:var(--color-lightGrey);border:1px solid transparent;border-radius:4px;color:var(--color-darkGrey);cursor:pointer;display:inline-block;font-size:var(--font-size);line-height:1;padding:1rem 2.5rem;text-align:center;text-decoration:none;-webkit-transform:scale(1);transform:scale(1);-webkit-transition:opacity .2s ease;transition:opacity .2s ease}.button.dark,.button.error,.button.primary,.button.secondary,.button.success,[type=submit]{background-color:#000;background-color:var(--color-primary);color:#fff;z-index:1}.button:hover,[type=button]:hover,[type=reset]:hover,[type=submit]:hover,button:hover{opacity:.8}button:disabled,button:disabled:hover,input:disabled,input:disabled:hover{cursor:not-allowed;opacity:.4}.grouped{display:-webkit-box;display:-ms-flexbox;display:flex}.grouped>:not(:last-child){margin-right:16px}.grouped.gapless>*{border-radius:0!important;margin:0 0 0 -1px!important}.grouped.gapless>:first-child{border-radius:4px 0 0 4px!important;margin:0!important}.grouped.gapless>:last-child{border-radius:0 4px 4px 0!important}input:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset],:disabled):hover,select:hover,textarea:hover,textarea[type=text]:hover{border-color:var(--color-grey)}input:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]):focus,select:focus,textarea:focus,textarea[type=text]:focus{border-color:var(--color-primary);-webkit-box-shadow:0 0 1px var(--color-primary);box-shadow:0 0 1px var(--color-primary);outline:none}input.error:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]),textarea.error{border-color:var(--color-error)}input.success:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]),textarea.success{border-color:var(--color-success)}[type=checkbox],[type=radio]{height:1.6rem;width:2rem}.button+.button{margin-left:1rem}.button.secondary{background-color:var(--color-grey)}.button.dark{background-color:var(--color-darkGrey)}.button.error{background-color:var(--color-error)}.button.success{background-color:var(--color-success)}.button.outline{background-color:transparent;border-color:var(--color-lightGrey)}.button.outline.primary{border-color:var(--color-primary);color:var(--color-primary)}.button.outline.secondary{border-color:var(--color-grey);color:var(--color-grey)}.button.outline.dark{border-color:var(--color-darkGrey);color:var(--color-darkGrey)}.button.clear{background-color:transparent;border-color:transparent;color:var(--color-primary)}.button.icon{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.button.icon>img{margin-left:2px}.button.icon-only{padding:1rem}.button:active:not(:disabled),[type=button]:active:not(:disabled),[type=reset]:active:not(:disabled),[type=submit]:active:not(:disabled),button:active:not(:disabled){-webkit-transform:scale(.98);transform:scale(.98)}::-webkit-input-placeholder{color:#bdbfc4}::-moz-placeholder{color:#bdbfc4}:-ms-input-placeholder{color:#bdbfc4}::-ms-input-placeholder{color:#bdbfc4}::placeholder{color:#bdbfc4}.nav{-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;display:-webkit-box;display:-ms-flexbox;display:flex;min-height:5rem}.nav img{max-height:3rem}.nav-center,.nav-left,.nav-right,.nav>.container{display:-webkit-box;display:-ms-flexbox;display:flex}.nav-center,.nav-left,.nav-right{-webkit-box-flex:1;-ms-flex:1;flex:1}.nav-left{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.nav-right{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.nav-center{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}@media screen and (max-width:480px){.nav,.nav>.container{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.nav-center,.nav-left,.nav-right{-webkit-box-pack:center;-ms-flex-pack:center;-ms-flex-wrap:wrap;flex-wrap:wrap;justify-content:center}}.nav .brand,.nav a{-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--color-darkGrey);display:-webkit-box;display:-ms-flexbox;display:flex;padding:1rem 2rem;text-decoration:none}.nav .active:not(.button),.nav [aria-current=page]:not(.button){color:#000;color:var(--color-primary)}.nav .brand{font-size:1.75em;padding-bottom:0;padding-top:0}.nav .brand img{padding-right:1rem}.nav .button{margin:auto 1rem}.card{background:var(--bg-color);border-radius:4px;-webkit-box-shadow:0 1px 3px var(--color-grey);box-shadow:0 1px 3px var(--color-grey);padding:1rem 2rem}.card p:last-child{margin:0}.card header>*{margin-bottom:1rem;margin-top:0}.tabs{display:-webkit-box;display:-ms-flexbox;display:flex}.tabs a{text-decoration:none}.tabs>.dropdown>summary,.tabs>a{-webkit-box-flex:0;border-bottom:2px solid var(--color-lightGrey);color:var(--color-darkGrey);-ms-flex:0 1 auto;flex:0 1 auto;padding:1rem 2rem;text-align:center}.tabs>a.active,.tabs>a:hover,.tabs>a[aria-current=page]{border-bottom:2px solid var(--color-darkGrey);opacity:1}.tabs>a.active,.tabs>a[aria-current=page]{border-color:var(--color-primary)}.tabs.is-full a{-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}.tag{border:1px solid var(--color-lightGrey);color:var(--color-grey);display:inline-block;letter-spacing:.5px;line-height:1;padding:.5rem;text-transform:uppercase}.tag.is-small{font-size:.75em;padding:.4rem}.tag.is-large{font-size:1.125em;padding:.7rem}.tag+.tag{margin-left:1rem}details.dropdown{display:inline-block;position:relative}details.dropdown>:last-child{left:0;position:absolute;white-space:nowrap}.bg-primary{background-color:var(--color-primary)!important}.bg-light{background-color:var(--color-lightGrey)!important}.bg-dark{background-color:var(--color-darkGrey)!important}.bg-grey{background-color:var(--color-grey)!important}.bg-error{background-color:var(--color-error)!important}.bg-success{background-color:var(--color-success)!important}.bd-primary{border:1px solid var(--color-primary)!important}.bd-light{border:1px solid var(--color-lightGrey)!important}.bd-dark{border:1px solid var(--color-darkGrey)!important}.bd-grey{border:1px solid var(--color-grey)!important}.bd-error{border:1px solid var(--color-error)!important}.bd-success{border:1px solid var(--color-success)!important}.text-primary{color:var(--color-primary)!important}.text-light{color:var(--color-lightGrey)!important}.text-dark{color:var(--color-darkGrey)!important}.text-grey{color:var(--color-grey)!important}.text-error{color:var(--color-error)!important}.text-success{color:var(--color-success)!important}.text-white{color:#fff!important}.pull-right{float:right!important}.pull-left{float:left!important}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.text-justify{text-align:justify}.text-uppercase{text-transform:uppercase}.text-lowercase{text-transform:lowercase}.text-capitalize{text-transform:capitalize}.is-full-screen{min-height:100vh;width:100%}.is-full-width{width:100%!important}.is-vertical-align{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.is-center,.is-horizontal-align{-webkit-box-pack:center;-ms-flex-pack:center;display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:center}.is-center{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.is-right{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.is-left,.is-right{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.is-left{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.is-fixed{position:fixed;width:100%}.is-paddingless{padding:0!important}.is-marginless{margin:0!important}.is-pointer{cursor:pointer!important}.is-rounded{border-radius:100%}.clearfix{clear:both;content:"";display:table}.is-hidden{display:none!important}@media screen and (max-width:599px){.hide-xs{display:none!important}}@media screen and (min-width:600px) and (max-width:899px){.hide-sm{display:none!important}}@media screen and (min-width:900px) and (max-width:1199px){.hide-md{display:none!important}}@media screen and (min-width:1200px){.hide-lg{display:none!important}}@media print{.hide-pr{display:none!important}}
-  
-  </style></head><body><style>*{background-color:var(--bg-color)}main{width:80%}h2{font-size:1.8rem}.mse{font-size:1.25rem}.mse input{height:18px;width:18px}#kids_details{display:none}#fam_kids:checked~#kids_details{display:block}input.switch{appearance:none;position:relative;display:inline-block;background:#d3d3d3;height:1.65rem;width:2.75rem;vertical-align:middle;border-radius:2rem;box-shadow:0 1px 3px #0003 inset;transition:.25s linear}input.switch::before{content:"";display:block;width:1.25rem;height:1.25rem;background:#fff;border-radius:1.2rem;position:absolute;top:.2rem;left:.2rem;box-shadow:0 1px 3px #0003;transition:.25s linear transform;transform:translateX(0)}:checked.switch{background:green}:checked.switch::before{transform:translateX(1rem)}input.switch:focus{outline:0}@media screen and (max-width:599px){main{margin-left:5%;width:90%}}@media screen and (min-width:1200px){main{margin-left:10%}}</style><main><h1>Case Note Template Generator</h1><p></p><div class="row"><div class="col mse"><h2><label>Session Info</label></h2><fieldset id="f_mode"><legend>Mode</legend><div class="row mse"><div class="col"><input type="radio" id="mode_f2f" name="mode" value="F2F" checked> <label for="neat_d">F2F</label></div><div class="col"><input type="radio" id="mode_phone" name="mode" value="Phone"> <label for="untidy">Phone</label></div><div class="col"><input type="radio" id="mode_zoom" name="mode" value="Zoom"> <label for="untidy">Zoom</label></div></div></fieldset><h2><label>Presentation <input type="checkbox" class="switch" id="presentation_switch" checked></label></h2><fieldset id="f_appearance"><legend>Appearance</legend><div class="row mse"><div class="col"><input type="radio" id="neat_d" name="appearance" value="neatly dressed" checked> <label for="neat_d">Neatly dressed</label></div><div class="col"><input type="radio" id="untidy" name="appearance" value="untidy"> <label for="untidy">Untidy</label></div></div></fieldset><fieldset id="f_behaviour"><legend>Behaviour</legend><div class="row mse"><div class="col"><input type="radio" id="beh_good_eye" name="beh_eye" value="good eye contact" checked> <label for="beh_good_eye">Good eye contact</label></div><div class="col"><input type="radio" id="beh_bad_eye" name="beh_eye" value="poor eye contact"> <label for="beh_bad_eye">Little eye contact</label></div></div><div class="row mse"><div class="col"><input type="checkbox" id="beh_coop" name="beh_coop" value="cooperative" checked> <label for="beh_coop">Cooperative</label></div><div class="col"><input type="checkbox" id="erratic" name="beh_err" value="erratic"> <label for="erratic">Erratic</label></div><div class="col"><input type="checkbox" id="restless" name="beh_restless" value="restless"> <label for="restless">Restless</label></div></div><div class="row mse"><div class="col"><input type="checkbox" id="agitated" name="beh_agit" value="agitated"> <label for="agitated">Agitated</label></div><div class="col"><input type="checkbox" id="beh_with" name="beh_with" value="withdrawn"> <label for="beh_with">Withdrawn</label></div><div class="col"><input type="checkbox" id="beh_agg" name="beh_agg" value="aggressive"> <label for="beh_agg">Aggressive</label></div></div></fieldset><fieldset id="f_speech"><legend>Speech</legend><div class="row mse"><div class="col"><input type="radio" id="speech_rate_normal" name="speech_rate" value="normal rate" checked> <label for="speech_rate_normal">Normal rate</label></div><div class="col"><input type="radio" id="speech_rate_slow" name="speech_rate" value="spoke slowly"> <label for="speech_rate_slow">Slow</label></div><div class="col"><input type="radio" id="speech_rate_fast" name="speech_rate" value="spoke quickly"> <label for="speech_rate_fast">Fast</label></div></div><div class="row mse"><div class="col"><input type="radio" id="speech_norm" name="speech_vol" value="normal volume" checked> <label for="speech_norm">Normal volume</label></div><div class="col"><input type="radio" id="speech_soft" name="speech_vol" value="speaks softly"> <label for="speech_soft">Soft</label></div><div class="col"><input type="radio" id="speech_loud" name="speech_vol" value="speaks loudly"> <label for="speech_loud">Loud</label></div></div></fieldset><fieldset id="f_mood"><legend>Mood</legend><div class="row mse"><div class="col"><input type="checkbox" id="mood_euth" name="mood_euth" value="euthymic" checked> <label for="mood_euth">Euthymic</label> <input type="checkbox" id="mood_anx" name="mood_anx" value="anxious"> <label for="mood_anx">Anxious</label> <input type="checkbox" id="mood_irr" name="mood_irr" value="irritable"> <label for="mood_irr">Irritable</label> <input type="checkbox" id="mood_dep" name="mood_dep" value="depressed"> <label for="mood_dep">Depressed</label> <input type="checkbox" id="mood_apa" name="mood_apa" value="apathetic"> <label for="mood_apa">Apathetic</label></div></div></fieldset><fieldset id="f_affect"><legend>Affect</legend><div class="row mse"><div class="col"><input type="radio" id="aff_norm" name="affect" value="normal" checked> <label for="aff_norm">Normal</label></div><div class="col"><input type="radio" id="aff_flat" name="affect" value="flat"> <label for="aff_flat">Flat</label></div></div><div class="row mse"><div class="col"><input type="radio" id="aff_tearful" name="affect" value="tearful"> <label for="aff_tearful">Tearful</label></div><div class="col"><input type="radio" id="aff_labile" name="affect" value="labile"> <label for="aff_labile">Labile</label></div></div></fieldset><fieldset id="f_thought_process"><legend>Thought Process</legend><div class="row mse"><div class="col"><input type="radio" id="tho_logical" name="tho_organisation" value="logically organized" checked> <label for="tho_logical">Logical</label></div><div class="col"><input type="radio" id="tho_disorg" name="tho_organisation" value="disorganized"> <label for="tho_disorg">Disorganized</label></div></div></fieldset><h2>Risk</h2><fieldset id="f_si"><legend>Suicidal Ideation</legend><div class="row mse"><div class="col"><input type="radio" id="risk_self_nil" name="risk_suicide" value="nil" checked> <label for="risk_self_nil">Nil</label></div><div class="col"><input type="radio" id="risk_self_thoughts" name="risk_suicide" value="Has occasional thoughts about suicide with no clear plan or intent"> <label for="risk_self_thoughts">Occasional</label></div><div class="col"><input type="radio" id="risk_self_freq" name="risk_suicide" value="Has frequent thoughts about suicide but denied plan or intent"> <label for="risk_self_freq">Frequent</label></div></div><div class="row mse"><div class="col"><input type="radio" id="risk_self_plan" name="risk_suicide" value="Has thought of a suicide plan"> <label for="risk_self_plan">Has plan</label></div><div class="col"><input type="radio" id="risk_self_intent" name="risk_suicide" value="Has a suicide plan and expressed intent to act on it"> <label for="risk_self_intent">Has plan and intent</label></div></div><div class="row mse"><div class="col"><input type="checkbox" id="risk_previous_suicide" name="risk_previous_suicide" value="Has attempted suicide before"> <label for="risk_previous_suicide">Has attempted suicide before</label></div></div></fieldset><fieldset id="f_nssi"><legend>NSSI</legend><input type="radio" id="risk_nssi_nil" name="risk_nssi" value="nil" checked> <label for="risk_nssi_nil">Nil</label> <input type="radio" id="risk_nssi_tried" name="risk_nssi" value="has done NSSI in past"> <label for="risk_nssi_tried">Has done NSSI in past</label> <input type="radio" id="risk_nssi_current" name="risk_nssi" value="ongoing NSSI"> <label for="risk_nssi_current">Ongoing NSSI</label></fieldset></div><div class="col mse"><h2>Intervention</h2><fieldset><legend>CBT</legend><div class="row"><div class="col"><input type="checkbox" id="cbt_soc" name="cbt_soc" value="Socratic questioning"> <label for="cbt_soc">Socratic questioning</label></div><div class="col"><input type="checkbox" id="cbt_dis" name="cbt_dis" value="thought disputation"> <label for="cbt_dis">Thought disputation</label></div><div class="col"><input type="checkbox" id="cbt_abc" name="cbt_abc" value="ABC model"> <label for="cbt_abc">ABC Model</label></div></div><div class="row"><div class="col"><input type="checkbox" id="cbt_ba" name="cbt_ba" value="behavioural activation"> <label for="cbt_ba">Behavioural Activation</label></div><div class="col"><input type="checkbox" id="cbt_exp" name="cbt_exp" value="exposure"> <label for="cbt_exp">Exposure</label></div></div><div class="row"><div class="col"><input type="checkbox" id="cbt_experiment" name="cbt_experiment" value="behavioural experiment"> <label for="cbt_experiment">Behavioural Experiment</label></div><div class="col"><input type="checkbox" id="cbt_reinf" name="cbt_reinf" value="Reinforcement"> <label for="cbt_reinf">Reinforcement</label></div></div></fieldset><fieldset><legend>Psychoeducation</legend><div class="row"><div class="col"><input type="checkbox" id="psy_dep" name="psy_dep" value="depression"> <label for="psy_dep">Depression</label></div><div class="col"><input type="checkbox" id="psy_perf" name="psy_perf" value="perfectionism"> <label for="psy_perf">Perfectionism</label></div><div class="col"><input type="checkbox" id="psy_grief" name="psy_grief" value="grief"> <label for="psy_grief">Grief</label></div></div><div class="row"><div class="col"><input type="checkbox" id="psy_procras" name="psy_procras" value="procrastination"> <label for="psy_procras">Procrastination</label></div><div class="col"><input type="checkbox" id="psy_worry" name="psy_worry" value="worry"> <label for="psy_worry">Worry</label></div><div class="col"><input type="checkbox" id="psy_sleep_hyg" name="psy_sleep_hyg" value="sleep hygiene"> <label for="psy_sleep_hyg">Sleep hygiene</label></div></div></fieldset><fieldset><legend>Other</legend><div class="row"><div class="col"><input type="checkbox" id="motiv" name="motiv" value="Motivational interviewing"> <label for="motiv">Motivational interviewing</label></div><div class="col"><input type="checkbox" id="relax" name="relax" value="Relaxation/controlled breathing/meditation"> <label for="relax">Relaxation/meditation</label></div><div class="col"><input type="checkbox" id="decision_b" name="decision_b" value="Decisional balance"> <label for="decision_b">Decisional balance</label></div></div><div class="row"><div class="col"><input type="checkbox" id="assertive" name="assertive" value="Assertiveness"> <label for="assertive">Assertiveness</label></div><div class="col"><input type="checkbox" id="val" name="val" value="Values"> <label for="val">Values</label></div><div class="col"><input type="checkbox" id="cog_defusion" name="cog_defusion" value="Cognitive defusion"> <label for="cog_defusion">Cognitive defusion</label></div></div><div class="row"><div class="col"><input type="checkbox" id="goal_setting" name="goal_setting" value="Goal setting"> <label for="goal_setting">Goal setting</label></div><div class="col"><input type="checkbox" id="relapse" name="relapse" value="Relapse prevention"> <label for="relapse">Relapse prevention</label></div><div class="col"><input type="checkbox" id="safety_plan" name="safety_plan" value="Safety plan"> <label for="safety_plan">Safety plan</label></div></div><div class="row"><div class="col"><input type="checkbox" id="unconditional_acc" name="unconditional_acc" value="Unconditional acceptance"> <label for="unconditional_acc">Unconditional acceptance</label></div><div class="col"><input type="checkbox" id="comm_skill_training" name="comm_skill_training" value="Communication skills training"> <label for="comm_skill_training">Communication skills training</label></div></div></fieldset><h2><label>Background Info <input type="checkbox" class="switch" id="bg_switch" checked></label></h2><fieldset id="f_work"><legend>Work</legend><select name="work_status" id="work_status" autocomplete="on" style="width:50%;margin-bottom:.7rem" required><option>Works locally</option><option>Works FIFO</option><option>Unemployed</option><option>Primary school</option><option>High school</option><option>University</option><option>TAFE</option></select> Details: <input type="text" id="work_status_details" name="work_status_details" size="15" style="width:100%;margin-bottom:.2rem;font-size:larger;height:auto"></fieldset><fieldset id="f_family"><legend>Family</legend><select name="relx_status" id="relx_status" autocomplete="on" style="width:50%;margin-bottom:.7rem" required><option>Single</option><option>Married</option><option>Defacto</option></select> Details: <input type="text" id="relx_status_details" name="relx_status_details" size="15" style="width:100%;margin-bottom:.2rem;font-size:larger;height:auto"></fieldset></div></div><div class="col"><h2>Presenting Problems</h2><fieldset><legend>Details</legend><textarea class="mention" id="details" name="details" style="min-height:30rem;border:none;overflow-y:scroll"></textarea></fieldset></div><div class="col"><h2>Actions</h2><fieldset><legend></legend><div class="row"><input type="checkbox" id="consent" name="consent" value="Explained confidentiality and terms and conditions of EAP counselling. Client agreed and gave consent to continue" checked> <label for="consent">Explained confidentiality and terms and conditions of EAP counselling. Client agreed and gave consent to continue</label></div><div class="row"><input type="checkbox" id="ors_srs" name="ors_srs" value="Administered ORS/SRS"> <label for="ors_srs">Administered ORS/SRS</label></div><div class="row"><input type="checkbox" id="self_care" name="self_care" value="Encouraged self-care"> <label for="self_care">Encouraged self-care</label></div><div class="row"><input type="checkbox" id="debrief_manager" name="debrief_manager" value="Debriefed with manager"> <label for="debrief_manager">Debriefed with manager</label></div><div class="row"><input type="checkbox" id="homework" name="homework" value="Discussed and set homework task: "> <label for="homework">Discussed and set homework task</label></div><div class="row"><input type="checkbox" id="rebook" name="rebook" value="Client to contact reception to rebook"> <label for="rebook">Client to contact reception to rebook</label></div></fieldset></div><div class="row" style="margin-top:2.5rem;margin-bottom:3.5rem"><div class="col" style="text-align:center"><a class="button primary" style="margin-top:.5rem" id="generate_button">Generate template</a></div><div class="col" style="text-align:center"><a class="button error" style="margin-top:.5rem" id="clear_button">Clear template</a></div></div><div class="col"><h2>Output</h2><textarea name="note_output" id="note_output" rows="20" cols="30" style="margin-top:.5rem"></textarea><hr></div></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Notes Template Generator</title>
+
+    <!-- <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
+    integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" -->
+    <!-- crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"
+      type="text/javascript"
+    ></script>
+    <script type="module" crossorigin>
+(function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const p of document.querySelectorAll('link[rel="modulepreload"]'))u(p);new MutationObserver(p=>{for(const c of p)if(c.type==="childList")for(const m of c.addedNodes)m.tagName==="LINK"&&m.rel==="modulepreload"&&u(m)}).observe(document,{childList:!0,subtree:!0});function o(p){const c={};return p.integrity&&(c.integrity=p.integrity),p.referrerPolicy&&(c.referrerPolicy=p.referrerPolicy),p.crossOrigin==="use-credentials"?c.credentials="include":p.crossOrigin==="anonymous"?c.credentials="omit":c.credentials="same-origin",c}function u(p){if(p.ep)return;p.ep=!0;const c=o(p);fetch(p.href,c)}})();(function(n){n.event.special.input={setup:function(o,u){var p,c=this,m=c.value,t=document.createElement(this.tagName),v="oninput"in t||i(t),l="inputEventNS"+~~(Math.random()*1e7),C=["focus","blur","paste","cut","keydown","drop",""].join("."+l+" ");function f(){var y=n(c);c.value!=m&&!y.data("triggering.inputEvent")&&(m=c.value,y.data("triggering.inputEvent",!0).trigger("input"),window.setTimeout(function(){y.data("triggering.inputEvent",!1)},0))}function E(y){y.type=="focus"?(f(),clearInterval(p),p=window.setInterval(f,250)):y.type=="blur"?window.clearInterval(p):window.setTimeout(f,0)}if(v)return!1;n(this).find("input, textarea").andSelf().filter("input, textarea").bind(C,E),n(this).data("inputEventHandlerNS",l)},teardown:function(){var o=n(this);o.find("input, textarea").unbind(o.data("inputEventHandlerNS")),o.data("inputEventHandlerNS","")}},n.fn.input=function(o){return o?this.bind("input",o):this.trigger("input")};function i(o){if(o.setAttribute("oninput","return"),typeof o.oninput=="function")return!0;try{var u=document.createEvent("KeyboardEvent"),p=!1,c=function(m){p=!0,m.preventDefault(),m.stopPropagation()};return document.body.appendChild(o),o.addEventListener("input",c,!1),o.removeEventListener("input",c,!1),document.body.removeChild(o),p}catch{}}})(jQuery);(function(n){jQuery.fn.extend({elastic:function(){var i=["paddingTop","paddingRight","paddingBottom","paddingLeft","fontSize","lineHeight","fontFamily","width","fontWeight","border-top-width","border-right-width","border-bottom-width","border-left-width","borderTopStyle","borderTopColor","borderRightStyle","borderRightColor","borderBottomStyle","borderBottomColor","borderLeftStyle","borderLeftColor"];return this.each(function(){if(this.type!=="textarea")return!1;var o=jQuery(this),u=jQuery("<div />").css({position:"absolute",display:"none","word-wrap":"break-word","white-space":"pre-wrap"}),p=parseInt(o.css("line-height"),10)||parseInt(o.css("font-size"),"10"),c=parseInt(o.css("height"),10)||p*3,m=parseInt(o.css("max-height"),10)||Number.MAX_VALUE;m<0&&(m=Number.MAX_VALUE),u.appendTo(o.parent());for(var t=i.length;t--;)u.css(i[t].toString(),o.css(i[t].toString()));function v(){var f=Math.floor(parseInt(o.width(),10));u.width()!==f&&(u.css({width:f+"px"}),C(!0))}function l(f,E){var y=Math.floor(parseInt(f,10));o.height()!==y&&o.css({height:y+"px",overflow:E})}function C(f){var E=o.val().replace(/&/g,"&amp;").replace(/ {2}/g,"&nbsp;").replace(/<|>/g,"&gt;").replace(/\n/g,"<br />"),y=u.html().replace(/<br>/ig,"<br />");if((f||E+"&nbsp;"!==y)&&(u.html(E+"&nbsp;"),Math.abs(u.height()+p-o.height())>3)){var w=u.height()+p;w>=m?l(m,"auto"):w<=c?l(c,"hidden"):l(w,"hidden")}}o.css({overflow:"hidden"}),o.bind("keyup change cut paste",function(){C()}),n(window).bind("resize",v),o.bind("resize",v),o.bind("update",C),o.bind("blur",function(){u.height()<m&&(u.height()>c?o.height(u.height()):o.height(c))}),o.bind("input paste",function(f){setTimeout(C,250)}),C()})}})})(jQuery);(function(n,i,o){var u={BACKSPACE:8,TAB:9,RETURN:13,ESC:27,LEFT:37,UP:38,RIGHT:39,DOWN:40,COMMA:188,SPACE:32,HOME:36,END:35},p={triggerChar:"@",onDataRequest:n.noop,minChars:2,allowRepeat:!1,showAvatars:!0,elastic:!0,defaultValue:"",onCaret:!1,classes:{autoCompleteItemActive:"active"},templates:{wrapper:i.template('<div class="mentions-input-box"></div>'),autocompleteList:i.template('<div class="mentions-autocomplete-list"></div>'),autocompleteListItem:i.template('<li data-ref-id="<%= id %>" data-ref-type="<%= type %>" data-display="<%= display %>"><%= content %></li>'),autocompleteListItemAvatar:i.template('<img src="<%= avatar %>" />'),autocompleteListItemIcon:i.template('<div class="icon <%= icon %>"></div>'),mentionsOverlay:i.template('<div class="mentions"><div></div></div>'),mentionItemSyntax:i.template("@[<%= value %>](<%= type %>:<%= id %>)"),mentionItemHighlight:i.template("<strong><span><%= value %></span></strong>")}},c={htmlEncode:function(t){return i.escape(t)},regexpEncode:function(t){return t.replace(/([.*+?^=!:${}()|\[\]\/\\])/g,"\\$1")},highlightTerm:function(t,v){return!v&&!v.length?t:t.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)("+v+")(?![^<>]*>)(?![^&;]+;)","gi"),"<b>$1</b>")},setCaratPosition:function(t,v){if(t.createTextRange){var l=t.createTextRange();l.move("character",v),l.select()}else t.selectionStart?(t.focus(),t.setSelectionRange(v,v)):t.focus()},rtrim:function(t){return t.replace(/\s+$/,"")}},m=function(t){var v,l,C,f,E,y,w,I=[],H={},B=[],k="";t=n.extend(!0,{},p,t);function q(){l=n(v),l.attr("data-mentions-input")!=="true"&&(C=l.parent(),E=n(t.templates.wrapper()),l.wrapAll(E),E=C.find("> div.mentions-input-box"),l.attr("data-mentions-input","true"),l.bind("keydown",Z),l.bind("keypress",Q),l.bind("click",Y),l.bind("blur",J),navigator.userAgent.indexOf("MSIE 8")>-1?l.bind("propertychange",K):l.bind("input",K),t.elastic&&l.elastic())}function G(){f=n(t.templates.autocompleteList()),f.appendTo(E),f.delegate("li","mousedown",ne)}function F(){y=n(t.templates.mentionsOverlay()),y.prependTo(E)}function O(){var e=P();i.each(I,function(h){var s=t.templates.mentionItemSyntax(h);e=e.replace(new RegExp(c.regexpEncode(h.value),"g"),s)});var a=c.htmlEncode(e);i.each(I,function(h){var s=i.extend({},h,{value:c.htmlEncode(h.value)}),d=t.templates.mentionItemSyntax(s),b=t.templates.mentionItemHighlight(s);a=a.replace(new RegExp(c.regexpEncode(d),"g"),b)}),a=a.replace(/\n/g,"<br />"),a=a.replace(/ {2}/g,"&nbsp; "),l.data("messageText",e),l.trigger("updated"),y.find("div").html(a)}function N(){B=[]}function te(){var e=P();I=i.reject(I,function(a,h){return!a.value||e.indexOf(a.value)==-1}),I=i.compact(I)}function X(e){for(var a=P(),h=l[0].selectionStart,s=!1,d=!1,b=new RegExp("\\"+t.triggerChar+k,"gi");b.exec(a);)(s===!1||Math.abs(b.lastIndex-h)<s)&&(s=Math.abs(b.lastIndex-h),d=b.lastIndex);var S=d-k.length-1,x=d,T=a.substr(0,S),g=a.substr(x,a.length),M=(T+e.value).length+1;i.find(I,function(oe){return oe.id==e.id})||I.push(e),N(),k="",j();var D=T+e.value+" "+g;l.val(D),l.trigger("mention"),O(),l.focus(),c.setCaratPosition(l[0],M)}function P(){return n.trim(l.val())}function W(e){var a,h,s,d,b,S,x,T,g,M,D;if((g=e[0])&&n(g).is("textarea")&&g.selectionEnd!=null){for(x={position:"absolute",overflow:"auto",whiteSpace:"pre-wrap",wordWrap:"break-word",boxSizing:"content-box",top:0,left:-9999},T=["boxSizing","fontFamily","fontSize","fontStyle","fontVariant","fontWeight","height","letterSpacing","lineHeight","paddingBottom","paddingLeft","paddingRight","paddingTop","textDecoration","textIndent","textTransform","width","word-spacing"],M=0,D=T.length;M<D;M++)b=T[M],x[b]=n(g).css(b);return s=document.createElement("div"),n(s).css(x),n(g).after(s),h=document.createTextNode(g.value.substring(0,g.selectionEnd)),a=document.createTextNode(g.value.substring(g.selectionEnd)),d=document.createElement("span"),d.innerHTML="&nbsp;",s.appendChild(h),s.appendChild(d),s.appendChild(a),s.scrollTop=g.scrollTop,S=n(d).position(),n(s).remove(),S}}function z(e){var a,h,s,d,b,S,x,T,g,M,D;if((g=e[0])&&n(g).is("textarea")&&g.selectionEnd!=null){for(x={position:"absolute",overflow:"auto",whiteSpace:"pre-wrap",wordWrap:"break-word",boxSizing:"content-box",top:0,left:-9999},T=["boxSizing","fontFamily","fontSize","fontStyle","fontVariant","fontWeight","height","letterSpacing","lineHeight","paddingBottom","paddingLeft","paddingRight","paddingTop","textDecoration","textIndent","textTransform","width","word-spacing"],M=0,D=T.length;M<D;M++)b=T[M],x[b]=n(g).css(b);return s=document.createElement("div"),n(s).css(x),n(g).after(s),h=document.createTextNode(g.value.substring(0,g.selectionEnd)),a=document.createTextNode(g.value.substring(g.selectionEnd)),d=document.createElement("span"),d.innerHTML="&nbsp;",s.appendChild(h),s.appendChild(d),s.appendChild(a),s.scrollTop=g.scrollTop,S=n(d).offset(),n(s).remove(),S}}function V(){var e=n(l).offset().top,a=n("body").offset().top,h=n(window).scrollTop();h>e&&n(window).scrollTop(e-a)}function ne(e){var a=n(this),h=H[a.attr("data-uid")];return X(h),V(),!1}function Y(e){N()}function J(e){j()}function K(e){O(),te();var a=i.lastIndexOf(B,t.triggerChar);a>-1&&(k=B.slice(a+1).join(""),k=c.rtrim(k),i.defer(i.bind(L,this,k)))}function Q(e){if(e.keyCode!==u.BACKSPACE){var a=String.fromCharCode(e.which||e.keyCode);B.push(a)}}function Z(e){if(e.keyCode===u.LEFT||e.keyCode===u.RIGHT||e.keyCode===u.HOME||e.keyCode===u.END){i.defer(N),navigator.userAgent.indexOf("MSIE 9")>-1&&i.defer(O);return}if(e.keyCode===u.BACKSPACE){B=B.slice(0,-1+B.length);return}if(!f.is(":visible"))return!0;switch(e.keyCode){case u.UP:case u.DOWN:var a=null;return e.keyCode===u.DOWN?w&&w.length?a=w.next():a=f.find("li").first():a=n(w).prev(),a.length&&U(a),!1;case u.RETURN:case u.TAB:if(w&&w.length)return w.trigger("mousedown"),!1;break}return!0}function j(){w=null,f.empty().hide()}function U(e){e.addClass(t.classes.autoCompleteItemActive),e.siblings().removeClass(t.classes.autoCompleteItemActive),w=e}function R(e,a){if(f.show(),!t.allowRepeat){var h=i.pluck(I,"value");a=i.reject(a,function(d){return i.include(h,d.name)})}if(!a.length){j();return}f.empty();var s=n("<ul>").appendTo(f).hide();i.each(a,function(d,b){var S=i.uniqueId("mention_");H[S]=i.extend({},d,{value:d.name});var x=n(t.templates.autocompleteListItem({id:c.htmlEncode(d.id),display:c.htmlEncode(d.name),type:c.htmlEncode(d.type),content:c.highlightTerm(c.htmlEncode(d.display?d.display:d.name),e)})).attr("data-uid",S);if(b===0&&U(x),t.showAvatars){var T;d.avatar?T=n(t.templates.autocompleteListItemAvatar({avatar:d.avatar})):T=n(t.templates.autocompleteListItemIcon({icon:d.icon})),T.prependTo(x)}x=x.appendTo(s)}),f.show(),t.onCaret&&re(f,l),s.show()}function L(e){e&&e.length&&e.length>=t.minChars?t.onDataRequest.call(this,"search",e,function(a){R(e,a)}):j()}function re(e,a){var h=e.css("position");if(h=="absolute"){var s=W(a),d=parseInt(a.css("line-height"),10)||18;e.css("width","15em"),e.css("left",s.left),e.css("top",d+s.top);var b=a.offset().left+a.width(),S=e.offset().left+e.width();b<=S&&e.css("left",Math.abs(e.position().left-(S-b)))}else if(h=="fixed"){var x=z(a),d=parseInt(a.css("line-height"),10)||18;e.css("width","15em"),e.css("left",x.left+1e4),e.css("top",d+x.top)}}function ie(e){I=[];for(var a=c.htmlEncode(e),h=new RegExp("("+t.triggerChar+")\\[(.*?)\\]\\((.*?):(.*?)\\)","gi"),s,d=a;(s=h.exec(a))!=null;)d=d.replace(s[0],s[1]+s[2]),I.push({id:s[4],type:s[3],value:s[2],trigger:s[1]});l.val(d),O()}return{init:function(e){v=e,q(),G(),F(),ie(t.defaultValue),t.prefillMention&&X(t.prefillMention)},val:function(e){i.isFunction(e)&&e.call(this,I.length?l.data("messageText"):P())},reset:function(){ie()},reinit:function(){ie(!1)},getMentions:function(e){i.isFunction(e)&&e.call(this,I)}}};n.fn.mentionsInput=function(t,v){var l=arguments;return(typeof t=="object"||!t)&&(v=t),this.each(function(){var C=n.data(this,"mentionsInput")||n.data(this,"mentionsInput",new m(v));if(i.isFunction(C[t]))return C[t].apply(this,Array.prototype.slice.call(l,1));if(typeof t=="object"||!t)return C.init.call(this,this);n.error("Method "+t+" does not exist")})}})(jQuery,_);$(function(){$("textarea.mention").mentionsInput({triggerChar:"/",showAvatars:!1,minChars:1,elastic:!1,allowRepeat:!0,onDataRequest:function(n,i,o){var u=[{id:1,name:"Clt reported",type:"contact"},{id:2,name:"Therapist suggested",type:"contact"},{id:3,name:"partner",type:"contact"},{id:4,name:"Clt acknowledged",type:"contact"},{id:5,name:"Clt agreed",type:"contact"},{id:6,name:"Clt denied",type:"contact"},{id:7,name:"Clt expressed",type:"contact"},{id:8,name:"They reported",type:"contact"},{id:8,name:"Therapist explained",type:"contact"},{id:9,name:"but maintained that",type:"contact"},{id:10,name:"Clt requested",type:"contact"},{id:11,name:"Clt did not want",type:"contact"},{id:12,name:"Clt was unsure",type:"contact"},{id:13,name:"Clt became emotional in the session",type:"contact"},{id:14,name:"Clt decided",type:"contact"},{id:15,name:"Clt did not understand",type:"contact"},{id:16,name:"Clt disagreed",type:"contact"},{id:17,name:"Clt described",type:"contact"}];u=_.filter(u,function(p){return p.name.toLowerCase().indexOf(i.toLowerCase())>-1}),o.call(this,u)}})});document.getElementById("generate_button").onclick=le;document.getElementById("bg_switch").onclick=ce;document.getElementById("presentation_switch").onclick=se;function r(n){var i;return(i=document.querySelector(`input[name=${n}]:checked`))==null?void 0:i.value}function se(){A("f_appearance"),A("f_behaviour"),A("f_speech"),A("f_mood"),A("f_affect"),A("f_thought_process"),A("f_si"),A("f_nssi")}function ce(){A("f_work"),A("f_family")}function ee(n){return document.getElementById(n)}function A(n){const i=ee(n);i.disabled==!0?i.disabled=!1:i.disabled=!0}function ae(n,i=""){let o;return n.length>0?o=i+n.filter(u=>u).join(", "):o="",o}function le(){let n=document.getElementById("note_output");const i=r("appearance"),o=[r("beh_coop"),r("beh_err"),r("beh_restless"),r("beh_agit"),r("beh_with"),r("beh_agg")],u=r("beh_eye"),p=ae(o),c=r("speech_rate"),m=r("speech_vol"),t=[r("mood_euth"),r("mood_anx"),r("mood_irr"),r("mood_dep"),r("mood_apa")],v=ae(t),l=r("affect"),C=r("tho_organisation"),f=[r("cbt_soc"),r("cbt_abc"),r("cbt_dis"),r("cbt_ba"),r("cbt_exp"),r("cbt_experiment"),r("cbt_reinf")].filter(L=>L);let E;f.length>0?E="CBT: "+f.join(", ")+". ":E="";const y=[r("psy_dep"),r("psy_perf"),r("psy_grief"),r("psy_procras"),r("psy_worry"),r("psy_sleep_hyg")].filter(L=>L);let w;y.length>0?w="Psychoeducation: "+y.join(", ")+". ":w="";const I=[r("motiv"),r("relax"),r("decision_b"),r("assertive"),r("val"),r("cog_defusion"),r("goal_setting"),r("relapse"),r("safety_plan"),r("unconditional_acc"),r("comm_skill_training")].filter(L=>L);let H;I.length>0?H=I.join(". ")+".":H="";const B="Appearance: "+i+`
+Behaviour: `+u+", "+p+`
+Speech: `+c+", "+m+`
+Mood: `+v+`
+Affect: `+l+`
+Thoughts: `+C;let k="Risk: "+r("risk_suicide");const q=r("risk_previous_suicide");q!=null&&(k+=`
+`+q);const G=r("risk_nssi");G!=="nil"&&(k=k+", "+G);let F;const O=document.getElementById("details").value;O===void 0||O===""?F="":F=`Presenting Problems: 
+`+O+`
+
+`;let N;const te=document.querySelector("#work_status").value,X=document.querySelector("#relx_status").value;let P=document.getElementById("work_status_details").value,W=document.getElementById("relx_status_details").value,z,V;P===void 0||P===""?z="":z=P,W===void 0||W===""?V="":V=W,N=`Background Info: 
+`+te+". "+z+`
+`+X+". "+V;const ne=`Intervention: 
+Active listening & validation. `+E+w+H;let Y="";const J=r("consent"),K=r("ors_srs"),Q=r("self_care"),Z=r("debrief_manager"),j=r("homework"),U=r("rebook");Y=`Actions: 
+`+[J,K,Q,Z,j,U].filter(L=>L).join(`
+`);let R="";ee("f_appearance").disabled==!1&&(R+=B+`
+
+`),ee("f_si").disabled==!1&&(R+=k+`
+
+`),R+=F+`
+
+`,ee("f_work").disabled==!1&&(R+=N+`
+
+`),J===void 0&&K===void 0&&Q===void 0&&Q===void 0&&Z===void 0&&j===void 0&&U===void 0||(R+=ne+`
+
+`+Y+`
+`),n.value=R,console.log(R)}
+
+</script>
+    <style>
+.mentions-input-box{position:relative;background:#fff}.mentions-input-box textarea{width:100%;display:block;height:18px;padding:9px;border:1px solid #dcdcdc;border-radius:3px;overflow:hidden;background:transparent;position:relative;outline:0;resize:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.mentions-input-box .mentions-autocomplete-list{display:none;background:#fff;border:1px solid #b2b2b2;position:absolute;left:0;right:0;z-index:10000;margin-top:-2px;border-radius:0 0 5px 5px;-webkit-box-shadow:0 2px 5px rgba(0,0,0,.148438);-moz-box-shadow:0 2px 5px rgba(0,0,0,.148438);box-shadow:0 2px 5px #00000026}.mentions-input-box .mentions-autocomplete-list ul{margin:0;padding:0}.mentions-input-box .mentions-autocomplete-list li{background-color:#fff;padding:0 5px;margin:0;width:auto;border-bottom:1px solid #eee;height:26px;line-height:26px;overflow:hidden;cursor:pointer;list-style:none;white-space:nowrap}.mentions-input-box .mentions-autocomplete-list li:last-child{border-radius:5px}.mentions-input-box .mentions-autocomplete-list li>img,.mentions-input-box .mentions-autocomplete-list li>div.icon{width:16px;height:16px;float:left;margin-top:5px;margin-right:5px;-moz-background-origin:3px;border-radius:3px}.mentions-input-box .mentions-autocomplete-list li em{font-weight:700;font-style:none}.mentions-input-box .mentions-autocomplete-list li:hover,.mentions-input-box .mentions-autocomplete-list li.active{background-color:#f2f2f2}.mentions-input-box .mentions-autocomplete-list li b{background:#ff9;font-weight:400}.mentions-input-box .mentions{position:absolute;left:1px;right:0;top:1px;bottom:0;padding:9px;color:#fff;overflow:hidden;white-space:pre-wrap;word-wrap:break-word}.mentions-input-box .mentions>div{color:#fff;white-space:pre-wrap;width:100%}.mentions-input-box .mentions>div>strong{font-weight:400;background:#d8dfea}.mentions-input-box .mentions>div>strong>span{filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)}/*!
+ * chota.css v0.9.2 | MIT License | https://github.com/jenil/chota
+ */:root{--bg-color:#fff;--bg-secondary-color:#f3f3f6;--color-primary:#14854f;--color-lightGrey:#d2d6dd;--color-grey:#747681;--color-darkGrey:#3f4144;--color-error:#d43939;--color-success:#28bd14;--grid-maxWidth:120rem;--grid-gutter:2rem;--font-size:1.6rem;--font-color:#333;--font-family-sans:-apple-system,"BlinkMacSystemFont","Avenir","Avenir Next","Segoe UI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;--font-family-mono:monaco,"Consolas","Lucida Console",monospace}html{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;-ms-text-size-adjust:100%;text-size-adjust:100%;-webkit-box-sizing:border-box;box-sizing:border-box;font-size:62.5%;line-height:1.15}*,:after,:before{-webkit-box-sizing:inherit;box-sizing:inherit}body{background-color:var(--bg-color);color:var(--font-color);font-family:Segoe UI,Helvetica Neue,sans-serif;font-family:var(--font-family-sans);font-size:var(--font-size);line-height:1.6;margin:0;padding:0}h1,h2,h3,h4,h5,h6{font-weight:500;margin:.35em 0 .7em}h1{font-size:2em}h2{font-size:1.75em}h3{font-size:1.5em}h4{font-size:1.25em}h5{font-size:1em}h6{font-size:.85em}a{color:var(--color-primary);text-decoration:none}a:hover:not(.button){opacity:.75}button{font-family:inherit}p{margin-top:0}blockquote{background-color:var(--bg-secondary-color);border-left:3px solid var(--color-lightGrey);padding:1.5rem 2rem}dl dt{font-weight:700}hr{background-color:var(--color-lightGrey);height:1px;margin:1rem 0}hr,table{border:none}table{border-collapse:collapse;border-spacing:0;text-align:left;width:100%}table.striped tr:nth-of-type(2n){background-color:var(--bg-secondary-color)}td,th{padding:1.2rem .4rem;vertical-align:middle}thead{border-bottom:2px solid var(--color-lightGrey)}tfoot{border-top:2px solid var(--color-lightGrey)}code,kbd,pre,samp,tt{font-family:var(--font-family-mono)}code,kbd{border-radius:4px;color:var(--color-error);font-size:90%;padding:.2em .4em;white-space:pre-wrap}code,kbd,pre{background-color:var(--bg-secondary-color)}pre{font-size:1em;overflow-x:auto;padding:1rem}pre code{background:none;padding:0}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}img{max-width:100%}fieldset{border:1px solid var(--color-lightGrey)}iframe{border:0}.container{margin:0 auto;max-width:var(--grid-maxWidth);padding:0 calc(var(--grid-gutter)/2);width:96%}.row{-webkit-box-direction:normal;-webkit-box-pack:start;-ms-flex-pack:start;display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-flow:row wrap;flex-flow:row wrap;justify-content:flex-start;margin-left:calc(var(--grid-gutter)/-2);margin-right:calc(var(--grid-gutter)/-2)}.row,.row.reverse{-webkit-box-orient:horizontal}.row.reverse{-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col{-webkit-box-flex:1;-ms-flex:1;flex:1}.col,[class*=" col-"],[class^=col-]{margin:0 calc(var(--grid-gutter)/2) calc(var(--grid-gutter)/2)}.col-1{-ms-flex:0 0 calc(8.33333% - var(--grid-gutter));flex:0 0 calc(8.33333% - var(--grid-gutter));max-width:calc(8.33333% - var(--grid-gutter))}.col-1,.col-2{-webkit-box-flex:0}.col-2{-ms-flex:0 0 calc(16.66667% - var(--grid-gutter));flex:0 0 calc(16.66667% - var(--grid-gutter));max-width:calc(16.66667% - var(--grid-gutter))}.col-3{-ms-flex:0 0 calc(25% - var(--grid-gutter));flex:0 0 calc(25% - var(--grid-gutter));max-width:calc(25% - var(--grid-gutter))}.col-3,.col-4{-webkit-box-flex:0}.col-4{-ms-flex:0 0 calc(33.33333% - var(--grid-gutter));flex:0 0 calc(33.33333% - var(--grid-gutter));max-width:calc(33.33333% - var(--grid-gutter))}.col-5{-ms-flex:0 0 calc(41.66667% - var(--grid-gutter));flex:0 0 calc(41.66667% - var(--grid-gutter));max-width:calc(41.66667% - var(--grid-gutter))}.col-5,.col-6{-webkit-box-flex:0}.col-6{-ms-flex:0 0 calc(50% - var(--grid-gutter));flex:0 0 calc(50% - var(--grid-gutter));max-width:calc(50% - var(--grid-gutter))}.col-7{-ms-flex:0 0 calc(58.33333% - var(--grid-gutter));flex:0 0 calc(58.33333% - var(--grid-gutter));max-width:calc(58.33333% - var(--grid-gutter))}.col-7,.col-8{-webkit-box-flex:0}.col-8{-ms-flex:0 0 calc(66.66667% - var(--grid-gutter));flex:0 0 calc(66.66667% - var(--grid-gutter));max-width:calc(66.66667% - var(--grid-gutter))}.col-9{-ms-flex:0 0 calc(75% - var(--grid-gutter));flex:0 0 calc(75% - var(--grid-gutter));max-width:calc(75% - var(--grid-gutter))}.col-10,.col-9{-webkit-box-flex:0}.col-10{-ms-flex:0 0 calc(83.33333% - var(--grid-gutter));flex:0 0 calc(83.33333% - var(--grid-gutter));max-width:calc(83.33333% - var(--grid-gutter))}.col-11{-ms-flex:0 0 calc(91.66667% - var(--grid-gutter));flex:0 0 calc(91.66667% - var(--grid-gutter));max-width:calc(91.66667% - var(--grid-gutter))}.col-11,.col-12{-webkit-box-flex:0}.col-12{-ms-flex:0 0 calc(100% - var(--grid-gutter));flex:0 0 calc(100% - var(--grid-gutter));max-width:calc(100% - var(--grid-gutter))}@media screen and (max-width:599px){.container{width:100%}.col,[class*=col-],[class^=col-]{-webkit-box-flex:0;-ms-flex:0 1 100%;flex:0 1 100%;max-width:100%}}@media screen and (min-width:900px){.col-1-md{-webkit-box-flex:0;-ms-flex:0 0 calc(8.33333% - var(--grid-gutter));flex:0 0 calc(8.33333% - var(--grid-gutter));max-width:calc(8.33333% - var(--grid-gutter))}.col-2-md{-webkit-box-flex:0;-ms-flex:0 0 calc(16.66667% - var(--grid-gutter));flex:0 0 calc(16.66667% - var(--grid-gutter));max-width:calc(16.66667% - var(--grid-gutter))}.col-3-md{-webkit-box-flex:0;-ms-flex:0 0 calc(25% - var(--grid-gutter));flex:0 0 calc(25% - var(--grid-gutter));max-width:calc(25% - var(--grid-gutter))}.col-4-md{-webkit-box-flex:0;-ms-flex:0 0 calc(33.33333% - var(--grid-gutter));flex:0 0 calc(33.33333% - var(--grid-gutter));max-width:calc(33.33333% - var(--grid-gutter))}.col-5-md{-webkit-box-flex:0;-ms-flex:0 0 calc(41.66667% - var(--grid-gutter));flex:0 0 calc(41.66667% - var(--grid-gutter));max-width:calc(41.66667% - var(--grid-gutter))}.col-6-md{-webkit-box-flex:0;-ms-flex:0 0 calc(50% - var(--grid-gutter));flex:0 0 calc(50% - var(--grid-gutter));max-width:calc(50% - var(--grid-gutter))}.col-7-md{-webkit-box-flex:0;-ms-flex:0 0 calc(58.33333% - var(--grid-gutter));flex:0 0 calc(58.33333% - var(--grid-gutter));max-width:calc(58.33333% - var(--grid-gutter))}.col-8-md{-webkit-box-flex:0;-ms-flex:0 0 calc(66.66667% - var(--grid-gutter));flex:0 0 calc(66.66667% - var(--grid-gutter));max-width:calc(66.66667% - var(--grid-gutter))}.col-9-md{-webkit-box-flex:0;-ms-flex:0 0 calc(75% - var(--grid-gutter));flex:0 0 calc(75% - var(--grid-gutter));max-width:calc(75% - var(--grid-gutter))}.col-10-md{-webkit-box-flex:0;-ms-flex:0 0 calc(83.33333% - var(--grid-gutter));flex:0 0 calc(83.33333% - var(--grid-gutter));max-width:calc(83.33333% - var(--grid-gutter))}.col-11-md{-webkit-box-flex:0;-ms-flex:0 0 calc(91.66667% - var(--grid-gutter));flex:0 0 calc(91.66667% - var(--grid-gutter));max-width:calc(91.66667% - var(--grid-gutter))}.col-12-md{-webkit-box-flex:0;-ms-flex:0 0 calc(100% - var(--grid-gutter));flex:0 0 calc(100% - var(--grid-gutter));max-width:calc(100% - var(--grid-gutter))}}@media screen and (min-width:1200px){.col-1-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(8.33333% - var(--grid-gutter));flex:0 0 calc(8.33333% - var(--grid-gutter));max-width:calc(8.33333% - var(--grid-gutter))}.col-2-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(16.66667% - var(--grid-gutter));flex:0 0 calc(16.66667% - var(--grid-gutter));max-width:calc(16.66667% - var(--grid-gutter))}.col-3-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(25% - var(--grid-gutter));flex:0 0 calc(25% - var(--grid-gutter));max-width:calc(25% - var(--grid-gutter))}.col-4-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(33.33333% - var(--grid-gutter));flex:0 0 calc(33.33333% - var(--grid-gutter));max-width:calc(33.33333% - var(--grid-gutter))}.col-5-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(41.66667% - var(--grid-gutter));flex:0 0 calc(41.66667% - var(--grid-gutter));max-width:calc(41.66667% - var(--grid-gutter))}.col-6-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(50% - var(--grid-gutter));flex:0 0 calc(50% - var(--grid-gutter));max-width:calc(50% - var(--grid-gutter))}.col-7-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(58.33333% - var(--grid-gutter));flex:0 0 calc(58.33333% - var(--grid-gutter));max-width:calc(58.33333% - var(--grid-gutter))}.col-8-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(66.66667% - var(--grid-gutter));flex:0 0 calc(66.66667% - var(--grid-gutter));max-width:calc(66.66667% - var(--grid-gutter))}.col-9-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(75% - var(--grid-gutter));flex:0 0 calc(75% - var(--grid-gutter));max-width:calc(75% - var(--grid-gutter))}.col-10-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(83.33333% - var(--grid-gutter));flex:0 0 calc(83.33333% - var(--grid-gutter));max-width:calc(83.33333% - var(--grid-gutter))}.col-11-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(91.66667% - var(--grid-gutter));flex:0 0 calc(91.66667% - var(--grid-gutter));max-width:calc(91.66667% - var(--grid-gutter))}.col-12-lg{-webkit-box-flex:0;-ms-flex:0 0 calc(100% - var(--grid-gutter));flex:0 0 calc(100% - var(--grid-gutter));max-width:calc(100% - var(--grid-gutter))}}fieldset{padding:.5rem 2rem}legend{font-size:.8em;letter-spacing:.1rem;text-transform:uppercase}input:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]),select,textarea,textarea[type=text]{border:1px solid var(--color-lightGrey);border-radius:4px;display:block;font-family:inherit;font-size:1em;padding:.8rem 1rem;-webkit-transition:all .2s ease;transition:all .2s ease;width:100%}select{-webkit-appearance:none;-moz-appearance:none;appearance:none;background:#f3f3f6 no-repeat 100%;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='40' fill='%23555'><polygon points='0,0 60,0 30,40'/></svg>");background-origin:content-box;background-size:1ex}.button,[type=button],[type=reset],[type=submit],button{background:var(--color-lightGrey);border:1px solid transparent;border-radius:4px;color:var(--color-darkGrey);cursor:pointer;display:inline-block;font-size:var(--font-size);line-height:1;padding:1rem 2.5rem;text-align:center;text-decoration:none;-webkit-transform:scale(1);transform:scale(1);-webkit-transition:opacity .2s ease;transition:opacity .2s ease}.button.dark,.button.error,.button.primary,.button.secondary,.button.success,[type=submit]{background-color:#000;background-color:var(--color-primary);color:#fff;z-index:1}.button:hover,[type=button]:hover,[type=reset]:hover,[type=submit]:hover,button:hover{opacity:.8}button:disabled,button:disabled:hover,input:disabled,input:disabled:hover{cursor:not-allowed;opacity:.4}.grouped{display:-webkit-box;display:-ms-flexbox;display:flex}.grouped>:not(:last-child){margin-right:16px}.grouped.gapless>*{border-radius:0!important;margin:0 0 0 -1px!important}.grouped.gapless>:first-child{border-radius:4px 0 0 4px!important;margin:0!important}.grouped.gapless>:last-child{border-radius:0 4px 4px 0!important}input:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset],:disabled):hover,select:hover,textarea:hover,textarea[type=text]:hover{border-color:var(--color-grey)}input:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]):focus,select:focus,textarea:focus,textarea[type=text]:focus{border-color:var(--color-primary);-webkit-box-shadow:0 0 1px var(--color-primary);box-shadow:0 0 1px var(--color-primary);outline:none}input.error:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]),textarea.error{border-color:var(--color-error)}input.success:not([type=checkbox],[type=radio],[type=submit],[type=color],[type=button],[type=reset]),textarea.success{border-color:var(--color-success)}[type=checkbox],[type=radio]{height:1.6rem;width:2rem}.button+.button{margin-left:1rem}.button.secondary{background-color:var(--color-grey)}.button.dark{background-color:var(--color-darkGrey)}.button.error{background-color:var(--color-error)}.button.success{background-color:var(--color-success)}.button.outline{background-color:transparent;border-color:var(--color-lightGrey)}.button.outline.primary{border-color:var(--color-primary);color:var(--color-primary)}.button.outline.secondary{border-color:var(--color-grey);color:var(--color-grey)}.button.outline.dark{border-color:var(--color-darkGrey);color:var(--color-darkGrey)}.button.clear{background-color:transparent;border-color:transparent;color:var(--color-primary)}.button.icon{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-inline-box;display:-ms-inline-flexbox;display:inline-flex}.button.icon>img{margin-left:2px}.button.icon-only{padding:1rem}.button:active:not(:disabled),[type=button]:active:not(:disabled),[type=reset]:active:not(:disabled),[type=submit]:active:not(:disabled),button:active:not(:disabled){-webkit-transform:scale(.98);transform:scale(.98)}::-webkit-input-placeholder{color:#bdbfc4}::-moz-placeholder{color:#bdbfc4}:-ms-input-placeholder{color:#bdbfc4}::-ms-input-placeholder{color:#bdbfc4}::placeholder{color:#bdbfc4}.nav{-webkit-box-align:stretch;-ms-flex-align:stretch;align-items:stretch;display:-webkit-box;display:-ms-flexbox;display:flex;min-height:5rem}.nav img{max-height:3rem}.nav-center,.nav-left,.nav-right,.nav>.container{display:-webkit-box;display:-ms-flexbox;display:flex}.nav-center,.nav-left,.nav-right{-webkit-box-flex:1;-ms-flex:1;flex:1}.nav-left{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.nav-right{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.nav-center{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}@media screen and (max-width:480px){.nav,.nav>.container{-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.nav-center,.nav-left,.nav-right{-webkit-box-pack:center;-ms-flex-pack:center;-ms-flex-wrap:wrap;flex-wrap:wrap;justify-content:center}}.nav .brand,.nav a{-webkit-box-align:center;-ms-flex-align:center;align-items:center;color:var(--color-darkGrey);display:-webkit-box;display:-ms-flexbox;display:flex;padding:1rem 2rem;text-decoration:none}.nav .active:not(.button),.nav [aria-current=page]:not(.button){color:#000;color:var(--color-primary)}.nav .brand{font-size:1.75em;padding-bottom:0;padding-top:0}.nav .brand img{padding-right:1rem}.nav .button{margin:auto 1rem}.card{background:var(--bg-color);border-radius:4px;-webkit-box-shadow:0 1px 3px var(--color-grey);box-shadow:0 1px 3px var(--color-grey);padding:1rem 2rem}.card p:last-child{margin:0}.card header>*{margin-bottom:1rem;margin-top:0}.tabs{display:-webkit-box;display:-ms-flexbox;display:flex}.tabs a{text-decoration:none}.tabs>.dropdown>summary,.tabs>a{-webkit-box-flex:0;border-bottom:2px solid var(--color-lightGrey);color:var(--color-darkGrey);-ms-flex:0 1 auto;flex:0 1 auto;padding:1rem 2rem;text-align:center}.tabs>a.active,.tabs>a:hover,.tabs>a[aria-current=page]{border-bottom:2px solid var(--color-darkGrey);opacity:1}.tabs>a.active,.tabs>a[aria-current=page]{border-color:var(--color-primary)}.tabs.is-full a{-webkit-box-flex:1;-ms-flex:1 1 auto;flex:1 1 auto}.tag{border:1px solid var(--color-lightGrey);color:var(--color-grey);display:inline-block;letter-spacing:.5px;line-height:1;padding:.5rem;text-transform:uppercase}.tag.is-small{font-size:.75em;padding:.4rem}.tag.is-large{font-size:1.125em;padding:.7rem}.tag+.tag{margin-left:1rem}details.dropdown{display:inline-block;position:relative}details.dropdown>:last-child{left:0;position:absolute;white-space:nowrap}.bg-primary{background-color:var(--color-primary)!important}.bg-light{background-color:var(--color-lightGrey)!important}.bg-dark{background-color:var(--color-darkGrey)!important}.bg-grey{background-color:var(--color-grey)!important}.bg-error{background-color:var(--color-error)!important}.bg-success{background-color:var(--color-success)!important}.bd-primary{border:1px solid var(--color-primary)!important}.bd-light{border:1px solid var(--color-lightGrey)!important}.bd-dark{border:1px solid var(--color-darkGrey)!important}.bd-grey{border:1px solid var(--color-grey)!important}.bd-error{border:1px solid var(--color-error)!important}.bd-success{border:1px solid var(--color-success)!important}.text-primary{color:var(--color-primary)!important}.text-light{color:var(--color-lightGrey)!important}.text-dark{color:var(--color-darkGrey)!important}.text-grey{color:var(--color-grey)!important}.text-error{color:var(--color-error)!important}.text-success{color:var(--color-success)!important}.text-white{color:#fff!important}.pull-right{float:right!important}.pull-left{float:left!important}.text-center{text-align:center}.text-left{text-align:left}.text-right{text-align:right}.text-justify{text-align:justify}.text-uppercase{text-transform:uppercase}.text-lowercase{text-transform:lowercase}.text-capitalize{text-transform:capitalize}.is-full-screen{min-height:100vh;width:100%}.is-full-width{width:100%!important}.is-vertical-align{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.is-center,.is-horizontal-align{-webkit-box-pack:center;-ms-flex-pack:center;display:-webkit-box;display:-ms-flexbox;display:flex;justify-content:center}.is-center{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.is-right{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end}.is-left,.is-right{-webkit-box-align:center;-ms-flex-align:center;align-items:center;display:-webkit-box;display:-ms-flexbox;display:flex}.is-left{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start}.is-fixed{position:fixed;width:100%}.is-paddingless{padding:0!important}.is-marginless{margin:0!important}.is-pointer{cursor:pointer!important}.is-rounded{border-radius:100%}.clearfix{clear:both;content:"";display:table}.is-hidden{display:none!important}@media screen and (max-width:599px){.hide-xs{display:none!important}}@media screen and (min-width:600px) and (max-width:899px){.hide-sm{display:none!important}}@media screen and (min-width:900px) and (max-width:1199px){.hide-md{display:none!important}}@media screen and (min-width:1200px){.hide-lg{display:none!important}}@media print{.hide-pr{display:none!important}}
+
+</style>
+  </head>
+
+  <body>
+    <style>
+      * {
+        background-color: var(--bg-color);
+      }
+
+      main {
+        width: 80%;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .mse {
+        font-size: 1.25rem;
+      }
+
+      .mse input {
+        height: 18px;
+        width: 18px;
+      }
+
+      #kids_details {
+        display: none;
+      }
+      #fam_kids:checked ~ #kids_details {
+        display: block;
+      }
+
+      input.switch {
+        appearance: none;
+        position: relative;
+        display: inline-block;
+        background: lightgrey;
+        height: 1.65rem;
+        width: 2.75rem;
+        vertical-align: middle;
+        border-radius: 2rem;
+        box-shadow: 0px 1px 3px #0003 inset;
+        transition: 0.25s linear;
+      }
+      input.switch::before {
+        content: "";
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: #fff;
+        border-radius: 1.2rem;
+        position: absolute;
+        top: 0.2rem;
+        left: 0.2rem;
+        box-shadow: 0px 1px 3px #0003;
+        transition: 0.25s linear transform;
+        transform: translateX(0rem);
+      }
+
+      :checked.switch {
+        background: green;
+      }
+      :checked.switch::before {
+        transform: translateX(1rem);
+      }
+
+      input.switch:focus  {
+        outline: none;
+      }
+
+      @media screen and (max-width: 599px) {
+        main {
+          margin-left: 5%;
+          /* --font-size: 1.9rem; */
+          width: 90%;
+        }
+      }
+
+      @media screen and (min-width: 1200px) {
+        main {
+          margin-left: 10%;
+        }
+      }
+    </style>
+    <main>
+  <h1>Case Note Template Generator</h1>
+  <p></p>
+
+  <div class="row">
+    <div class="col mse"><h2>
+    <label>
+      Session Info
+      <!-- <input type="checkbox" class="switch" id="presentation_switch" checked /> -->
+    </label>
+  </h2>
+  <fieldset id="f_mode">
+    <legend>Mode</legend>
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="mode_f2f"
+          name="mode"
+          value="F2F"
+          checked
+        />
+        <label for="neat_d">F2F</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="mode_phone" name="mode" value="Phone" />
+        <label for="untidy">Phone</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="mode_zoom" name="mode" value="Zoom" />
+        <label for="untidy">Zoom</label>
+      </div>
+
+    </div>
+  </fieldset>
+
+  <!-- <fieldset id="f_mode">
+    <legend>Session No.</legend>
+    <div class="row mse">
+      <div class="col">
+        <input
+          type="radio"
+          id="mode_f2f"
+          name="mode"
+          value="F2F"
+          checked
+        />
+        <label for="neat_d">F2F</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="mode_phone" name="mode" value="Phone" />
+        <label for="untidy">Phone</label>
+      </div>
+      <div class="col">
+        <input type="radio" id="mode_zoom" name="mode" value="Zoom" />
+        <label for="untidy">Zoom</label>
+      </div>
+
+    </div>
+  </fieldset> --><h2>
+  <label>
+    Presentation
+    <input type="checkbox" class="switch" id="presentation_switch" checked />
+  </label>
+</h2>
+<fieldset id="f_appearance">
+  <legend>Appearance</legend>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="neat_d"
+        name="appearance"
+        value="neatly dressed"
+        checked
+      />
+      <label for="neat_d">Neatly dressed</label>
+    </div>
+    <div class="col">
+      <input type="radio" id="untidy" name="appearance" value="untidy" />
+      <label for="untidy">Untidy</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="f_behaviour">
+  <legend>Behaviour</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="beh_good_eye"
+        name="beh_eye"
+        value="good eye contact"
+        checked
+      />
+      <label for="beh_good_eye">Good eye contact</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="beh_bad_eye"
+        name="beh_eye"
+        value="poor eye contact"
+      />
+      <label for="beh_bad_eye">Little eye contact</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="beh_coop"
+        name="beh_coop"
+        value="cooperative"
+        checked
+      />
+      <label for="beh_coop">Cooperative</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="erratic" name="beh_err" value="erratic" />
+      <label for="erratic">Erratic</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="restless"
+        name="beh_restless"
+        value="restless"
+      />
+      <label for="restless">Restless</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input type="checkbox" id="agitated" name="beh_agit" value="agitated" />
+      <label for="agitated">Agitated</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="beh_with" name="beh_with" value="withdrawn" />
+      <label for="beh_with">Withdrawn</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="beh_agg" name="beh_agg" value="aggressive" />
+      <label for="beh_agg">Aggressive</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="f_speech">
+  <legend>Speech</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_rate_normal"
+        name="speech_rate"
+        value="normal rate"
+        checked
+      />
+      <label for="speech_rate_normal">Normal rate</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_rate_slow"
+        name="speech_rate"
+        value="spoke slowly"
+      />
+      <label for="speech_rate_slow">Slow</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_rate_fast"
+        name="speech_rate"
+        value="spoke quickly"
+      />
+      <label for="speech_rate_fast">Fast</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_norm"
+        name="speech_vol"
+        value="normal volume"
+        checked
+      />
+      <label for="speech_norm">Normal volume</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_soft"
+        name="speech_vol"
+        value="speaks softly"
+      />
+      <label for="speech_soft">Soft</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="speech_loud"
+        name="speech_vol"
+        value="speaks loudly"
+      />
+      <label for="speech_loud">Loud</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="f_mood">
+  <legend>Mood</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="mood_euth"
+        name="mood_euth"
+        value="euthymic"
+        checked
+      />
+      <label for="mood_euth">Euthymic</label>
+      <input type="checkbox" id="mood_anx" name="mood_anx" value="anxious" />
+      <label for="mood_anx">Anxious</label>
+      <input type="checkbox" id="mood_irr" name="mood_irr" value="irritable" />
+      <label for="mood_irr">Irritable</label>
+      <input type="checkbox" id="mood_dep" name="mood_dep" value="depressed" />
+      <label for="mood_dep">Depressed</label>
+      <input type="checkbox" id="mood_apa" name="mood_apa" value="apathetic" />
+      <label for="mood_apa">Apathetic</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="f_affect">
+  <legend>Affect</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input type="radio" id="aff_norm" name="affect" value="normal" checked />
+      <label for="aff_norm">Normal</label>
+    </div>
+    <div class="col">
+      <input type="radio" id="aff_flat" name="affect" value="flat" />
+      <label for="aff_flat">Flat</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input type="radio" id="aff_tearful" name="affect" value="tearful" />
+      <label for="aff_tearful">Tearful</label>
+    </div>
+    <div class="col">
+      <input type="radio" id="aff_labile" name="affect" value="labile" />
+      <label for="aff_labile">Labile</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset  id="f_thought_process">
+  <legend>Thought Process</legend>
+
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="tho_logical"
+        name="tho_organisation"
+        value="logically organized"
+        checked
+      />
+      <label for="tho_logical">Logical</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="tho_disorg"
+        name="tho_organisation"
+        value="disorganized"
+      />
+      <label for="tho_disorg">Disorganized</label>
+    </div>
+  </div>
+</fieldset>
+
+<h2>Risk</h2>
+
+<fieldset id="f_si">
+  <legend>Suicidal Ideation</legend>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_nil"
+        name="risk_suicide"
+        value="nil"
+        checked
+      />
+      <label for="risk_self_nil">Nil</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_thoughts"
+        name="risk_suicide"
+        value="Has occasional thoughts about suicide with no clear plan or intent"
+      />
+      <label for="risk_self_thoughts">Occasional</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_freq"
+        name="risk_suicide"
+        value="Has frequent thoughts about suicide but denied plan or intent"
+      />
+      <label for="risk_self_freq">Frequent</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_plan"
+        name="risk_suicide"
+        value="Has thought of a suicide plan"
+      />
+      <label for="risk_self_plan">Has plan</label>
+    </div>
+    <div class="col">
+      <input
+        type="radio"
+        id="risk_self_intent"
+        name="risk_suicide"
+        value="Has a suicide plan and expressed intent to act on it"
+      />
+      <label for="risk_self_intent">Has plan and intent</label>
+    </div>
+  </div>
+  <div class="row mse">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="risk_previous_suicide"
+        name="risk_previous_suicide"
+        value="Has attempted suicide before"
+      />
+      <label for="risk_previous_suicide">Has attempted suicide before</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset id="f_nssi">
+  <legend>NSSI</legend>
+  <input type="radio" id="risk_nssi_nil" name="risk_nssi" value="nil" checked />
+  <label for="risk_nssi_nil">Nil</label>
+  <input
+    type="radio"
+    id="risk_nssi_tried"
+    name="risk_nssi"
+    value="has done NSSI in past"
+  />
+  <label for="risk_nssi_tried">Has done NSSI in past</label>
+  <input
+    type="radio"
+    id="risk_nssi_current"
+    name="risk_nssi"
+    value="ongoing NSSI"
+  />
+  <label for="risk_nssi_current">Ongoing NSSI</label>
+</fieldset>
+</div>
+
+    <div class="col mse">
+      <h2>Intervention</h2>
+<fieldset>
+  <legend>CBT</legend>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="cbt_soc"
+        name="cbt_soc"
+        value="Socratic questioning"
+      />
+      <label for="cbt_soc">Socratic questioning</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="cbt_dis"
+        name="cbt_dis"
+        value="thought disputation"
+      />
+      <label for="cbt_dis">Thought disputation</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="cbt_abc" name="cbt_abc" value="ABC model" />
+      <label for="cbt_abc">ABC Model</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="cbt_ba"
+        name="cbt_ba"
+        value="behavioural activation"
+      />
+      <label for="cbt_ba">Behavioural Activation</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="cbt_exp" name="cbt_exp" value="exposure" />
+      <label for="cbt_exp">Exposure</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="cbt_experiment"
+        name="cbt_experiment"
+        value="behavioural experiment"
+      />
+
+      <label for="cbt_experiment">Behavioural Experiment</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="cbt_reinf"
+        name="cbt_reinf"
+        value="Reinforcement"
+      />
+      <label for="cbt_reinf">Reinforcement</label>
+    </div>
+  </div>
+</fieldset>
+<fieldset>
+  <legend>Psychoeducation</legend>
+  <div class="row">
+    <div class="col">
+      <input type="checkbox" id="psy_dep" name="psy_dep" value="depression" />
+      <label for="psy_dep">Depression</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="psy_perf"
+        name="psy_perf"
+        value="perfectionism"
+      />
+      <label for="psy_perf">Perfectionism</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="psy_grief" name="psy_grief" value="grief" />
+      <label for="psy_grief">Grief</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="psy_procras"
+        name="psy_procras"
+        value="procrastination"
+      />
+      <label for="psy_procras">Procrastination</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="psy_worry" name="psy_worry" value="worry" />
+      <label for="psy_worry">Worry</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="psy_sleep_hyg"
+        name="psy_sleep_hyg"
+        value="sleep hygiene"
+      />
+      <label for="psy_sleep_hyg">Sleep hygiene</label>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Other</legend>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="motiv"
+        name="motiv"
+        value="Motivational interviewing"
+      />
+      <label for="motiv">Motivational interviewing</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="relax"
+        name="relax"
+        value="Relaxation/controlled breathing/meditation"
+      />
+      <label for="relax">Relaxation/meditation</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="decision_b"
+        name="decision_b"
+        value="Decisional balance"
+      />
+      <label for="decision_b">Decisional balance</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="assertive"
+        name="assertive"
+        value="Assertiveness"
+      />
+      <label for="assertive">Assertiveness</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="val" name="val" value="Values" />
+      <label for="val">Values</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="cog_defusion"
+        name="cog_defusion"
+        value="Cognitive defusion"
+      />
+      <label for="cog_defusion">Cognitive defusion</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="goal_setting"
+        name="goal_setting"
+        value="Goal setting"
+      />
+      <label for="goal_setting">Goal setting</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="relapse"
+        name="relapse"
+        value="Relapse prevention"
+      />
+      <label for="relapse">Relapse prevention</label>
+    </div>
+
+    <div class="col">
+      <input
+        type="checkbox"
+        id="safety_plan"
+        name="safety_plan"
+        value="Safety plan"
+      />
+      <label for="safety_plan">Safety plan</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input
+        type="checkbox"
+        id="unconditional_acc"
+        name="unconditional_acc"
+        value="Unconditional acceptance"
+      />
+      <label for="unconditional_acc">Unconditional acceptance</label>
+    </div>
+    <div class="col">
+      <input
+        type="checkbox"
+        id="comm_skill_training"
+        name="comm_skill_training"
+        value="Communication skills training"
+      />
+      <label for="comm_skill_training">Communication skills training</label>
+    </div>
+  </div>
+</fieldset>
+ <h2>
+  <label>
+    Background Info
+    <input type="checkbox" class="switch" id="bg_switch" checked />
+  </label>
+</h2>
+<fieldset id="f_work">
+  <legend>Work</legend>
+  <select
+    name="work_status"
+    id="work_status"
+    autocomplete="on"
+    style="width: 50%; margin-bottom: 0.7rem"
+    required
+  >
+    <option>Works locally</option>
+    <option>Works FIFO</option>
+    <option>Unemployed</option>
+    <option>Primary school</option>
+    <option>High school</option>
+    <option>University</option>
+    <option>TAFE</option>
+  </select>
+  Details:
+  <input
+    type="text"
+    id="work_status_details"
+    name="work_status_details"
+    size="15"
+    style="width: 100%; margin-bottom: 0.2rem; font-size: larger; height: auto"
+  />
+</fieldset>
+
+<fieldset id="f_family">
+  <legend>Family</legend>
+
+  <select
+    name="relx_status"
+    id="relx_status"
+    autocomplete="on"
+    style="width: 50%; margin-bottom: 0.7rem"
+    required
+  >
+    <option>Single</option>
+    <option>Married</option>
+    <option>Defacto</option>
+  </select>
+  Details:
+  <input
+    type="text"
+    id="relx_status_details"
+    name="relx_status_details"
+    size="15"
+    style="width: 100%; margin-bottom: 0.2rem; font-size: larger; height: auto"
+  />
+
+  <!-- <input type="checkbox" id="fam_sing" name="fam_sing" value="coding" />
+  <label for="fam_sing">Single</label>
+  <input type="text" name="fam_sing_details" id="fam_sing_details" />
+  <input type="checkbox" id="fam_relx" name="fam_relx" value="coding" />
+  <label for="fam_relx">In relationship</label>
+  <input type="text" name="fam_relx_details" id="fam_relx_details" />
+  <input type="checkbox" id="fam_kids" name="fam_kids" value="coding" />
+  <label for="fam_kids">Children</label>
+  <input type="text" name="kids_details" id="kids_details" /> -->
+</fieldset>
+
+<!-- <fieldset>
+  <legend>Friends & acquaintances</legend>
+  <input type="checkbox" id="int_lis" name="interv" value="coding" />
+  <label for="int_lis">Single</label>
+  <input type="checkbox" id="int_lis" name="interv" value="coding" />
+  <label for="int_lis">In relationship</label>
+  <input type="checkbox" id="int_lis" name="interv" value="coding" />
+  <label for="int_lis">Children</label>
+</fieldset> -->
+
+    </div>
+  </div>
+
+  <div class="col"><h2>Presenting Problems</h2>
+<fieldset>
+  <legend>Details</legend>
+  <textarea
+    class="mention"
+    id="details"
+    name="details"
+    style="min-height: 30rem; border: none; overflow-y: scroll"
+  ></textarea>
+</fieldset>
+
+<!-- <fieldset>
+  <legend>Relationships</legend>
+  <input type="checkbox" id="relx_conf" name="relx_conf" value="Conflict" />
+  <label for="relx_conf">Conflict</label>
+
+
+  <input type="checkbox" id="relx_sep" name="relx_sep" value="Separation" />
+  <label for="relx_sep">Separation</label>
+  <input
+    type="checkbox"
+    id="relx_parent"
+    name="relx_parent"
+    value="Parenting"
+  />
+  <label for="relx_sep">Parenting</label>
+</fieldset>
+
+<fieldset>
+  <legend>Work</legend>
+  <input
+    type="checkbox"
+    id="work_conf_cow"
+    name="work_conf_cow"
+    value="coding"
+  />
+  <label for="work_conf_cow">Conflict with co-worker</label>
+  <input
+    type="checkbox"
+    id="work_conf_sup"
+    name="work_conf_sup"
+    value="coding"
+  />
+  <label for="work_conf_sup">Conflict with supervisor</label>
+  <input type="checkbox" id="work_balance" name="work_balance" value="coding" />
+  <label for="work_balance">Work/life balance</label>
+  <input type="checkbox" id="work_burnout" name="work_burnout" value="coding" />
+  <label for="work_burnout">Burnout</label>
+</fieldset>
+
+<fieldset>
+  <legend>Substance use</legend>
+  <input type="checkbox" id="sub_alc" name="sub_alc" value="alcohol" />
+  <label for="sub_alc">Alcohol</label>
+  <input type="checkbox" id="sub_marj" name="sub_marj" value="marijuana" />
+  <label for="sub_marj">Marijuana</label>
+  <input
+    type="checkbox"
+    id="sub_meth"
+    name="sub_meth"
+    value="methamphetamines"
+  />
+  <label for="sub_meth">Meth</label>
+  <input type="checkbox" id="sub_other" name="sub_meth" value="coding" />
+  <label for="sub_meth">Other</label>
+</fieldset> -->
+
+<!-- <fieldset>
+  <legend>Unhelpful Negative Emotions</legend>
+  <div class="row">
+    <div class="col">
+      <input type="checkbox" id="une_dep" name="une_dep" value="depression" />
+      <label for="une_dep">Depression</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="une_anx" name="une_anx" value="anxiety" />
+      <label for="une_anx">Anxiety</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="une_ang" name="une_ang" value="anger" />
+      <label for="une_ang">Anger</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="une_shame" name="une_shame" value="shame" />
+      <label for="une_shame">Shame</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input type="checkbox" id="une_guilt" name="une_guilt" value="guilt" />
+      <label for="une_guilt">Guilt</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="une_hurt" name="une_hurt" value="hurt" />
+      <label for="une_hurt">Hurt</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="une_jea" name="une_jea" value="jealousy" />
+      <label for="une_jea">Jealousy</label>
+    </div>
+    <div class="col">
+      <input type="checkbox" id="une_envy" name="une_envy" value="envy" />
+      <label for="une_envy">Envy</label>
+    </div>
+  </div>
+</fieldset> -->
+</div>
+  <div class="col">
+    <h2>Actions</h2>
+    <fieldset>
+      <legend></legend>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          value="Explained confidentiality and terms and conditions of EAP counselling. Client agreed and gave consent to continue"
+          checked
+        />
+        <label for="consent"
+          >Explained confidentiality and terms and conditions of EAP
+          counselling. Client agreed and gave consent to continue</label
+        >
+      </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="ors_srs"
+          name="ors_srs"
+          value="Administered ORS/SRS"
+        />
+        <label for="ors_srs">Administered ORS/SRS</label>
+      </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="self_care"
+          name="self_care"
+          value="Encouraged self-care"
+        />
+        <label for="self_care">Encouraged self-care</label>
+      </div>
+
+      <div class="row">
+        <input
+          type="checkbox"
+          id="debrief_manager"
+          name="debrief_manager"
+          value="Debriefed with manager"
+        />
+        <label for="debrief_manager">Debriefed with manager</label>
+      </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="homework"
+          name="homework"
+          value="Discussed and set homework task: "
+        />
+        <label for="homework">Discussed and set homework task</label>
+      </div>
+      <div class="row">
+        <input
+          type="checkbox"
+          id="rebook"
+          name="rebook"
+          value="Client to contact reception to rebook"
+        />
+        <label for="rebook">Client to contact reception to rebook</label>
+      </div>
+    </fieldset>
+  </div>
+  <div class="row" style="margin-top:2.5rem; margin-bottom: 3.5rem;">
+    <div class="col" style="text-align: center">
+      <a class="button primary" style="margin-top: 0.5rem" id="generate_button"
+        >Generate template</a
+      >
+    </div>
+    <div class="col" style="text-align: center">
+      <a class="button error" style="margin-top: 0.5rem" id="clear_button"
+        >Clear template</a
+      >
+    </div>
+  </div>
+
+  <div class="col">
+    <h2>Output</h2>
+    <textarea
+      name="note_output"
+      id="note_output"
+      rows="20"
+      cols="30"
+      style="margin-top: 0.5rem"
+    ></textarea>
+
+    <hr />
+  </div>
+</main>
+
+
+
+
+
+
+  </body>
+</html>
