@@ -310,20 +310,6 @@ function generateNoteTemplate() {
     template_string += intervention_string + "\n\n" + actions_string + "\n";
   }
 
-
-  // template_string =
-  //   presentation_string
-  //   "\n\n" +
-  //   risk_string +
-  //   "\n\n" +
-  //   problem_string +
-  //   bg_string +
-  //   "\n\n" +
-  //   intervention_string +
-  //   "\n\n" +
-  //   actions_string +
-  //   "\n";
-
   output!.value = template_string;
   console.log(template_string);
 }
